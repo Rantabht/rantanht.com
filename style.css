@@ -1,0 +1,591 @@
+<style>
+    /* =======================
+       RÉINITIALISATION GLOBALE
+    ========================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      overflow-x: hidden; /* Empêche le défilement horizontal */
+      background-color: #fff;
+    }
+
+    /* =======================
+       CONTENEUR CENTRAL
+    ========================== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* =======================
+       HEADER FIXE EN HAUT
+    ========================== */
+    header {
+      background-color: #83D4A9; /* Vert clair */
+      color: white;
+      padding: 15px 0;
+      position: sticky; /* Rends le header fixe au défilement */
+      top: 0; /* Positionne en haut de la fenêtre */
+      z-index: 100; /* Assure que le header est au-dessus des autres éléments */
+      animation: fadeSlideDown 0.6s ease-out; /* Animation d'apparition */
+    }
+
+    /* Conteneur pour aligner le logo et le menu sur la même ligne */
+    .header-container {
+      display: flex;
+      justify-content: space-between; /* Espace entre les éléments */
+      align-items: center; /* Centre verticalement */
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+
+    /* =======================
+       LOGO + TEXTE DE MARQUE
+    ========================== */
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 5px; /* Espace entre le logo et le texte */
+    }
+
+    .logo img {
+      height: 40px; /* Taille du logo */
+      animation: logoZoomIn 0.8s ease-out 0.2s forwards; /* Animation de zoom */
+      opacity: 0; /* Caché au début de l'animation */
+      transform: scale(0.8); /* Taille initiale réduite pour l'animation */
+      cursor: pointer;
+    }
+
+    .logo:hover img {
+      animation: pulse 0.6s ease-in-out; /* Animation de pulsation au survol */
+    }
+
+    .text-brand h1,
+    .text-brand p {
+      opacity: 0; /* Caché au début de l'animation */
+      transform: translateY(10px); /* Décalé vers le bas pour l'animation */
+      animation: textFadeUp 0.6s ease-out forwards; /* Animation de fondu vers le haut */
+    }
+
+    .text-brand h1 {
+      font-size: 18px;
+      animation-delay: 0.4s; /* Délai pour l'animation du titre */
+    }
+
+    .text-brand p {
+      font-size: 12px;
+      color: #ffffff;
+      animation-delay: 0.6s; /* Délai pour l'animation du slogan */
+    }
+
+    /* =======================
+       MENU NAVIGATION (DESKTOP)
+    ========================== */
+    nav {
+      display: flex;
+      gap: 20px; /* Espace entre les liens de navigation */
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none; /* Supprime le soulignement */
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease; /* Transition douce pour le changement de couleur */
+    }
+
+    /* Ligne de soulignement animée pour les liens de navigation */
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0%; /* Initialement caché */
+      height: 2px;
+      background-color: #88c6a3; /* Couleur de la ligne */
+      transition: width 0.3s ease; /* Animation de la largeur */
+    }
+
+    nav a:hover {
+      color: #88c6a3; /* Couleur au survol */
+    }
+
+    nav a:hover::after {
+      width: 100%; /* La ligne apparaît au survol */
+    }
+
+    /* =======================
+       ICÔNE PANIER SVG
+    ========================== */
+    .cart-icon {
+      margin-left: 20px;
+      cursor: pointer;
+    }
+
+    .cart-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke: white; /* Couleur du tracé SVG */
+      fill: none; /* Pas de remplissage */
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.3s ease; /* Transition pour le changement de couleur */
+    }
+
+    .cart-icon:hover svg {
+      stroke: #ff6600; /* Couleur orange au survol */
+    }
+
+    /* =======================
+       MENU BURGER (MOBILE)
+    ========================== */
+    .burger {
+      display: none; /* Caché par défaut, affiché en mobile */
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 20; /* Assure qu'il est au-dessus du menu */
+    }
+
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: 0.3s; /* Transition pour l'animation de l'icône */
+    }
+
+    /* Animations de l'icône burger quand il est actif (ouvert) */
+    .burger.active div:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .burger.active div:nth-child(2) {
+      opacity: 0; /* Barre du milieu disparaît */
+    }
+
+    .burger.active div:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* =======================
+       OVERLAY FOND FONCÉ AVEC FONDU
+    ========================== */
+    .overlay {
+      position: fixed; /* Reste fixe lors du défilement */
+      top: 0;
+      left: 0;
+      width: 100vw; /* Pleine largeur de la vue */
+      height: 100vh; /* Pleine hauteur de la vue */
+      background: rgba(0, 0, 0, 0.5); /* Couleur noire semi-transparente */
+      z-index: 9; /* En dessous du menu mobile */
+      opacity: 0; /* Caché par défaut */
+      pointer-events: none; /* N'intercepte pas les clics quand il est caché */
+      transition: opacity 0.4s ease; /* Transition pour le fondu */
+    }
+
+    .overlay.active {
+      opacity: 1; /* Apparaît quand actif */
+      pointer-events: auto; /* Intercepte les clics quand actif */
+    }
+
+    /* =======================
+       RESPONSIVE MOBILE (Écran de 768px ou moins)
+    ========================== */
+    @media (max-width: 768px) {
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Caché hors de l'écran à droite */
+        width: 150px; /* Largeur du menu mobile */
+        height: 100vh;
+        background: rgba(0, 150, 125, 0.25); /* Fond semi-transparent */
+        backdrop-filter: blur(10px); /* Effet de flou sur l'arrière-plan */
+        -webkit-backdrop-filter: blur(10px); /* Pour compatibilité Safari */
+        border-left: 1px solid rgba(255, 255, 255, 0.2); /* Petite bordure */
+        flex-direction: column; /* Les liens s'empilent verticalement */
+        padding: 80px 20px;
+        gap: 20px;
+        transition: right 0.3s ease; /* Animation de glissement du menu */
+        z-index: 15; /* Au-dessus de l'overlay */
+      }
+
+      nav.active {
+        right: 0; /* Le menu glisse pour apparaître */
+      }
+
+      .burger {
+        display: flex; /* Affiche l'icône burger */
+      }
+
+      body.menu-open {
+        overflow: hidden; /* Empêche le défilement du corps quand le menu est ouvert */
+      }
+
+      .cart-icon {
+        display: none; /* Cache l'icône panier en mobile */
+      }
+
+      /* Animations des liens de navigation quand le menu mobile s'ouvre */
+      nav a {
+        color: #ffffff;
+        opacity: 0; /* Caché au début */
+        transform: translateX(20px); /* Décalé vers la droite */
+        transition: all 0.9s ease; /* Transition plus longue pour un effet en cascade */
+      }
+
+      nav.active a {
+        opacity: 1; /* Apparaît */
+        transform: translateX(0); /* Glisse à sa position normale */
+      }
+
+      nav a::after {
+        bottom: -3px; /* Ajuste la position de la ligne de soulignement */
+      }
+    }
+
+    /* =======================
+       ACCESSIBILITÉ - VISIBILITÉ AU CLAVIER
+    ========================== */
+    a:focus {
+      outline: 2px solid #ffffff; /* Bordure visible pour le focus clavier */
+      outline-offset: 2px;
+    }
+
+    /* =======================
+       ANIMATIONS CSS HEADER
+    ========================== */
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes logoZoomIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes textFadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* =======================
+       SLIDER STYLE SANS ARRONDIS
+    ========================== */
+    .slider {
+      position: relative;
+      max-width: 1200px;
+      margin: 0px auto 40px; /* Marge supérieure ajustée, centré, marge inférieure */
+      overflow: hidden; /* Cache ce qui dépasse */
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2); /* Ombre douce */
+      height: 400px;
+      background-color: #000; /* Fond noir par défaut */
+      user-select: none; /* Empêche la sélection de texte */
+      touch-action: pan-y; /* Améliore la réponse tactile verticale */
+    }
+
+    .slides {
+      display: flex; /* Permet aux slides d'être sur une ligne */
+      width: 500%; /* 5 slides * 100% */
+      height: 100%;
+      transition: transform 0.6s ease; /* Animation de la transition des slides */
+    }
+
+    .slide {
+      width: 20%; /* 100% / 5 slides */
+      flex-shrink: 0; /* Empêche les slides de rétrécir */
+      height: 100%;
+      position: relative;
+      color: white;
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: cover; /* Couvre toute la surface du slide */
+      background-position: center; /* Centre l'image de fond */
+    }
+
+    /* Overlay sombre sur les images du slider pour améliorer la lisibilité du texte */
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0; /* Couvre toute la surface */
+      background: rgba(0, 0, 0, 0.4); /* Couleur noire semi-transparente */
+      z-index: 1; /* En dessous du contenu du slide */
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2; /* Au-dessus de l'overlay */
+      text-align: center;
+      max-width: 80%;
+    }
+
+    .slide-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.8); /* Ombre pour le texte */
+    }
+
+    .slide-content p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+    }
+
+    .slide-content button {
+      background-color: #83D4A9; /* Vert clair */
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px; /* Boutons arrondis */
+      font-size: 1rem;
+      color: #004D40; /* Vert foncé */
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 5px 10px rgba(131, 212, 169, 0.5); /* Ombre douce */
+    }
+
+    .slide-content button:hover {
+      background-color: #00967D; /* Vert plus foncé au survol */
+      color: white;
+      box-shadow: 0 6px 14px rgba(0, 150, 125, 0.7); /* Ombre plus prononcée au survol */
+    }
+
+    /* Flèches de navigation */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%); /* Centre verticalement */
+      background: rgba(131, 212, 169, 0.8); /* Fond vert semi-transparent */
+      border-radius: 50%; /* Rends la flèche ronde */
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s ease;
+      z-index: 10; /* Au-dessus des slides */
+      user-select: none; /* Empêche la sélection de texte */
+    }
+
+    .arrow:hover {
+      background: #00967D; /* Vert plus foncé au survol */
+    }
+
+    .arrow-left {
+      left: 15px;
+    }
+
+    .arrow-right {
+      right: 15px;
+    }
+
+    .arrow svg {
+      width: 22px;
+      height: 22px;
+      stroke: #004D40; /* Couleur du tracé SVG */
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .arrow:hover svg {
+      stroke: white; /* Couleur blanche au survol */
+    }
+
+    /* Pagination points */
+    .pagination {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+      z-index: 10; /* Au-dessus des slides */
+    }
+
+    .pagination button {
+      border: none;
+      background-color: rgba(255,255,255,0.5); /* Points blancs semi-transparents */
+      width: 12px;
+      height: 12px;
+      border-radius: 50%; /* Points ronds */
+      margin: 0 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .pagination button.active,
+    .pagination button:hover {
+      background-color: #83D4A9; /* Vert clair quand actif ou survolé */
+      box-shadow: 0 0 5px #83D4A9; /* Ombre lumineuse */
+    }
+
+    /* Accessibilité pour les boutons et flèches du slider */
+    .pagination button:focus,
+    .arrow:focus {
+      outline: 3px solid #83D4A9; /* Bordure de focus pour le clavier */
+      outline-offset: 2px;
+    }
+
+    /* Responsive du slider pour les petits écrans */
+    @media (max-width: 768px) {
+      .slider {
+        height: 250px; /* Réduit la hauteur du slider */
+      }
+      .slide-content h2 {
+        font-size: 1.5rem;
+      }
+      .slide-content p {
+        font-size: 1rem;
+      }
+      .slide-content button {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+      }
+      .arrow {
+        width: 35px;
+        height: 35px;
+      }
+      .arrow svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    /* =======================
+       FOOTER
+    ========================== */
+    footer.footer {
+      background-color: #004D40; /* Vert foncé */
+      color: #ffffff;
+      padding: 15px 10px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin-top: 40px
+    }
+
+    .footer-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .footer-slogan {
+      font-size: 14px;
+      color: #b2dfdb; /* Vert clair transparent */
+      margin-bottom: 10px;
+    }
+
+    /* Grille des icônes sociales (alignées sur une ligne) */
+    .social-grid {
+      display: flex;
+      justify-content: center; /* Centre les icônes */
+      align-items: center;
+      gap: 10px; /* Espace entre les icônes */
+      flex-wrap: nowrap; /* Empêche le retour à la ligne */
+      overflow-x: auto;   /* Permet le scroll horizontal si l'écran est trop petit */
+      padding: 10px 0;
+    }
+
+    .social-item {
+      text-decoration: none;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column; /* Icône et texte empilés */
+      align-items: center;
+      transition: transform 0.3s ease, color 0.3s ease;
+      font-size: 13px;
+      min-width: 60px; /* Largeur minimale pour chaque élément social */
+    }
+
+    .social-item i {
+      font-size: 24px;
+      margin-bottom: 5px;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .social-item:hover {
+      color: #83D4A9; /* Vert clair au survol */
+      transform: translateY(-3px); /* Effet de léger déplacement vers le haut */
+    }
+
+    .social-item:hover i {
+      color: #83D4A9;
+      transform: scale(1.1); /* Effet de léger zoom sur l'icône */
+    }
+
+    .copyright {
+      font-size: 12px;
+      color: #b2dfdb;
+      margin-top: 10px;
+    }
+
+    /* Optimisation du pied de page pour mobile */
+    @media (max-width: 400px) {
+      .social-item {
+        font-size: 12px;
+        min-width: 50px;
+      }
+
+      .social-item i {
+        font-size: 20px;
+      }
+
+      .footer-title {
+        font-size: 18px;
+      }
+
+      .footer-slogan {
+        font-size: 13px;
+      }
+    }
+
+/* =======================
+   ✅ AJUSTEMENT ESPACE "Rantab" ET SLOGAN EN MOBILE
+========================== */
+@media (max-width: 600px) {
+  .text-brand h1 {
+    margin-bottom: 0;     /* Réduit l'espace sous le titre */
+    line-height: 1.1;     /* Réduit hauteur de ligne */
+  }
+
+  .text-brand p {
+    margin-top: -6px;     /* Colle le slogan au titre */
+    line-height: 2.1;
+  }
+}
+  </style>
