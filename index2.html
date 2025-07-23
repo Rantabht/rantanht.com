@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RANTAB - Boutique ecommerce en Haïti</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  <style>
+    /* STYLES GÉNÉRAUX */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    /* SLIDER */
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .slides {
+      display: flex;
+      width: 500%;
+      height: 100%;
+      transition: transform 0.5s ease;
+    }
+
+    .slide {
+      flex: 1;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      padding: 30px;
+      color: white;
+    }
+
+    /* SECTION CATÉGORIES */
+    .categories-wrapper {
+      padding: 30px 16px;
+      background: #f9f9f9;
+    }
+
+    .collections-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .collections-container {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 12px 0;
+      scroll-behavior: smooth;
+    }
+
+    .collection-card {
+      flex: 0 0 auto;
+      width: 110px;
+      height: 150px;
+      border-radius: 16px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 10px;
+      color: #fff;
+      font-weight: 500;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #333;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="brand">
+        <a href="index.html" class="logo">
+          <img src="./images/logo.png" alt="Logo RANTAB" />
+        </a>
+        <div class="text-brand">
+          <h1>RANTAB</h1>
+          <p>Le Soutien qu'il vous faut.</p>
+        </div>
+      </div>
+      <div class="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- SLIDER PRINCIPAL -->
+  <section class="slider">
+    <div class="slides" id="slides">
+      <article class="slide" style="background-image: url('https://images.unsplash.com/photo-1510557880182-3f6b9bc7d58c?auto=format&fit=crop&w=1350&q=80');">
+        <div class="slide-content">
+          <h2>Offre Spéciale</h2>
+          <p>Derniers modèles à prix réduits</p>
+        </div>
+      </article>
+      <article class="slide" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1350&q=80');">
+        <div class="slide-content">
+          <h2>Accessoires</h2>
+          <p>Complétez votre équipement</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SECTION CATÉGORIES (intégrée directement) -->
+  <section class="categories-wrapper">
+    <div class="collections-header">
+      <h2>🛍️ Explorez nos collections</h2>
+      <a class="view-all">Voir toutes les collections</a>
+    </div>
+
+    <div class="collections-container" id="categories-slider">
+      <a href="#" class="collection-card" style="background-image: url('https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=500&q=80');">
+        <span>🆕<br>Nouveautés</span>
+      </a>
+      <a href="#" class="collection-card" style="background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80');">
+        <span>🔥<br>Promos</span>
+      </a>
+      <a href="#" class="collection-card" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80');">
+        <span>👕<br>Vêtements</span>
+      </a>
+      <a href="#" class="collection-card" style="background-image: url('https://images.unsplash.com/photo-1600269452121-4f2416e55c28?auto=format&fit=crop&w=500&q=80');">
+        <span>👟<br>Chaussures</span>
+      </a>
+    </div>
+
+    <div class="scroll-toggle">
+      <button id="toggleScrollBtn">⏸️ Pause le scroll</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <h2>Rejoins-nous</h2>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>© 2025 RANTAB - Tous droits réservés</p>
+  </footer>
+
+  <script>
+    // SLIDER PRINCIPAL
+    let currentSlide = 0;
+    const slides = document.getElementById('slides');
+    const totalSlides = document.querySelectorAll('.slide').length;
+
+    function showSlide(index) {
+      if (index >= totalSlides) currentSlide = 0;
+      else if (index < 0) currentSlide = totalSlides - 1;
+      else currentSlide = index;
+      
+      slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    setInterval(() => showSlide(currentSlide + 1), 3000);
+
+    // SLIDER CATÉGORIES
+    const categorySlider = document.getElementById('categories-slider');
+    let scrollInterval = setInterval(() => {
+      categorySlider.scrollLeft += 1;
+      if (categorySlider.scrollLeft >= categorySlider.scrollWidth - categorySlider.clientWidth) {
+        categorySlider.scrollLeft = 0;
+      }
+    }, 20);
+
+    document.getElementById('toggleScrollBtn').addEventListener('click', function() {
+      if (scrollInterval) {
+        clearInterval(scrollInterval);
+        scrollInterval = null;
+        this.textContent = '▶️ Reprendre';
+      } else {
+        scrollInterval = setInterval(() => {
+          categorySlider.scrollLeft += 1;
+          if (categorySlider.scrollLeft >= categorySlider.scrollWidth - categorySlider.clientWidth) {
+            categorySlider.scrollLeft = 0;
+          }
+        }, 20);
+        this.textContent = '⏸️ Pause';
+      }
+    });
+  </script>
+</body>
+</html>
