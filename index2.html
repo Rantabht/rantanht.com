@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RANTAB - Boutique ecommerce en Haïti vente en gros et au détail</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  <!-- Style pour la section Catégories -->
+  <style>
+    /* Loader pendant le chargement */
+    .categories-loading {
+      text-align: center;
+      padding: 40px 0;
+      background: #f9f9f9;
+    }
+    .loading-spinner {
+      border: 3px solid rgba(0,0,0,0.1);
+      border-radius: 50%;
+      border-top-color: #007bff;
+      width: 30px;
+      height: 30px;
+      margin: 0 auto 15px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    /* Message d'erreur */
+    .categories-error {
+      text-align: center;
+      padding: 20px;
+      background: #fff3cd;
+      border-radius: 8px;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Overlay pour menu mobile -->
+  <div class="overlay" id="menu-overlay"></div>
+
+  <header>
+    <div class="header-container">
+      <div class="brand">
+        <a href="index.html" class="logo" aria-label="Accueil Rantab">
+          <img src="./images/logo.png" alt="Logo Rantab" />
+        </a>
+        <div class="text-brand">
+          <h1>RANTAB</h1>
+          <p>Le Soutien qu'il vous faut.</p>
+        </div>
+      </div>
+
+      <nav id="nav-menu" aria-label="Navigation principale">
+        <a href="produits.html">Produits</a>
+        <a href="reservations.html">Réservations</a>
+        <a href="livraisons.html">Livraisons</a>
+        <a href="contacts.html">Contacts</a>
+        <a href="apropos.html">À propos</a>
+      </nav>
+
+      <div class="cart-icon" title="Voir le panier" tabindex="0" role="button" aria-label="Votre panier d'achats">
+        <svg viewBox="0 0 24 24">
+          <circle cx="9" cy="21" r="1" />
+          <circle cx="20" cy="21" r="1" />
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+        </svg>
+      </div>
+
+      <div class="burger" id="burger-menu" aria-label="Menu mobile" aria-expanded="false" role="button" tabindex="0">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Slider Principal -->
+  <section class="slider" aria-label="Slider d'images promotionnelles">
+    <div class="slides" id="slides">
+      <article class="slide" style="background-image: url('https://images.unsplash.com/photo-1510557880182-3f6b9bc7d58c?auto=format&fit=crop&w=1350&q=80');" aria-label="Promotion 1 : Offre Spéciale sur les derniers modèles.">
+        <div class="slide-content">
+          <h2>Offre Spéciale</h2>
+          <p>Découvrez les derniers modèles<br/>à prix réduits.</p>
+          <button onclick="alert('Découvrir Smartphones')">Découvrir</button>
+        </div>
+      </article>
+
+      <article class="slide" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1350&q=80');" aria-label="Promotion 2 : Accessoires de Qualité.">
+        <div class="slide-content">
+          <h2>Accessoires de Qualité</h2>
+          <p>Complétez votre équipement<br/>avec style.</p>
+          <button onclick="alert('Découvrir Accessoires')">Découvrir</button>
+        </div>
+      </article>
+
+      <article class="slide" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80');" aria-label="Promotion 3 : Écouteurs Sans Fil.">
+        <div class="slide-content">
+          <h2>Écouteurs Sans Fil</h2>
+          <p>Profitez d'un son clair et sans encombrement.</p>
+          <button onclick="alert('Découvrir Écouteurs')">Découvrir</button>
+        </div>
+      </article>
+
+      <article class="slide" style="background-image: url('https://images.unsplash.com/photo-1527434007756-12f312b5a60d?auto=format&fit=crop&w=1350&q=80');" aria-label="Promotion 4 : Offres Immanquables.">
+        <div class="slide-content">
+          <h2>Offres Immanquables</h2>
+          <p>Des promotions exclusives<br/>toute l'année.</p>
+          <button onclick="alert('Découvrir Offres')">Découvrir</button>
+        </div>
+      </article>
+
+      <article class="slide" style="background-image: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1350&q=80');" aria-label="Promotion 5 : Livraison Rapide.">
+        <div class="slide-content">
+          <h2>Livraison Rapide</h2>
+          <p>Recevez vos achats rapidement<br/>chez vous.</p>
+          <button onclick="alert('Découvrir Livraison')">Découvrir</button>
+        </div>
+      </article>
+    </div>
+
+    <button class="arrow arrow-left" aria-label="Slide précédente" id="prevBtn">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6" /></svg>
+    </button>
+    <button class="arrow arrow-right" aria-label="Slide suivante" id="nextBtn">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
+    </button>
+    <div class="pagination" id="pagination"></div>
+  </section>
+
+  <!-- Section Catégories (chargée dynamiquement) -->
+  <section id="categories-section" class="categories-wrapper">
+    <!-- Contenu chargé via JavaScript -->
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <h2 class="footer-title">Rejoins-nous sur nos plateformes</h2>
+    <p class="footer-slogan">On est là pour vous, 24h/24</p>
+
+    <div class="social-grid">
+      <a href="https://wa.me/50937291397?text=Bonjour%20RANTAB%2C%20j%E2%80%99aimerais%20plus%20d%E2%80%99infos%20sur%20vos%20produits."
+         target="_blank" class="social-item" rel="noopener noreferrer" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span>
+      </a>
+
+      <a href="https://www.facebook.com/share/1XS2BnbL8A/"
+         target="_blank" class="social-item" rel="noopener noreferrer" aria-label="Facebook">
+        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook</span>
+      </a>
+
+      <a href="https://www.instagram.com/rantabht?igsh=ZDlmYXoxem5ocTEw"
+         target="_blank" class="social-item" rel="noopener noreferrer" aria-label="Instagram">
+        <i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span>
+      </a>
+
+      <a href="https://tiktok.com/@rantabht"
+         target="_blank" class="social-item" rel="noopener noreferrer" aria-label="TikTok">
+        <i class="fab fa-tiktok" aria-hidden="true"></i><span>TikTok</span>
+      </a>
+
+      <a href="https://www.facebook.com/marketplace/profile/61577711683390/?ref=permalink&mibextid=dXMIcH"
+         target="_blank" class="social-item" rel="noopener noreferrer" aria-label="Marketplace">
+        <i class="fas fa-store" aria-hidden="true"></i><span>Marketplace</span>
+      </a>
+    </div>
+
+    <p class="copyright">
+      © 2025 RANTAB - Tous droits réservés<br />
+      <a href="politique-confidentialite.html" style="color: #b2dfdb; text-decoration: underline;">Politique de Confidentialité</a>
+    </p>
+  </footer>
+  
+  <!-- Scripts JavaScript -->
+  <script>
+    // =============================
+    // MENU BURGER MOBILE
+    // =============================
+    const burger = document.getElementById('burger-menu');
+    const navMenu = document.getElementById('nav-menu');
+    const overlay = document.getElementById('menu-overlay');
+    const links = navMenu.querySelectorAll('a');
+
+    let isTransitioning = false;
+
+    function toggleMenu() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+
+      burger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+      overlay.classList.toggle('active');
+      document.body.classList.toggle('menu-open');
+
+      const expanded = burger.getAttribute('aria-expanded') === 'true';
+      burger.setAttribute('aria-expanded', !expanded);
+
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 400);
+    }
+
+    burger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        if (navMenu.classList.contains('active')) toggleMenu();
+      });
+    });
+    burger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+      }
+    });
+
+    // =============================
+    // SLIDER JS
+    // =============================
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
+    let currentIndex = 0;
+    let intervalId = null;
+
+    const pagination = document.getElementById('pagination');
+
+    // Création des points de pagination
+    for (let i = 0; i < totalSlides; i++) {
+      const btn = document.createElement('button');
+      if (i === 0) btn.classList.add('active');
+      btn.setAttribute('aria-label', `Aller à la diapositive ${i + 1}`);
+      btn.addEventListener('click', () => {
+        goToSlide(i);
+        resetInterval();
+      });
+      pagination.appendChild(btn);
+    }
+
+    function goToSlide(index) {
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      currentIndex = index;
+      const offset = -index * 100 / totalSlides;
+      slides.style.transform = `translateX(${offset}%)`;
+      updatePagination();
+    }
+
+    function updatePagination() {
+      const buttons = pagination.querySelectorAll('button');
+      buttons.forEach((btn, idx) => {
+        btn.classList.toggle('active', idx === currentIndex);
+        if(idx === currentIndex) {
+          btn.setAttribute('aria-current', 'true');
+        } else {
+          btn.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      goToSlide(currentIndex - 1);
+      resetInterval();
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      goToSlide(currentIndex + 1);
+      resetInterval();
+    });
+
+    function startInterval() {
+      intervalId = setInterval(() => {
+        goToSlide(currentIndex + 1);
+      }, 4000);
+    }
+
+    function resetInterval() {
+      clearInterval(intervalId);
+      startInterval();
+    }
+
+    startInterval();
+
+    // Gestion du swipe tactile
+    let startX = 0;
+    let isDragging = false;
+
+    slides.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    });
+
+    slides.addEventListener('touchmove', e => {
+      if (!isDragging) return;
+      const moveX = e.touches[0].clientX;
+      const diff = startX - moveX;
+
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          goToSlide(currentIndex + 1);
+        } else {
+          goToSlide(currentIndex - 1);
+        }
+        isDragging = false;
+        resetInterval();
+      }
+    });
+
+    slides.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+
+    // =============================
+    // CHARGEMENT DYNAMIQUE DE CATEGORIES.HTML
+    // =============================
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('categories-section');
+      
+      // Afficher un loader pendant le chargement
+      container.innerHTML = `
+        <div class="categories-loading">
+          <div class="loading-spinner"></div>
+          <p>Chargement des collections...</p>
+        </div>
+      `;
+
+      fetch('categories.html')
+        .then(response => {
+          if (!response.ok) throw new Error('Erreur réseau');
+          return response.text();
+        })
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          
+          // Extraire uniquement les éléments nécessaires
+          const header = doc.querySelector('.collections-header');
+          const slider = doc.querySelector('.collections-container');
+          const toggleBtn = doc.querySelector('.scroll-toggle');
+          
+          // Combiner les éléments dans le conteneur
+          container.innerHTML = header.outerHTML + slider.outerHTML + toggleBtn.outerHTML;
+          
+          // Réinitialiser les fonctionnalités JavaScript
+          initCategoriesScript();
+        })
+        .catch(err => {
+          console.error('Erreur:', err);
+          container.innerHTML = `
+            <div class="categories-error">
+              <p>⚠️ Impossible de charger les collections. <a href="categories.html">Accédez-y directement</a></p>
+            </div>
+          `;
+        });
+    });
+
+    // Fonction pour initialiser le script des catégories
+    function initCategoriesScript() {
+      const slider = document.querySelector('.collections-container');
+      const toggleBtn = document.getElementById('toggleScrollBtn');
+      let autoScrollActive = true;
+      let direction = 1;
+
+      function autoScroll() {
+        if (!autoScrollActive) return;
+        slider.scrollLeft += direction;
+        if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) direction = -1;
+        else if (slider.scrollLeft <= 0) direction = 1;
+      }
+
+      const intervalId = setInterval(autoScroll, 20);
+
+      // Gestion du bouton pause/reprendre
+      toggleBtn.addEventListener('click', () => {
+        autoScrollActive = !autoScrollActive;
+        toggleBtn.textContent = autoScrollActive ? '⏸️ Pause' : '▶️ Reprendre';
+      });
+
+      // Désactiver le scroll auto lors d'une interaction utilisateur
+      slider.addEventListener('touchstart', () => autoScrollActive = false);
+      slider.addEventListener('mousedown', () => autoScrollActive = false);
+    }
+  </script>
+</body>
+</html>
