@@ -72,12 +72,12 @@
 }
 
 /* Background images pour chaque catégorie */
-.new-in       { background: url('images/img-1.jpg') center/cover; }
-.promotion    { background: url('images/img-2.jpg') center/cover; }
-.clothing     { background: url('images/img-3.jpg') center/cover; }
-.shoes        { background: url('images/img-4.jpg') center/cover; }
-.bags         { background: url('images/img-5.jpg') center/cover; }
-.accessories  { background: url('images/img-6.jpg') center/cover; }
+.new-in       { background: url('img-1.jpg') center/cover; }
+.promotion    { background: url('img-2.jpg') center/cover; }
+.clothing     { background: url('img-3.jpg') center/cover; }
+.shoes        { background: url('img-4.jpg') center/cover; }
+.bags         { background: url('img-5.jpg') center/cover; }
+.accessories  { background: url('img-6.jpg') center/cover; }
 
 .view-all-container {
   text-align: center;
