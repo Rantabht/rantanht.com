@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RANTAB - Boutique ecommerce en Haïti vente en gros et au détail</title>
+
+  <!-- Feuille de style principale -->
+  <link rel="stylesheet" href="index-style.css" />
+  <!-- Feuille de style index-categories -->
+  <link rel="stylesheet" href="index-categories.css" />
+
+  <!-- Police Montserrat en gras -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Fichier JavaScript -->
+  <script src="slider1-index-script.js" defer></script>
+  <!-- Fichier Categiries-JavaScript -->
+  <script src="index-categories.js" defer></script>
+</head>
+<body>
+
+  <!-- Overlay pour fermer le menu mobile -->
+  <div class="overlay" id="menu-overlay"></div>
+
+  <!-- En-tête -->
+  <header>
+    <div class="header-container">
+
+      <!-- Logo + texte -->
+      <div class="brand">
+        <a href="index.html" class="logo" aria-label="Accueil Rantab">
+          <img src="./images/logo.png" alt="Logo Rantab" />
+        </a>
+        <div class="text-brand">
+          <h1>RANTAB</h1>
+          <p>Le soutien qu'il vous faut</p>
+        </div>
+      </div>
+
+      <!-- Navigation principale -->
+      <nav id="nav-menu" aria-label="Navigation principale">
+        <a href="produits.html">Produits</a>
+        <a href="reservations.html">Réservations</a>
+        <a href="livraisons.html">Livraisons</a>
+        <a href="contacts.html">Contacts</a>
+        <a href="apropos.html">À propos</a>
+        <a href="filmsexpress.html">• Films-Express</a>
+        <a href="defi-paris.html">• Défi-Paris</a>
+      </nav>
+
+      <!-- Icône panier -->
+      <div class="cart-icon" title="Voir le panier" tabindex="0" role="button" aria-label="Votre panier d'achats">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="9" cy="21" r="1" />
+          <circle cx="20" cy="21" r="1" />
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+        </svg>
+      </div>
+
+      <!-- Bouton menu burger mobile -->
+      <div class="burger" id="burger-menu" aria-label="Menu mobile" aria-expanded="false" role="button" tabindex="0">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- SECTION SLIDER PRINCIPAL -->
+  <section class="slider" aria-label="Slider d'images promotionnelles">
+    <div class="slides" id="slides">
+
+      <article class="slide" style="background-image: url('./images/img1.jpg');" aria-label="Promotion 1">
+        <div class="slide-content">
+          <p class="slide-desc">Achetez en gros, vendez mieux.</p>
+          <button class="slide-btn" aria-label="Découvrir Offre" onclick="alert('Découvrir Offre')">Découvrir</button>
+        </div>
+      </article>
+
+      <article class="slide" style="background-image: url('./images/img2.jpg');" aria-label="Accessoires de Qualité">
+        <div class="slide-content">
+          <p class="slide-desc">Gagnez du temps, achetez en ligne.</p>
+          <button class="slide-btn" aria-label="Découvrir Accessoires" onclick="alert('Découvrir Accessoires')">Découvrir</button>
+        </div>
+      </article>
+
+      <article class="slide" style="background-image: url('./images/img3.jpg');" aria-label="Écouteurs Sans Fil">
+        <div class="slide-content">
+          <p class="slide-desc">Commandez en un clic.</p>
+          <button class="slide-btn" aria-label="Découvrir Écouteurs" onclick="alert('Découvrir Écouteurs')">Découvrir</button>
+        </div>
+      </article>
+
+      <article class="slide" style="background-image: url('./images/img4.jpg');" aria-label="Offres Immanquables">
+        <div class="slide-content">
+          <p class="slide-desc">Votre partenaire de confiance.</p>
+          <button class="slide-btn" aria-label="Découvrir Offres" onclick="alert('Découvrir Offres')">Découvrir</button>
+        </div>
+      </article>
+
+      <article class="slide" style="background-image: url('./images/img5.jpg');" aria-label="Livraison Rapide">
+        <div class="slide-content">
+          <p class="slide-desc">Livraison rapide, service fiable.</p>
+          <button class="slide-btn" aria-label="Découvrir Livraison" onclick="alert('Découvrir Livraison')">Découvrir</button>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Flèches -->
+    <button class="arrow arrow-left" aria-label="Slide précédente" id="prevBtn">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6" /></svg>
+    </button>
+    <button class="arrow arrow-right" aria-label="Slide suivante" id="nextBtn">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
+    </button>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination"></div>
+  </section>
+
+  <!-- Section Categories -->
+  <section class="collections-section" aria-label="Collections de produits">
+    <div class="collections-header">
+      <div class="collection-icon" aria-hidden="true">🛍️</div>
+      <h2>Explorez nos collections</h2>
+      <div class="view-all-container">
+        <a href="collections.html" class="view-all-btn">Voir toutes les collections</a>
+      </div>
+    </div>
+
+    <div class="collections-container" id="slider">
+      <a href="nouveautes.html" class="collection-card new-in">
+        <span><i class="fas fa-star" aria-hidden="true"></i> Nouveautés</span>
+      </a>
+      <a href="promotions.html" class="collection-card promotion">
+        <span><i class="fas fa-tags" aria-hidden="true"></i> Promotions</span>
+      </a>
+      <a href="vetements.html" class="collection-card clothing">
+        <span><i class="fas fa-tshirt" aria-hidden="true"></i> Vêtements</span>
+      </a>
+      <a href="chaussures.html" class="collection-card shoes">
+        <span><i class="fas fa-shoe-prints" aria-hidden="true"></i> Chaussures</span>
+      </a>
+      <a href="sacs.html" class="collection-card bags">
+        <span><i class="fas fa-shopping-bag" aria-hidden="true"></i> Sacs</span>
+      </a>
+      <a href="accessoires.html" class="collection-card accessories">
+        <span><i class="fas fa-hat-cowboy" aria-hidden="true"></i> Accessoires</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <h2 class="footer-title">Rejoins-nous sur nos plateformes</h2>
+    <p class="footer-slogan">On est là pour vous, 24h/24</p>
+
+    <div class="social-grid">
+      <a href="https://wa.me/50937291397?text=Bonjour%20RANTAB%2C%20j%E2%80%99aimerais%20plus%20d%E2%80%99infos%20sur%20vos%20produits."
+         target="_blank" class="social-item" rel="noopener noreferrer" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span>
+      </a>
+      <a href="https://www.facebook.com/share/1XS2BnbL8A/"
+         target="_blank" class="social-item" rel="noopener noreferrer" aria-label="Facebook">
+        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook</span>
+      </a>
+      <a href="https://www.instagram.com/rantabht?igsh=ZDlmYXoxem5ocTEw"
+         target="_blank" class="social-item" rel="noopener noreferrer" aria-label="Instagram">
+        <i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span>
+      </a>
+      <a href="https://tiktok.com/@rantabht"
+         target="_blank" class="social-item" rel="noopener noreferrer" aria-label="TikTok">
+        <i class="fab fa-tiktok" aria-hidden="true"></i><span>TikTok</span>
+      </a>
+      <a href="https://www.facebook.com/marketplace/profile/61577711683390/?ref=permalink&mibextid=dXMIcH"
+         target="_blank" class="social-item" rel="noopener noreferrer" aria-label="Marketplace">
+        <i class="fas fa-store" aria-hidden="true"></i><span>Marketplace</span>
+      </a>
+    </div>
+
+    <p class="copyright">
+      © 2025 RANTAB - Tous droits réservés<br />
+      <a href="politique-confidentialite.html" style="color: #b2dfdb; text-decoration: underline;">Politique de Confidentialité</a>
+    </p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RANTAB - Boutique ecommerce en Haïti</title>
+
+  <!-- Icônes (Font Awesome) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #222;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* SECTION COLLECTIONS */
+    .collections-section {
+      max-width: 1200px;
+      margin: 10px auto 0;
+      padding: 0 10px;
+    }
+
+    .collections-header {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .collection-icon {
+      font-size: 32px;
+      margin-bottom: 5px;
+      color: #004D40;
+    }
+
+    .collections-header h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #004D40;
+      margin-bottom: 5px;
+    }
+
+    .collections-container {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 10px 5px 30px;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .collections-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .collection-card {
+      flex: 0 0 160px;
+      height: 200px;
+      min-width: 160px;
+      border-radius: 12px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 15px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .collection-card span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: rgba(255,255,255,0.6);
+      color: #004D40;
+      font-size: 13px;
+      font-weight: 500;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      padding: 6px 10px;
+      transition: border 0.4s ease, color 0.3s ease;
+    }
+
+    .collection-card:hover span {
+      border-color: #83D4A9;
+      color: #00967D;
+    }
+
+    .new-in       { background: url('images/img-1.jpg') center/cover; }
+    .promotion    { background: url('images/img-2.jpg') center/cover; }
+    .clothing     { background: url('images/img-3.jpg') center/cover; }
+    .shoes        { background: url('images/img-4.jpg') center/cover; }
+    .bags         { background: url('images/img-5.jpg') center/cover; }
+    .accessories  { background: url('images/img-6.jpg') center/cover; }
+
+    .view-all-container {
+      text-align: center;
+      margin-top: 10px;
+      padding-bottom: 20px;
+    }
+
+    .view-all-btn {
+      display: inline-block;
+      background-color: #83D4A9;
+      color: #004D40;
+      padding: 10px 22px;
+      border-radius: 25px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(131, 212, 169, 0.3);
+    }
+
+    .view-all-btn:hover {
+      background-color: #00967D;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 150, 125, 0.4);
+    }
+
+    /* Scroll toggle */
+    .scroll-toggle {
+      margin: 5px auto 0;
+      width: auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .scroll-toggle button {
+      background-color: #83D4A9;
+      color: #004D40;
+      border: none;
+      padding: 6px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .scroll-toggle button:hover {
+      background-color: #00967D;
+      color: white;
+    }
+  </style>
+
+</head>
+<body>
+
+  <section class="collections-section">
+    <div class="collections-header">
+      <div class="collection-icon">🛍️</div>
+      <h2>Explorez nos collections</h2>
+      <div class="view-all-container">
+        <a href="collections.html" class="view-all-btn">Voir toutes les collections</a>
+      </div>
+    </div>
+
+    <div class="collections-container" id="slider" tabindex="0">
+      <a href="nouveautes.html" class="collection-card new-in"><span><i class="fas fa-star"></i> Nouveautés</span></a>
+      <a href="promotions.html" class="collection-card promotion"><span><i class="fas fa-tags"></i> Promotions</span></a>
+      <a href="vetements.html" class="collection-card clothing"><span><i class="fas fa-tshirt"></i> Vêtements</span></a>
+      <a href="chaussures.html" class="collection-card shoes"><span><i class="fas fa-shoe-prints"></i> Chaussures</span></a>
+      <a href="sacs.html" class="collection-card bags"><span><i class="fas fa-shopping-bag"></i> Sacs</span></a>
+      <a href="accessoires.html" class="collection-card accessories"><span><i class="fas fa-hat-cowboy"></i> Accessoires</span></a>
+    </div>
+  </section>
+
+  <div class="scroll-toggle">
+    <button id="toggleScrollBtn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+        <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+      </svg>
+      Pause défilement
+    </button>
+  </div>
+
+  <script>
+    let slider = document.getElementById('slider');
+    let btn = document.getElementById('toggleScrollBtn');
+    let isScrolling = true;
+
+    let scrollInterval = setInterval(() => {
+      if (isScrolling) slider.scrollLeft += 1;
+    }, 20); // plus petit = plus rapide
+
+    btn.addEventListener('click', () => {
+      isScrolling = !isScrolling;
+      btn.innerHTML = isScrolling
+        ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg> Pause défilement`
+        : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"></polygon></svg> Reprendre`;
+    });
+  </script>
+
+</body>
+</html>
