@@ -25,32 +25,32 @@
       text-decoration: none;
     }
 
-    /* SECTION COLLECTIONS */
-    .collections-section {
+    /* SECTION CATEGORIES */
+    .categories-section {
       max-width: 1200px;
       margin: 10px auto 0;
       padding: 0 10px;
     }
 
-    .collections-header {
+    .categories-header {
       text-align: center;
       margin-bottom: 10px;
     }
 
-    .collection-icon {
+    .categories-icon {
       font-size: 32px;
       margin-bottom: 5px;
       color: #004D40;
     }
 
-    .collections-header h2 {
+    .categories-header h2 {
       font-size: 22px;
       font-weight: 600;
       color: #004D40;
       margin-bottom: 5px;
     }
 
-    .collections-container {
+    .categories-container {
       display: flex;
       gap: 10px;
       overflow-x: auto;
@@ -60,11 +60,11 @@
       scrollbar-width: none;
     }
 
-    .collections-container::-webkit-scrollbar {
+    .categories-container::-webkit-scrollbar {
       display: none;
     }
 
-    .collection-card {
+    .categories-card {
       flex: 0 0 160px;
       height: 200px;
       min-width: 160px;
@@ -79,7 +79,7 @@
       transition: transform 0.3s ease;
     }
 
-    .collection-card span {
+    .categories-card span {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -93,7 +93,7 @@
       transition: border 0.4s ease, color 0.3s ease;
     }
 
-    .collection-card:hover span {
+    .categories-card:hover span {
       border-color: #83D4A9;
       color: #00967D;
     }
@@ -163,22 +163,22 @@
 </head>
 <body>
 
-  <section class="collections-section">
-    <div class="collections-header">
-      <div class="collection-icon">🛍️</div>
-      <h2>Explorez nos collections</h2>
+  <section class="categories-section">
+    <div class="categories-header">
+      <div class="categories-icon">🛍️</div>
+      <h2>Explorez nos catégories</h2>
       <div class="view-all-container">
-        <a href="collections.html" class="view-all-btn">Voir toutes les collections</a>
+        <a href="categories.html" class="view-all-btn">Voir toutes les catégories</a>
       </div>
     </div>
 
-    <div class="collections-container" id="slider" tabindex="0">
-      <a href="nouveautes.html" class="collection-card new-in"><span><i class="fas fa-star"></i> Nouveautés</span></a>
-      <a href="promotions.html" class="collection-card promotion"><span><i class="fas fa-tags"></i> Promotions</span></a>
-      <a href="vetements.html" class="collection-card clothing"><span><i class="fas fa-tshirt"></i> Vêtements</span></a>
-      <a href="chaussures.html" class="collection-card shoes"><span><i class="fas fa-shoe-prints"></i> Chaussures</span></a>
-      <a href="sacs.html" class="collection-card bags"><span><i class="fas fa-shopping-bag"></i> Sacs</span></a>
-      <a href="accessoires.html" class="collection-card accessories"><span><i class="fas fa-hat-cowboy"></i> Accessoires</span></a>
+    <div class="categories-container" id="slider" tabindex="0">
+      <a href="nouveautes.html" class="categories-card new-in"><span><i class="fas fa-star"></i> Nouveautés</span></a>
+      <a href="promotions.html" class="categories-card promotion"><span><i class="fas fa-tags"></i> Promotions</span></a>
+      <a href="vetements.html" class="categories-card clothing"><span><i class="fas fa-tshirt"></i> Vêtements</span></a>
+      <a href="chaussures.html" class="categories-card shoes"><span><i class="fas fa-shoe-prints"></i> Chaussures</span></a>
+      <a href="sacs.html" class="categories-card bags"><span><i class="fas fa-shopping-bag"></i> Sacs</span></a>
+      <a href="accessoires.html" class="categories-card accessories"><span><i class="fas fa-hat-cowboy"></i> Accessoires</span></a>
     </div>
   </section>
 
