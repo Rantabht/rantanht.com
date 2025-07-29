@@ -1,29 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://rantabht.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
   <url>
     <loc>https://rantabht.com/produits.html</loc>
   </url>
+
   <url>
     <loc>https://rantabht.com/reservations.html</loc>
   </url>
+
   <url>
     <loc>https://rantabht.com/livraisons.html</loc>
   </url>
+
   <url>
     <loc>https://rantabht.com/contacts.html</loc>
   </url>
+
   <url>
     <loc>https://rantabht.com/apropos.html</loc>
   </url>
+
   <url>
     <loc>https://rantabht.com/filmsexpress.html</loc>
   </url>
+
   <url>
     <loc>https://rantabht.com/defi-paris.html</loc>
   </url>
+
+  <url>
+    <loc>https://rantabht.com/tournoi-fcmobile.html</loc>
+  </url>
+
 </urlset>
