@@ -1,0 +1,33 @@
+# =========================================
+# RANTAB – Robots.txt optimisé
+# =========================================
+
+# Googlebot spécifique
+User-agent: Googlebot
+Disallow: /index-slider1-img/
+Disallow: /index-collections.css
+Disallow: /index-style.css
+Disallow: /index-slider1-script.js
+Disallow: /index-collections.js
+Disallow: /nav-*/  # dossiers de navigation internes si besoin
+Disallow: /favicon.ico
+Disallow: /favicon.png
+Disallow: /manifest.json
+
+# Tous les autres robots
+User-agent: *
+Disallow: /index-slider1-img/
+Disallow: /index-collections.css
+Disallow: /index-style.css
+Disallow: /index-slider1-script.js
+Disallow: /index-collections.js
+Disallow: /nav-*/ 
+Disallow: /favicon.ico
+Disallow: /favicon.png
+Disallow: /manifest.json
+
+# Autoriser toutes les pages HTML principales et collections
+Allow: /
+
+# Sitemap
+Sitemap: https://rantabht.com/sitemap.xml

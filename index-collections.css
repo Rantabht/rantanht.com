@@ -1,0 +1,213 @@
+/* SECTION COLLECTIONS */
+
+/* Liens par défaut */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.collections-section {
+  max-width: 1200px;
+  margin: 10px auto 0;
+  padding: 0 10px;
+}
+
+.collections-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.collection-icon {
+  font-size: 32px;
+  margin-bottom: 5px;
+  color: #004D40;
+}
+
+.collections-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #004D40;
+  margin-bottom: 5px;
+}
+
+.collections-container {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px 5px 30px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.collections-container::-webkit-scrollbar {
+  display: none;
+}
+
+.collection-card {
+  flex: 0 0 160px;
+  height: 200px;
+  min-width: 160px;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.collection-card span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(255,255,255,0.6);
+  color: #004D40;
+  font-size: 13px;
+  font-weight: 500;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 6px 10px;
+  transition: border 0.4s ease, color 0.3s ease;
+}
+
+.collection-card:hover span {
+  border-color: #83D4A9;
+  color: #00967D;
+}
+
+/* Background images pour chaque catĆ©gorie */
+.new-in       { background: url('./index-collections-img/img-1.jpg') center/cover; }
+.promotion    { background: url('./index-collections-img/img-11.jpg') center/cover; }
+.clothing     { background: url('./index-collections-img/img-3.jpg') center/cover; }
+.shoes        { background: url('./index-collections-img/img-9.jpg') center/cover; }
+.bags         { background: url('./index-collections-img/img-5.jpg') center/cover; }
+.accessories  { background: url('./index-collections-img/img-6.jpg') center/cover; }
+
+/* SECTION CATĆ‰GORIES */
+.categories-section {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 10px;
+}
+
+.categories-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.category-icon {
+  font-size: 32px;
+  margin-bottom: 5px;
+  color: #004D40;
+}
+
+.categories-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #004D40;
+  margin-bottom: 5px;
+}
+
+.categories-container {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px 5px 30px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.categories-container::-webkit-scrollbar {
+  display: none;
+}
+
+.category-card {
+  flex: 0 0 160px;
+  height: 200px;
+  min-width: 160px;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  text-decoration: none;
+}
+
+.category-card span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(255,255,255,0.6);
+  color: #004D40;
+  font-size: 13px;
+  font-weight: 500;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 6px 10px;
+  transition: border 0.4s ease, color 0.3s ease;
+}
+
+.category-card:hover span {
+  border-color: #83D4A9;
+  color: #00967D;
+}
+
+.view-all-container {
+  text-align: center;
+  margin-top: 0px;
+  padding-bottom: 20px;
+}
+
+.view-all-btn {
+  display: inline-block;
+  background-color: #83D4A9;
+  color: #004D40;
+  padding: 5px 11px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(131, 212, 169, 0.3);
+}
+
+.view-all-btn:hover {
+  background-color: #00967D;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 150, 125, 0.4);
+}
+
+/* Images de fond synchronisĆ©es avec les collections */
+.filmsexpress {
+  background-image: url('./index-categories-img/films-express.jpg');
+}
+
+.fcmobile {
+  background-image: url('./index-categories-img/fcmobile.png');
+}
+
+.defiprono {
+  background-image: url('./index-categories-img/defi-prono.png');
+}
+
+.formation509 {
+  background-image: url('./index-categories-img/formations.png');
+}
+
+.barberdomicile {
+  background-image: url('./index-categories-img/baber.png');
+}
+
+.tuteurdomicile {
+  background-image: url('./index-categories-img/tuteur.png');
+}
