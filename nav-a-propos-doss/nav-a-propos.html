@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À propos – RANTABHT.COM</title>
+  <meta name="description" content="Découvrez RANTABHT.COM : notre mission, nos valeurs, notre équipe et comment nous connectons avec nos utilisateurs.">
+  <meta name="keywords" content="RANTABHT, Rantab, Films-Express, Tournoi-FC, Défis, À propos, Haïti, services numériques">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="À propos – RANTABHT.COM">
+  <meta property="og:description" content="Découvrez RANTABHT.COM : notre mission, nos valeurs, notre équipe et comment nous connectons avec nos utilisateurs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rantabht.com/apropos">
+  <meta property="og:image" content="https://rantabht.com/assets/logo.png">
+
+  <style>
+    :root {
+      --bg: #0b0d13;          /* fond sombre */
+      --card: #121624;        /* cartes et sections */
+      --text: #eaf0ff;        /* texte principal */
+      --muted: #97a0b3;       /* texte secondaire */
+      --accent: #83D4A9;      /* couleur accent */
+      --line: #1f263a;        /* bordures */
+      --btn: #83D4A9;         /* boutons */
+      --btn-hover: #6cc69a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial;
+      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      background: linear-gradient(180deg, rgba(11,13,19,.95), rgba(11,13,19,.85));
+      padding: 20px;
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: clamp(24px, 4vw, 36px);
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    h2 { color: var(--accent); margin-top: 0; }
+    p { margin-bottom: 16px; }
+
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .member {
+      background: #1b1f2b;
+      padding: 16px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 2px solid var(--accent);
+    }
+    .btn-contact {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 10px 18px;
+      background: var(--btn);
+      color: #062622;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .btn-contact:hover { background: var(--btn-hover); }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>À propos de RANTABHT.COM</h1>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2>Notre mission</h2>
+      <p>
+        Chez <strong>RANTABHT.COM</strong>, nous nous engageons à offrir des services numériques innovants et accessibles,
+        allant des plateformes de streaming comme Films-Express aux tournois interactifs et formations numériques.
+        Notre objectif est de connecter les utilisateurs avec des expériences uniques et sécurisées.
+      </p>
+    </section>
+
+    <section>
+      <h2>Nos valeurs</h2>
+      <ul>
+        <li><strong>Innovation :</strong> Créer des solutions modernes et intuitives.</li>
+        <li><strong>Fiabilité :</strong> Assurer la sécurité et la confidentialité des données.</li>
+        <li><strong>Accessibilité :</strong> Fournir des services simples et clairs pour tous les utilisateurs.</li>
+        <li><strong>Communauté :</strong> Encourager l'interaction, l'engagement et le partage entre nos utilisateurs.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Contactez-nous</h2>
+      <p>Pour toutes questions ou suggestions, vous pouvez nous écrire ou nous contacter via WhatsApp :</p>
+      <a class="btn-contact" href="mailto:contact@rantabht.com">Envoyer un email</a>
+    </section>
+  </div>
+
+  <footer>
+    © <span id="year"></span> RANTAB. Tous droits réservés.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
