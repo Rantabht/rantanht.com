@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tournoi FC Mobile - Calendrier</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+  <style>
+    /* ====== RESET ====== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ====== BODY & FONT ====== */
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background: #fff;
+      color: #000;
+      padding: 10px 5px 30px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    /* ====== HEADER STYLE ====== */
+    header {
+      width: 90%;
+      max-width: 1200px;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid;
+      border-image: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc, #5310dc) 1;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border-radius: 14px;
+      animation: borderGlow 6s linear infinite;
+      margin: 10px auto 16px;
+    }
+    @keyframes borderGlow {
+      0% { border-image-source: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc, #5310dc); }
+      100% { border-image-source: linear-gradient(405deg, #5310dc, #00d0ff, #ff00cc, #5310dc); }
+    }
+    .logo { display: flex; align-items: center; flex-shrink: 0; }
+    .logo img { height: 55px; width: auto; }
+    .welcome {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+      flex: 1;
+      color: #000;
+      user-select: none;
+    }
+
+    /* ====== INFO SECTION STYLE ====== */
+    .info-section {
+      width: 90%;
+      max-width: 1200px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .info-box {
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      border: 2px solid transparent;
+      padding: 12px 18px;
+      animation: borderGlowBox 6s linear infinite;
+      border-image: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc, #5310dc) 1;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+      user-select: none;
+    }
+    .info-text { font-size: 1.2rem; color: #000; font-weight: 600; }
+
+    @keyframes borderGlowBox {
+      0% { border-image-source: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc, #5310dc); }
+      100% { border-image-source: linear-gradient(405deg, #5310dc, #00d0ff, #ff00cc, #5310dc); }
+    }
+
+    /* ====== COUNTDOWN BOX STYLE (nouveau) ====== */
+    .countdown-box {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto 20px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.12);
+      border: 2px solid;
+      border-image: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc, #5310dc) 1;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      animation: borderGlow 6s linear infinite;
+      user-select: none;
+    }
+    .countdown-left {
+      display:flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .countdown-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #5310dc;
+    }
+    .countdown-sub {
+      font-size: 0.95rem;
+      color: #000;
+      font-weight: 600;
+    }
+    .countdown-timer {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #000;
+      letter-spacing: 1px;
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+      min-width: 260px;
+      text-align: center;
+    }
+    .countdown-state {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #5310dc, #00d0ff);
+      box-shadow: 0 6px 16px rgba(83,16,220,0.12);
+    }
+
+    /* ===== CSS POUR LE BOUTON AUTRE PAGE ===== */
+    .button-container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .nav-button {
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 12px 24px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.12);
+      border: 2px solid;
+      border-image: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc, #5310dc) 1;
+      color: #000;
+      transition: all 0.3s ease;
+      animation: borderGlow 6s linear infinite;
+    }
+    
+    .nav-button:hover {
+      background: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      header { flex-direction: column; gap: 10px; }
+      .welcome { font-size: 1.5rem; }
+      .info-section { padding: 0 10px; }
+      .countdown-timer { min-width: 180px; font-size: 1.25rem; }
+    }
+    @media (max-width: 600px) {
+      .info-text { font-size: 1.1rem; }
+      .countdown-box { flex-direction: column; gap: 10px; align-items: stretch; }
+      .countdown-timer { width: 100%; }
+    }
+  
+  
+  
+  
+  
+  /* ====== RESET ====== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: #fff;
+  color: #000;
+  padding: 10px 5px 30px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* ====== ANIMATION GLOW ====== */
+@keyframes borderGlow {
+  0%   { border-image-source: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc, #5310dc); }
+  100% { border-image-source: linear-gradient(405deg, #5310dc, #00d0ff, #ff00cc, #5310dc); }
+}
+
+/* ====== CALENDAR STYLE ====== */
+.calendar-container {
+  width: 99%;
+  max-width: 1200px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  border: 2px solid;
+  border-image: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc, #5310dc) 1;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  padding: 20px;
+  animation: borderGlow 6s linear infinite;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 5px;
+  font-weight: 700;
+  color: #5310dc;
+  user-select: none;
+}
+
+/* ====== TABLE STYLE ====== */
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  user-select: none;
+  margin-bottom: 25px;
+}
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  color: #000;
+}
+th {
+  background: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.winner { background: rgba(83, 16, 220, 0.15); font-weight: bold; color: #3b007d; }
+
+.champion {
+  background: gold;
+  color: black;
+  font-weight: bold;
+  animation: pulseChampion 1.5s infinite ease-in-out;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+@keyframes pulseChampion {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); }
+  50%      { transform: scale(1.05); box-shadow: 0 0 25px rgba(255, 215, 0, 1); }
+}
+
+/* ====== BOUTON ET MESSAGE ====== */
+#unlockBtn {
+  padding: 10px 20px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  background: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+#unlockBtn:hover { transform: scale(1.05); }
+
+#unlockMessage {
+  display:none;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  background: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-align:center;
+  transition: transform 0.2s;
+}
+
+/* ====== MODALE CODE SECRET ====== */
+#codeModal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9999;
+}
+#codeModal .modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+#codeModal .modal-box {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  width: 280px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  border: 2px solid;
+  border-image: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc) 1;
+  animation: borderGlow 6s linear infinite;
+}
+#codeModal h3 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #5310dc;
+}
+#codeModal input {
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 5px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  outline: none;
+  width: 80%;
+  margin-bottom: 15px;
+  font-family: 'Rajdhani', sans-serif;
+}
+#codeModal .modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+#codeModal .modal-actions button {
+  flex: 1;
+  padding: 8px 0;
+  font-size: 14px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+#codeModal .modal-actions button:hover { transform: scale(1.05); }
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 600px) {
+  table, th, td { font-size: 12px; padding: 8px; }
+  #codeModal .modal-box { width: 90%; }
+  #codeModal input { font-size: 18px; letter-spacing: 3px; }
+}
+
+  
+  
+  </style>
+  
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="logo">
+      <img src="fcmobile-logo.png" alt="Logo FC Mobile" />
+    </div>
+    <div class="welcome">BIENVENUE&nbsp;!</div>
+  </header>
+
+  <!-- ===== INFO SECTION ====== -->
+  <section class="info-section">
+    <div class="info-box">
+      <p class="info-text">Tournoi FC Mobile</p>
+      <p class="info-text">Chaque samedi et dimanche</p>
+    </div>
+  </section>
+
+  <!-- ====== COUNTDOWN (AU-DESSUS DU CALENDRIER) ====== -->
+  <div class="countdown-box" aria-live="polite" role="region" aria-label="Compte à rebours du tournoi">
+    <div class="countdown-left">
+      <div class="countdown-title">Prochain Tournoi (répété chaque samedi)</div>
+      <div class="countdown-sub" id="countdown-sub">Base : samedi 16 août 2025 — Début 05:00 / Fin 22:00</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+      <div id="countdown-timer" class="countdown-timer">-- : -- : -- : --</div>
+      <div id="countdown-state" class="countdown-state">Chargement...</div>
+    </div>
+  </div>
+  
+  <!-- ====== CALENDRIER INTERACTIF ====== -->
+<div class="calendar-container">
+  <h2>📅 Calendrier du Tournoi</h2>
+
+  <!-- PHASE 1 -->
+  <h2>Phase 1 – Huitièmes de Finale</h2>
+  <table id="round16" aria-label="Huitièmes de Finale">
+    <colgroup>
+      <col style="width:8%"><col style="width:22%"><col style="width:15%"><col style="width:15%"><col style="width:22%"><col style="width:25%">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Match</th><th>Équipe A</th><th>Aller</th><th>Retour</th><th>Équipe B</th><th>Vainqueur</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Équipe 1</td><td>0-0</td><td>0-0</td><td>Équipe 2</td><td></td></tr>
+      <tr><td>2</td><td>Équipe 3</td><td>0-0</td><td>0-0</td><td>Équipe 4</td><td></td></tr>
+      <tr><td>3</td><td>Équipe 5</td><td>0-0</td><td>0-0</td><td>Équipe 6</td><td></td></tr>
+      <tr><td>4</td><td>Équipe 7</td><td>0-0</td><td>0-0</td><td>Équipe 8</td><td></td></tr>
+      <tr><td>5</td><td>Équipe 9</td><td>0-0</td><td>0-0</td><td>Équipe 10</td><td></td></tr>
+      <tr><td>6</td><td>Équipe 11</td><td>0-0</td><td>0-0</td><td>Équipe 12</td><td></td></tr>
+      <tr><td>7</td><td>Équipe 13</td><td>0-0</td><td>0-0</td><td>Équipe 14</td><td></td></tr>
+      <tr><td>8</td><td>Équipe 15</td><td>0-0</td><td>0-0</td><td>Équipe 16</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <!-- PHASE 2 -->
+  <h2>Phase 2 – Quarts de Finale</h2>
+  <table id="quarterFinals" aria-label="Quarts de Finale">
+    <thead>
+      <tr>
+        <th>Match</th><th>Équipe A</th><th>Aller</th><th>Retour</th><th>Équipe B</th><th>Vainqueur</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- PHASE 3 -->
+  <h2>Phase 3 – Demi-Finales</h2>
+  <table id="semiFinals" aria-label="Demi-Finales">
+    <thead>
+      <tr>
+        <th>Match</th><th>Équipe A</th><th>Aller</th><th>Retour</th><th>Équipe B</th><th>Vainqueur</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- FINALE -->
+  <h2>Finale</h2>
+  <table id="final" aria-label="Finale">
+    <thead>
+      <tr>
+        <th>Match</th><th>Équipe A</th><th>Score</th><th>Équipe B</th><th>🏆 Champion</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- BOUTON DEVERROUILLER -->
+  <div style="text-align:center; margin-top: 20px;">
+    <button id="unlockBtn">🔓 Déverrouiller</button>
+  </div>
+
+  <!-- MESSAGE DEVERROUILLAGE -->
+  <div id="unlockMessage">🔓 Calendrier Déverrouillé !</div>
+
+  <!-- MODALE CODE SECRET -->
+  <div id="codeModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-box">
+      <h3>🔑 Entrez le code à 4 chiffres</h3>
+      <input type="password" id="codeInput" maxlength="4" placeholder="••••">
+      <div class="modal-actions">
+        <button id="cancelBtn">Annuler</button>
+        <button id="okBtn">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <!-- ===== BOUTON NAVIGATION ===== -->
+  <div class="button-container">
+    <a href="Calendrier-fcmobile-dimanche.html" class="nav-button">
+      Voir le calendrier du dimanche
+    </a>
+  </div>
+
+
+  <!-- ===== SCRIPT COUNTDOWN ===== -->
+  <script>
+    /* --- COMPTE À REBOURS HEBDOMADAIRE --- */
+    (function() {
+      const timerEl = document.getElementById('countdown-timer');
+      const stateEl = document.getElementById('countdown-state');
+      const subEl = document.getElementById('countdown-sub');
+
+      function toLocalDate(year, monthIndex, day, hour, minute=0, second=0) {
+        return new Date(`${year.toString().padStart(4,'0')}-${(monthIndex+1).toString().padStart(2,'0')}-${day.toString().padStart(2,'0')}T${hour.toString().padStart(2,'0')}:${minute.toString().padStart(2,'0')}:${second.toString().padStart(2,'0')}`);
+      }
+
+      const baseStart = toLocalDate(2025, 7, 16, 5, 0, 0);
+
+      function getNextStartAfter(now) {
+        let start = new Date(baseStart);
+        while (start.getTime() + 1000 < now.getTime()) {
+          start.setDate(start.getDate() + 7);
+        }
+        return start;
+      }
+
+      function formatTimeSpan(ms) {
+        if (ms < 0) ms = 0;
+        const totalSec = Math.floor(ms / 1000);
+        const days = Math.floor(totalSec / 86400);
+        const hours = Math.floor((totalSec % 86400) / 3600);
+        const minutes = Math.floor((totalSec % 3600) / 60);
+        const seconds = totalSec % 60;
+        return { days, hours, minutes, seconds };
+      }
+
+      function pad(n) { return n.toString().padStart(2,'0'); }
+
+      function update() {
+        const now = new Date();
+        let start = getNextStartAfter(now);
+        let end = new Date(start);
+        end.setHours(22,0,0,0);
+        start.setHours(5,0,0,0);
+
+        if (now.getTime() < start.getTime()) {
+          const diff = start.getTime() - now.getTime();
+          const t = formatTimeSpan(diff);
+          timerEl.textContent = `${t.days}j ${pad(t.hours)}:${pad(t.minutes)}:${pad(t.seconds)}`;
+          stateEl.textContent = `Prochaine ouverture — Début : ${start.toLocaleString()}`;
+          stateEl.style.background = 'linear-gradient(90deg, #5310dc, #00d0ff)';
+        } else if (now.getTime() >= start.getTime() && now.getTime() <= end.getTime()) {
+          const diff = end.getTime() - now.getTime();
+          const t = formatTimeSpan(diff);
+          timerEl.textContent = `${t.days}j ${pad(t.hours)}:${pad(t.minutes)}:${pad(t.seconds)}`;
+          stateEl.textContent = `Tournoi EN COURS — Fin : ${end.toLocaleString()}`;
+          stateEl.style.background = 'linear-gradient(90deg, #24c06d, #00d0ff)';
+        } else {
+          let nextStart = new Date(start);
+          nextStart.setDate(start.getDate() + 7);
+          nextStart.setHours(5,0,0,0);
+          const diff = nextStart.getTime() - now.getTime();
+          const t = formatTimeSpan(diff);
+          timerEl.textContent = `${t.days}j ${pad(t.hours)}:${pad(t.minutes)}:${pad(t.seconds)}`;
+          stateEl.textContent = `Tournoi terminé — Prochain : ${nextStart.toLocaleString()}`;
+          stateEl.style.background = 'linear-gradient(90deg, #ff6b6b, #ff9a00)';
+        }
+      }
+
+      subEl.textContent = 'Base : samedi 16 août 2025 — Début 05:00 / Fin 22:00 (répète chaque samedi)';
+      update();
+      setInterval(update, 1000);
+    })();
+  </script>
+  
+  <script>
+// -----------------------
+// Utilitaires tournoi
+// -----------------------
+function randomScore() { return [Math.floor(Math.random() * 5), Math.floor(Math.random() * 5)]; }
+
+function determineWinner(teamA, teamB, scoreA, scoreB) {
+  if (scoreA > scoreB) return teamA;
+  if (scoreB > scoreA) return teamB;
+  return Math.random() < 0.5 ? teamA : teamB;
+}
+
+function updateWinner(row) {
+  const scoreText = row.cells[2].textContent.split('-');
+  const scoreA = parseInt(scoreText[0].trim(), 10);
+  const scoreB = parseInt(scoreText[1].trim(), 10);
+  const winner = determineWinner(row.cells[1].textContent, row.cells[3].textContent, scoreA, scoreB);
+  row.cells[4].textContent = winner;
+  row.cells[4].classList.add('champion');
+}
+
+// -----------------------
+// Édition des cellules
+// -----------------------
+function makeScoreEditable(tableId) {
+  const table = document.querySelector('#' + tableId + ' tbody');
+  table.querySelectorAll('tr').forEach(row => {
+    if (tableId === 'final') {
+      const scoreCell = 2;
+      row.cells[scoreCell].addEventListener('click', () => {
+        if (row.cells[scoreCell].querySelector('input')) return;
+
+        const oldValue = row.cells[scoreCell].textContent || '0 - 0';
+        const parts = oldValue.split('-');
+
+        const inputA = document.createElement('input');
+        const inputB = document.createElement('input');
+        [inputA, inputB].forEach(inp => { inp.type='number'; inp.min=0; inp.style.width='40px'; inp.style.textAlign='center'; });
+        inputA.value = (parts[0]||'0').trim();
+        inputB.value = (parts[1]||'0').trim();
+
+        row.cells[scoreCell].textContent = '';
+        row.cells[scoreCell].appendChild(inputA);
+        row.cells[scoreCell].appendChild(document.createTextNode(' - '));
+        row.cells[scoreCell].appendChild(inputB);
+        inputA.focus();
+
+        function saveScore() {
+          row.cells[scoreCell].textContent = (inputA.value||0) + ' - ' + (inputB.value||0);
+          updateWinner(row);
+        }
+        inputA.addEventListener('blur', saveScore);
+        inputB.addEventListener('blur', saveScore);
+        inputA.addEventListener('keydown', e => { if(e.key==='Enter') saveScore(); });
+        inputB.addEventListener('keydown', e => { if(e.key==='Enter') saveScore(); });
+      });
+    } else {
+      [2,3].forEach(i => {
+        row.cells[i].addEventListener('click', () => {
+          if (row.cells[i].querySelector('input')) return;
+
+          const oldValue = row.cells[i].textContent || '0';
+          const input = document.createElement('input');
+          input.type = 'number';
+          input.min = 0;
+          input.value = oldValue;
+          input.style.width = '50px';
+          input.style.textAlign = 'center';
+
+          row.cells[i].textContent = '';
+          row.cells[i].appendChild(input);
+          input.focus();
+
+          function saveScore() { row.cells[i].textContent = input.value || 0; }
+          input.addEventListener('blur', saveScore);
+          input.addEventListener('keydown', e => { if(e.key==='Enter') saveScore(); });
+        });
+      });
+    }
+  });
+}
+
+function makeTeamNamesEditable(tableId) {
+  const table = document.querySelector('#' + tableId + ' tbody');
+  table.querySelectorAll('tr').forEach(row => {
+    const teamCells = (tableId==='final') ? [1,3] : [1,4];
+    teamCells.forEach(i => {
+      row.cells[i].addEventListener('click', () => {
+        if (row.cells[i].querySelector('input')) return;
+
+        const oldValue = row.cells[i].textContent || '';
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = oldValue;
+        input.style.width = '100px';
+        input.style.textAlign = 'center';
+
+        row.cells[i].textContent = '';
+        row.cells[i].appendChild(input);
+        input.focus();
+
+        function saveName() { row.cells[i].textContent = input.value || oldValue; }
+        input.addEventListener('blur', saveName);
+        input.addEventListener('keydown', e => { if(e.key==='Enter') saveName(); });
+      });
+    });
+  });
+}
+
+// -----------------------
+// Avancer phase
+// -----------------------
+function advancePhase(currentTableId, nextTableId) {
+  const currentTable = document.querySelector('#' + currentTableId + ' tbody');
+  const nextTable = document.querySelector('#' + nextTableId + ' tbody');
+  nextTable.innerHTML = '';
+  const rows = currentTable.querySelectorAll('tr');
+  let matchNumber = 1;
+
+  for (let i=0;i<rows.length;i+=2) {
+    const prevWinner1 = rows[i].cells[5].textContent;
+    const prevWinner2 = rows[i+1].cells[5].textContent;
+    const [scoreA, scoreB] = randomScore();
+    const winner = determineWinner(prevWinner1, prevWinner2, scoreA, scoreB);
+
+    const tr = document.createElement('tr');
+    tr.style.opacity = 0;
+    tr.innerHTML = `
+      <td>${matchNumber}</td>
+      <td>${prevWinner1}</td>
+      <td>${scoreA}</td>
+      <td>${scoreB}</td>
+      <td>${prevWinner2}</td>
+      <td class="winner">${winner}</td>
+    `;
+    nextTable.appendChild(tr);
+    setTimeout(()=>{ tr.style.transition='opacity 0.5s'; tr.style.opacity=1; }, 50);
+    matchNumber++;
+  }
+
+  makeScoreEditable(nextTableId);
+  makeTeamNamesEditable(nextTableId);
+}
+
+// -----------------------
+// Lancer tournoi
+// -----------------------
+function runTournament() {
+  const round16 = document.querySelectorAll('#round16 tbody tr');
+  round16.forEach(tr => {
+    const [scoreA, scoreB] = randomScore();
+    tr.cells[2].textContent = '' + scoreA;
+    tr.cells[3].textContent = '' + scoreB;
+    const winner = determineWinner(tr.cells[1].textContent, tr.cells[4].textContent, scoreA, scoreB);
+    tr.cells[5].textContent = winner;
+    tr.cells[5].classList.add('winner');
+  });
+
+  makeScoreEditable('round16');
+  makeTeamNamesEditable('round16');
+
+  advancePhase('round16','quarterFinals');
+  advancePhase('quarterFinals','semiFinals');
+
+  const semiFinals = document.querySelectorAll('#semiFinals tbody tr');
+  const finalTable = document.querySelector('#final tbody');
+  finalTable.innerHTML = '';
+  const [scoreA, scoreB] = randomScore();
+  const champion = determineWinner(semiFinals[0].cells[5].textContent, semiFinals[1].cells[5].textContent, scoreA, scoreB);
+
+  const tr = document.createElement('tr');
+  tr.style.opacity=0;
+  tr.innerHTML = `
+    <td>1</td>
+    <td>${semiFinals[0].cells[5].textContent}</td>
+    <td>${scoreA} - ${scoreB}</td>
+    <td>${semiFinals[1].cells[5].textContent}</td>
+    <td class="champion">${champion}</td>
+  `;
+  finalTable.appendChild(tr);
+  setTimeout(()=>{ tr.style.transition='opacity 0.5s'; tr.style.opacity=1; }, 50);
+
+  makeScoreEditable('final');
+  makeTeamNamesEditable('final');
+}
+
+// -----------------------
+// Verrouillage / Modale
+// -----------------------
+const codeSecret = '2525';
+let unlocked = false;
+const tables = ['round16','quarterFinals','semiFinals','final'];
+
+function setEditable(editable) {
+  tables.forEach(tableId => {
+    const table = document.querySelector('#'+tableId+' tbody');
+    table.querySelectorAll('tr').forEach(row=>{
+      if(tableId==='final'){ [1,3,2].forEach(i=>row.cells[i].style.pointerEvents=editable?'auto':'none'); }
+      else { [1,4,2,3].forEach(i=>row.cells[i].style.pointerEvents=editable?'auto':'none'); }
+    });
+  });
+}
+
+function showModal() { 
+  document.getElementById('codeModal').style.display='block'; 
+  const input=document.getElementById('codeInput'); 
+  input.value=''; 
+  setTimeout(()=>input.focus(),0); 
+}
+function closeModal(){ document.getElementById('codeModal').style.display='none'; }
+
+function checkCode() {
+  const code = document.getElementById('codeInput').value;
+  if(code===codeSecret){
+    setEditable(true);
+    unlocked=true;
+    document.getElementById('unlockBtn').innerText='🔒 Verrouiller';
+    const msg = document.getElementById('unlockMessage');
+    msg.style.display='block';
+    msg.style.transform='scale(1.05)';
+    setTimeout(()=>{ msg.style.transform='scale(1)'; }, 300);
+    setTimeout(()=>{ msg.style.display='none'; }, 3000);
+    closeModal();
+  } else {
+    alert('Code incorrect !');
+  }
+}
+
+// -----------------------
+// Init & Events
+// -----------------------
+document.addEventListener('DOMContentLoaded',()=>{
+  runTournament();
+  setEditable(false);
+
+  document.getElementById('unlockBtn').addEventListener('click',()=>{
+    if(!unlocked) showModal();
+    else{
+      setEditable(false);
+      unlocked=false;
+      document.getElementById('unlockBtn').innerText='🔓 Déverrouiller';
+      document.getElementById('unlockMessage').style.display='none';
+    }
+  });
+
+  document.getElementById('cancelBtn').addEventListener('click', closeModal);
+  document.getElementById('okBtn').addEventListener('click', checkCode);
+  document.getElementById('codeInput').addEventListener('keydown',e=>{
+    if(e.key==='Enter') checkCode();
+    if(e.key==='Escape') closeModal();
+  });
+
+  document.querySelector('#codeModal .modal-overlay').addEventListener('click',closeModal);
+});
+</script>
+
+
+</body>
+</html>
