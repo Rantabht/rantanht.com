@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Films-Express | RANTAB</title>
+  <link rel="stylesheet" href="films-express.css">
+  <style>
+  #backToTop {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: transparent; /* Transparent */
+  border: 2px solid rgba(0,0,0,0.4); /* Par défaut en clair */
+  padding: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  backdrop-filter: blur(6px); /* Effet verre dépoli */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  z-index: 1000;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#backToTop:hover {
+  transform: translateY(-5px) scale(1.1);
+  border-color: rgba(0,0,0,0.7);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+#backToTop .icon {
+  font-size: 20px;
+  color: black; /* Icône noire en mode clair */
+  animation: arrowFloat 1.8s infinite ease-in-out;
+}
+
+/* Animation flèche subtile */
+@keyframes arrowFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* 🌙 Mode sombre automatique */
+@media (prefers-color-scheme: dark) {
+  #backToTop {
+    border-color: rgba(255,255,255,0.4);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+  }
+
+  #backToTop:hover {
+    border-color: rgba(255,255,255,0.8);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.8);
+  }
+
+  #backToTop .icon {
+    color: white; /* Icône blanche en mode sombre */
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Films-Express 🎬</h1>
+    <p>Gade fim ou, san deplase !</p>
+  </header>
+  
+  <!-- ======== SECTION FORMULAIRE DE COMMANDE ======== -->
+  <section class="commande">
+    <h2>Ou vle fè yon demand?</h2>
+
+    <form action="https://formspree.io/f/xwpqbvey" method="POST">
+      <input type="hidden" name="_next" value="https://rantabht.com/komand-mesi.html">
+
+      <label for="nom">Non:</label>
+      <input type="text" id="nom" name="nom" required>
+      
+      <label for="prenom">Prenon:</label>
+      <input type="text" id="prenom" name="prenom" required>
+
+      <label for="film">Tit fim lan:</label>
+      <input type="text" id="film" name="film" required>
+
+      <label for="year">Ane fim lan sòti:</label>
+      <input type="number" id="year" name="year" min="1900" max="2099" required>
+
+      <label for="whatsapp">Nimewo WhatsApp ou (opsyonèl):</label>
+      <input type="tel" id="whatsapp" name="whatsapp">
+
+      <label for="message">Mesaj si gen yon pwoblèm:</label>
+      <textarea id="message" name="message" rows="4" placeholder="Ekri nenpòt detay oswa difikilte..."></textarea>
+      
+      <button type="submit">Voye demand lan</button>
+      
+      <p style="color:#ccc; line-height:1.5;">
+        💳 <strong>Peman ak MonCash</strong><br>
+        Voye lajan sou MonCash sou nimewo <strong>+509 3729-1397</strong><br>
+        Gen yon afich fim ou vle voye?<br>
+        <small>(Ou ka voye l sou WhatsApp apre ou fin ranpli fòm nan.)</small>
+      </p>
+        
+      <a href="https://wa.me/50937291397?text=Mwen sot voye yon demann sou RANTAB pou yon fim. Men afich la:" target="_blank" class="whatsapp-btn">📎 Voye imaj la sou WhatsApp</a>
+    </form>
+  </section>
+
+  <!-- ======== SECTION LISTE DE FILMS ======== -->
+  <section class="films-container" id="filmsContainer">
+    <!-- Les cartes seront générées automatiquement via JavaScript -->
+  </section>
+  
+  <!-- ======== BOUTON REMONTER ======== -->
+<button id="backToTop" title="Retounen Anwo">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+
+  <!-- ======== SCRIPT JS POUR 50 FILMS ======== -->
+  <script>
+    const films = [
+      { titre: "Le Roi", desc: "Yon jenn gason dekouvri ke li se eritye yon wayom bliye.", img: "films/affiche1.jpg" },
+      { titre: "Destin Brisé", desc: "Yon istwa de lanmou, trayizon ak redempsyon.", img: "films/affiche2.jpg" },
+      { titre: "La Nuit", desc: "Fim suspens sou yon seri evenman misterye.", img: "films/affiche3.jpg" },
+      { titre: "Aurore", desc: "Yon jèn fi ap chache reve li nan yon vil misterye.", img: "films/affiche4.jpg" },
+      { titre: "Évasion", desc: "Yon ekip ap planifye yon gwo vòl.", img: "films/affiche5.jpg" },
+      { titre: "Renaissance", desc: "Yon istwa de rebelyon ak nouvo kòmansman.", img: "films/affiche6.jpg" },
+      { titre: "Le Masque", desc: "Yon mask kache sekrè ak mistè.", img: "films/affiche7.jpg" },
+      { titre: "Tempête", desc: "Yon vil anba yon gwo tanpèt ap eseye siviv.", img: "films/affiche8.jpg" },
+      { titre: "Héritage", desc: "Yon fanmi ap dekouvri yon eritaj sekrè.", img: "films/affiche9.jpg" },
+      { titre: "Silence", desc: "Yon mistè ki mande kouraj ak detèminasyon.", img: "films/affiche10.jpg" },
+      { titre: "Mirage", desc: "Yon vwayaj nan ilizyon ak rèv.", img: "films/affiche11.jpg" },
+      { titre: "Révolte", desc: "Yon kominote ap lite pou jistis.", img: "films/affiche12.jpg" },
+      { titre: "Lueur", desc: "Yon ti limyè nan fènwa pote esperans.", img: "films/affiche13.jpg" },
+      { titre: "Ombres", desc: "Yon mistè nan lari Pòtoprens.", img: "films/affiche14.jpg" },
+      { titre: "Horizons", desc: "Yon vwayaj sou lanmè pou dekouvri nouvo tè.", img: "films/affiche15.jpg" },
+      { titre: "Éclipse", desc: "Yon evenman misterye ki chanje lavi yon kominote.", img: "films/affiche16.jpg" },
+      { titre: "Passion", desc: "Yon istwa lanmou ak difikilte.", img: "films/affiche17.jpg" },
+      { titre: "Secret", desc: "Yon fanmi ap kache yon gwo sekrè.", img: "films/affiche18.jpg" },
+      { titre: "Crépuscule", desc: "Yon istwa dramatik nan fen jounen an.", img: "films/affiche19.jpg" },
+      { titre: "Vertige", desc: "Yon avanti plen tansyon ak emosyon.", img: "films/affiche20.jpg" },
+      { titre: "Énigme", desc: "Yon mistè ap tann pou rezoud.", img: "films/affiche21.jpg" },
+      { titre: "Odyssée", desc: "Yon vwayaj epik atravè peyi misterye.", img: "films/affiche22.jpg" },
+      { titre: "Tempus", desc: "Yon manipilasyon tan ki chanje tout bagay.", img: "films/affiche23.jpg" },
+      { titre: "Légende", desc: "Yon istwa popilè ak anpil mistè.", img: "films/affiche24.jpg" },
+      { titre: "Reflet", desc: "Yon imaj nan glas ki montre lavi diferan.", img: "films/affiche25.jpg" },
+      { titre: "Résistance", desc: "Yon batay pou libète ak jistis.", img: "films/affiche26.jpg" },
+      { titre: "Étoile", desc: "Yon jèn ap chache klere nan fènwa.", img: "films/affiche27.jpg" },
+      { titre: "Cascade", desc: "Yon avanti plen aksyon ak dram.", img: "films/affiche28.jpg" },
+      { titre: "Vérité", desc: "Yon rechèch pou verite nan yon mond kache.", img: "films/affiche29.jpg" },
+      { titre: "Évasion 2", desc: "Dezyèm pati nan yon gwo plan vòl.", img: "films/affiche30.jpg" },
+      { titre: "Lumière", desc: "Yon fim inspirasyon ak espwa.", img: "films/affiche31.jpg" },
+      { titre: "Oasis", desc: "Yon kwen lapè nan mitan dezè.", img: "films/affiche32.jpg" },
+      { titre: "Chaos", desc: "Yon vil anba dezòd ak konfli.", img: "films/affiche33.jpg" },
+      { titre: "Nocturne", desc: "Yon avanti misterye pandan nwit la.", img: "films/affiche34.jpg" },
+      { titre: "Rêve", desc: "Yon rèv ki chanje lavi yon jèn.", img: "films/affiche35.jpg" },
+      { titre: "Paradis", desc: "Yon vwayaj pou jwenn yon espas trankil.", img: "films/affiche36.jpg" },
+      { titre: "Labyrinthe", desc: "Yon seri defi ak obstak pou simonte.", img: "films/affiche37.jpg" },
+      { titre: "Courage", desc: "Yon istwa kouraj ak detèminasyon.", img: "films/affiche38.jpg" },
+      { titre: "Émotion", desc: "Yon fim ki pote anpil santiman.", img: "films/affiche39.jpg" },
+      { titre: "Miracle", desc: "Yon evènman enkwayab ki chanje lavi.", img: "films/affiche40.jpg" },
+      { titre: "Sérénité", desc: "Yon fim trankil ak meditasyon.", img: "films/affiche41.jpg" },
+      { titre: "Tempête 2", desc: "Dezyèm pati nan yon avanti tanpèt.", img: "films/affiche42.jpg" },
+      { titre: "Innocence", desc: "Yon jèn ap chache pwòp chemen li.", img: "films/affiche43.jpg" },
+      { titre: "Rébellion", desc: "Yon batay kont opresyon.", img: "films/affiche44.jpg" },
+      { titre: "Espoir", desc: "Yon fim ki pote lespwa nan fènwa.", img: "films/affiche45.jpg" },
+      { titre: "Métamorphose", desc: "Yon transfòmasyon ki chanje lavi.", img: "films/affiche46.jpg" },
+      { titre: "Alliance", desc: "Yon ekip ki travay ansanm pou siksè.", img: "films/affiche47.jpg" },
+      { titre: "Liberté", desc: "Yon fim sou batay pou libète.", img: "films/affiche48.jpg" },
+      { titre: "Conquête", desc: "Yon avanti epik pou pran kontwòl.", img: "films/affiche49.jpg" },
+      { titre: "Éveil", desc: "Yon dekouvèt ki chanje pèspektiv yon kominote.", img: "films/affiche50.jpg" },
+    ];
+
+    const container = document.getElementById("filmsContainer");
+
+    films.forEach(film => {
+      const card = document.createElement("div");
+      card.classList.add("film-card");
+
+      card.innerHTML = `
+        <img src="${film.img}" alt="${film.titre}">
+        <h3>${film.titre}</h3>
+        <p>${film.desc}</p>
+        <button onclick="window.location.href='https://wa.me/50937291397?text=Bonjou! Mwen swete achte fim sa: ${encodeURIComponent(film.titre)} 🎬'">Achte sou WhatsApp</button>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+  <script>
+  const backToTopBtn = document.getElementById("backToTop");
+
+  // Affiche si scroll > 300px
+  window.onscroll = () => {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      backToTopBtn.style.display = "block";
+    } else {
+      backToTopBtn.style.display = "none";
+    }
+  };
+
+  // Action clic → remonter en douceur
+  backToTopBtn.onclick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+</script>
+</body>
+</html>

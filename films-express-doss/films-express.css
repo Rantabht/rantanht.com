@@ -1,0 +1,205 @@
+/* ========== RÉINITIALISATION DE BASE ========== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: #fff;
+}
+
+/* ========== HEADER ========== */
+header {
+  background-color: #222;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  color: #ffcc00;
+  margin: 0;
+}
+
+header p {
+  color: #ccc;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+/* ========== les images de films :
+Format	Dimensions en pixels	Pourquoi ?
+Portrait (vertical)	400 x 600 px	Aspect ratio 2:3 classique (comme une affiche de film)
+Paysage (horizontal)	600 x 400 px	Optionnel, si tu préfères ce style
+Carré	600 x 600 px	Pour un rendu équilibré mobile/desktop ========== */
+/* ========== FILMS ========== */
+.films-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 30px;
+}
+
+.film-card {
+  background: linear-gradient(145deg, #1e1e1e, #181818);
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.6),
+    inset 0 0 10px rgba(255, 255, 255, 0.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+.film-card:hover {
+  transform: translateY(-10px) rotateX(1deg);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.8),
+    inset 0 0 10px rgba(255, 255, 255, 0.04);
+}
+
+.film-card img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.film-card h3 {
+  margin: 12px 0 6px;
+  color: #ffcc00;
+  font-size: 20px;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.film-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 12px;
+}
+
+.film-card button {
+  background: linear-gradient(135deg, #ffcc00, #ffb300);
+  color: #000;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s;
+  box-shadow: 0 4px 10px rgba(255, 204, 0, 0.4);
+}
+
+.film-card button:hover {
+  background: linear-gradient(135deg, #e6b800, #d4a400);
+  transform: scale(1.03);
+}
+
+
+/* ========== FORMULAIRE ========== */
+section.commande {
+  padding: 30px 20px;
+  background-color: #1a1a1a;
+  margin-top: 30px;
+}
+
+section.commande h2 {
+  color: #ffcc00;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: grid;
+  gap: 15px;
+}
+
+form label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+form input,
+form textarea,
+form button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+form input,
+form textarea {
+  background-color: #333;
+  color: #fff;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: 2px solid #ffcc00;
+}
+
+form button {
+  background-color: #ffcc00;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #e6b800;
+}
+
+/* ========== BOUTON WHATSAPP ========== */
+a.whatsapp-btn {
+  background-color: #25D366;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-block;
+  width: 100%;
+  margin-top: 0px;
+}
+
+/* ========== MESSAGE INFO IMAGE ========== */
+.image-info {
+  margin-bottom: 5px;
+  margin-top: 10px;
+  line-height: 1.4;
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 20px;
+  }
+
+  .film-card {
+    padding: 10px;
+  }
+
+  form {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  form input,
+  form textarea,
+  form button {
+    font-size: 16px;
+  }
+
+  form label {
+    font-size: 14px;
+  }
+}
