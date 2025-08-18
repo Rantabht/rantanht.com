@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – RANTABHT.COM</title>
+  <meta name="description" content="Contactez RANTABHT.COM pour toute question, support, partenariat ou suggestions. Nous sommes là pour vous répondre rapidement.">
+  <meta name="keywords" content="RANTABHT, Contact, support, questions, partenariat, Haïti">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact – RANTABHT.COM">
+  <meta property="og:description" content="Contactez RANTABHT.COM pour toute question, support, partenariat ou suggestions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rantabht.com/contact">
+  <meta property="og:image" content="https://rantabht.com/assets/logo.png">
+
+  <style>
+    :root {
+      --bg: #0b0d13;
+      --card: #121624;
+      --text: #eaf0ff;
+      --muted: #97a0b3;
+      --accent: #83D4A9;
+      --line: #1f263a;
+      --btn: #83D4A9;
+      --btn-hover: #6cc69a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial;
+      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      background: linear-gradient(180deg, rgba(11,13,19,.95), rgba(11,13,19,.85));
+      padding: 20px;
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: clamp(24px, 4vw, 36px);
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    h2 { color: var(--accent); margin-top: 0; }
+    p { margin-bottom: 16px; }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input, textarea {
+      background: #1b1f2b;
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 16px;
+      resize: vertical;
+    }
+    input:focus, textarea:focus { border-color: var(--accent); outline: none; }
+
+    button.submit-btn {
+      padding: 12px 20px;
+      background: var(--btn);
+      color: #062622;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button.submit-btn:hover { background: var(--btn-hover); }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .contact-info span { display: flex; align-items: center; gap: 8px; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Contactez RANTABHT.COM</h1>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2>Formulaire de contact</h2>
+      <p>Remplissez le formulaire ci-dessous pour nous envoyer vos questions, suggestions ou demandes.</p>
+      <form id="contactForm">
+        <input type="text" name="name" placeholder="Nom complet" required>
+        <input type="email" name="email" placeholder="Adresse email" required>
+        <input type="text" name="subject" placeholder="Sujet" required>
+        <textarea name="message" placeholder="Votre message" rows="5" required></textarea>
+        <button type="submit" class="submit-btn">Envoyer</button>
+      </form>
+      <p id="formMessage" style="margin-top:12px; color:var(--accent);"></p>
+    </section>
+
+    <section>
+      <h2>Nos coordonnées</h2>
+      <div class="contact-info">
+        <span>📧 Email : <a href="mailto:contact@rantabht.com">contact@rantabht.com</a></span>
+        <span>📱 WhatsApp / Téléphone : <a href="https://wa.me/50937291397">+509 37291397</a></span>
+        <span>🌐 Site Web : <a href="https://rantabht.com">https://rantabht.com</a></span>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    © <span id="year"></span> RANTAB. Tous droits réservés.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simulation simple d'envoi formulaire
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      document.getElementById('formMessage').textContent = "Merci ! Votre message a été envoyé avec succès.";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
