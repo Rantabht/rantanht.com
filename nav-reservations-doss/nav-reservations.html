@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Réservation – RANTABHT.COM</title>
+  <meta name="description" content="Réservez votre place ou service avec RANTABHT.COM à Port-au-Prince, Haïti. Simple, rapide et sécurisé.">
+  <meta name="keywords" content="RANTABHT, Réservation, Port-au-Prince, Haïti, Formulaire, Service">
+
+  <style>
+    :root {
+      --bg: #0b0d13;
+      --card: #121624;
+      --text: #eaf0ff;
+      --muted: #97a0b3;
+      --accent: #83D4A9;
+      --line: #1f263a;
+      --btn: #83D4A9;
+      --btn-hover: #6cc69a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(11,13,19,.95), rgba(11,13,19,.85));
+      border-bottom: 1px solid var(--line);
+    }
+    header h1 {
+      color: var(--accent);
+      margin: 0;
+      font-size: clamp(24px, 4vw, 36px);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    h2 { color: var(--accent); margin-top: 0; }
+    p { margin-bottom: 16px; }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input, select, textarea {
+      background: #1b1f2b;
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 16px;
+      resize: vertical;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent); outline: none; }
+
+    button.submit-btn {
+      padding: 12px 20px;
+      background: var(--btn);
+      color: #062622;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button.submit-btn:hover { background: var(--btn-hover); }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Réservation – Port-au-Prince</h1>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2>Formulaire de réservation</h2>
+      <p>Remplissez le formulaire pour réserver votre service ou place avec RANTABHT à Port-au-Prince.</p>
+      <form id="reservationForm">
+        <input type="text" name="name" placeholder="Nom complet" required>
+        <input type="email" name="email" placeholder="Adresse email" required>
+        <input type="tel" name="phone" placeholder="Téléphone / WhatsApp" required>
+        <label for="date">Date de réservation :</label>
+        <input type="date" id="date" name="date" required>
+        <label for="time">Heure :</label>
+        <input type="time" id="time" name="time" required>
+        <label for="participants">Nombre de participants :</label>
+        <select id="participants" name="participants" required>
+          <option value="">Sélectionnez</option>
+          <option value="1">1 personne</option>
+          <option value="2">2 personnes</option>
+          <option value="3">3 personnes</option>
+          <option value="4">4 personnes</option>
+          <option value="5+">5 personnes ou plus</option>
+        </select>
+        <textarea name="notes" placeholder="Notes / demandes spéciales" rows="4"></textarea>
+        <button type="submit" class="submit-btn">Réserver maintenant</button>
+      </form>
+      <p id="formMessage" style="margin-top:12px; color:var(--accent);"></p>
+    </section>
+
+    <section>
+      <h2>Nos coordonnées</h2>
+      <p>Vous pouvez également nous contacter directement :</p>
+      <p>📧 Email : <a href="mailto:contact@rantabht.com">contact@rantabht.com</a><br>
+         📱 WhatsApp / Téléphone : <a href="https://wa.me/50937291397">+509 37291397</a><br>
+         🌐 Site Web : <a href="https://rantabht.com">https://rantabht.com</a>
+      </p>
+    </section>
+  </div>
+
+  <footer>
+    © <span id="year"></span> RANTAB. Tous droits réservés.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.getElementById('reservationForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      document.getElementById('formMessage').textContent = "Merci ! Votre réservation a été enregistrée avec succès.";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
