@@ -6,12 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- ====== SEO ====== -->
-  <meta name="description" content="Découvrez RANTAB, votre boutique en ligne en Haïti pour acheter en gros ou au détail : vêtements, accessoires, films, livraisons rapides et service fiable.">
-
-  <!-- Titre -->
+  <meta name="description" content="RANTAB est une plateforme en ligne dynamique offrant une variété de services : boutique de produits divers, paris sportifs, films, solutions immobilières, livraisons moto et bien plus encore. Découvrez et accédez facilement à toutes vos catégories préférées en un seul endroit !"/>
   <title>RANTAB | Boutique en ligne en Haïti – Vente en gros et au détail</title>
   
-  <!-- ====== RÉSEAUX SOCIAUX (OG & TWITTER) ====== -->
+  <!-- ====== RÉSEAUX SOCIAUX ====== -->
   <meta property="og:title" content="RANTAB | Boutique en ligne en Haïti" />
   <meta property="og:description" content="Achetez en gros ou au détail : vêtements, accessoires, films, livraisons rapides et service fiable." />
   <meta property="og:image" content="https://www.rantabht.com/logo.png" />
@@ -23,43 +21,30 @@
   <meta name="twitter:image" content="https://www.rantabht.com/logo.png" />
 
   <!-- ====== FAVICONS ====== -->
-  <!-- Favicon classique -->
   <link rel="icon" href="https://www.rantabht.com/favicon.ico" type="image/x-icon">
-
-  <!-- Favicon PNG (Google recommande min. 48x48) -->
   <link rel="icon" type="image/png" href="https://www.rantabht.com/favicon.png" sizes="48x48">
-
-  <!-- Apple Touch Icon -->
   <link rel="apple-touch-icon" sizes="180x180" href="https://www.rantabht.com/favicon.png">
-
-  <!-- Windows Tile -->
   <meta name="msapplication-TileImage" content="https://www.rantabht.com/favicon.png" />
   <meta name="msapplication-TileColor" content="#ffffff" />
-
-  <!-- Couleur du thème navigateur -->
   <meta name="theme-color" content="#0077cc" />
-
-  <!-- Manifest PWA -->
   <link rel="manifest" href="/manifest.json" />
-
-  <!-- Sitemap -->
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 
   <!-- ====== FEUILLES DE STYLE ====== -->
   <link rel="stylesheet" href="index-style.css" />
-  <link rel="stylesheet" href="index-collections.css" />
+  <link rel="stylesheet" href="index-categories.css" />
   
-  <!-- Police Google Fonts -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
 
-  <!-- Icônes FontAwesome -->
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- ====== JAVASCRIPT ====== -->
+  <!-- JavaScript -->
   <script src="index-slider1-script.js" defer></script>
-  <script src="index-collections.js" defer></script>
-  
-  <!-- Données structurées (Schema.org JSON-LD) -->
+  <script src="index-categories.js" defer></script>
+
+  <!-- Données structurées -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -72,13 +57,34 @@
       "https://tiktok.com/@rantabht",
       "https://www.facebook.com/share/1XS2BnbL8A/"
     ],
-    "description": "Boutique en ligne en Haïti – vêtements, accessoires, films, gros et détail, defi-prono, tournoi fcmobile, tuteur à domicile, barber à domicile"
+    "description": "Boutique en ligne en Haïti – vêtements, accessoires, films, gros et détail, paris-sportifs, tournoi-fcmobile, tuteur à domicile, barber à domicile"
   }
   </script>
+
+  <!-- ====== Styles pour l'icône moderne réduite ====== -->
+  <style>
+    .categories-icon {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    /* Animation sur l'icône */
+    .categories-icon i {
+      font-size: 1.8rem; /* Taille réduite */
+      color: #0077cc;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .categories-icon i:hover {
+      transform: scale(1.2) rotate(10deg);
+      color: #00aaff;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Overlay pour fermer le menu mobile -->
+  <!-- Overlay menu mobile -->
   <div class="overlay" id="menu-overlay"></div>
 
   <!-- En-tête -->
@@ -96,7 +102,7 @@
         </div>
       </div>
 
-      <!-- Navigation principale -->
+      <!-- Navigation -->
       <nav id="nav-menu" aria-label="Navigation principale">
         <a href="./nav-produits-doss/nav-produits.html">Produits</a>
         <a href="./nav-reservations-doss/nav-reservations.html">Réservations</a>
@@ -114,7 +120,7 @@
         </svg>
       </div>
 
-      <!-- Bouton menu burger mobile -->
+      <!-- Menu burger mobile -->
       <div class="burger" id="burger-menu" aria-label="Menu mobile" aria-expanded="false" role="button" tabindex="0">
         <div></div>
         <div></div>
@@ -124,57 +130,31 @@
     </div>
   </header>
 
-  <!-- SECTION SLIDER PRINCIPAL -->
+  <!-- SLIDER PRINCIPAL SANS TEXTE NI BOUTONS -->
   <section class="slider" aria-label="Slider d'images promotionnelles">
     <div class="slides" id="slides">
-
-      <article class="slide" style="background-image: url('./index-slider1-img/img1.jpg');"aria-label="Promotion 1" >
+      <article class="slide" style="background-image: url('./index-slider1-img/img1.jpg');" aria-label="Promotion 1">
         <img src="./index-slider1-img/img1.jpg" alt="Achat en gros sur RANTAB" style="display: none;" />
-        <div class="slide-content">
-          <p class="slide-desc">Achetez en gros, vendez mieux.</p>
-          <button class="slide-btn" aria-label="Découvrir Offre" onclick="alert('Découvrir Offre')">Découvrir</button>
-        </div>
       </article>
-
       <article class="slide" style="background-image: url('./index-slider1-img/img2.jpg');" aria-label="Accessoires de Qualité">
         <img src="./index-slider1-img/img2.jpg" alt="Achat en gros sur RANTAB" style="display: none;" />
-        <div class="slide-content">
-          <p class="slide-desc">Gagnez du temps, achetez en ligne.</p>
-          <button class="slide-btn" aria-label="Découvrir Accessoires" onclick="alert('Découvrir Accessoires')">Découvrir</button>
-        </div>
       </article>
-
       <article class="slide" style="background-image: url('./index-slider1-img/img3.jpg');" aria-label="Écouteurs Sans Fil">
         <img src="./index-slider1-img/img3.jpg" alt="Achat en gros sur RANTAB" style="display: none;" />
-        <div class="slide-content">
-          <p class="slide-desc">Commandez en un clic.</p>
-          <button class="slide-btn" aria-label="Découvrir Écouteurs" onclick="alert('Découvrir Écouteurs')">Découvrir</button>
-        </div>
       </article>
-
       <article class="slide" style="background-image: url('./index-slider1-img/img4.jpg');" aria-label="Offres Immanquables">
         <img src="./index-slider1-img/img4.jpg" alt="Achat en gros sur RANTAB" style="display: none;" />
-        <div class="slide-content">
-          <p class="slide-desc">Votre partenaire de confiance.</p>
-          <button class="slide-btn" aria-label="Découvrir Offres" onclick="alert('Découvrir Offres')">Découvrir</button>
-        </div>
       </article>
-
       <article class="slide" style="background-image: url('./index-slider1-img/img5.jpg');" aria-label="Livraison Rapide">
         <img src="./index-slider1-img/img5.jpg" alt="Achat en gros sur RANTAB" style="display: none;" />
-        <div class="slide-content">
-          <p class="slide-desc">Livraison rapide, service fiable.</p>
-          <button class="slide-btn" aria-label="Découvrir Livraison" onclick="alert('Découvrir Livraison')">Découvrir</button>
-        </div>
       </article>
-
     </div>
 
     <!-- Flèches -->
-    <button class="arrow arrow-left" aria-label="Slide précédente" id="prevBtn">
+    <button class="arrow arrow-left" id="prevBtn">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6" /></svg>
     </button>
-    <button class="arrow arrow-right" aria-label="Slide suivante" id="nextBtn">
+    <button class="arrow arrow-right" id="nextBtn">
       <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
     </button>
 
@@ -182,71 +162,43 @@
     <div class="pagination" id="pagination"></div>
   </section>
 
-  <!-- Section Collections -->
-  <section class="collections-section" aria-label="Collections de produits">
-    <div class="collections-header">
-      <div class="collection-icon" aria-hidden="true">🛍️</div>
-      <h2>Explorez nos collections</h2>
-      <div class="view-all-container">
-        <a href="./voir-toutes-les-collections-doss/voir-toutes-les-collections.html" class="view-all-btn">Voir toutes les collections</a>
-      </div>
-    </div>
-
-    <div class="collections-container" id="slider">
-      <a href="./nouveautes-doss/nouveautes.html" class="collection-card new-in">
-        <span><i class="fas fa-star" aria-hidden="true"></i> Nouveautés</span>
-      </a>
-      <a href="./promotions-doss/promotions.html" class="collection-card promotion">
-        <span><i class="fas fa-tags" aria-hidden="true"></i> Promotions</span>
-      </a>
-      <a href="./vetements-doss/vetements.html" class="collection-card clothing">
-        <span><i class="fas fa-tshirt" aria-hidden="true"></i> Vêtements</span>
-      </a>
-      <a href="./chaussures-doss/chaussures.html" class="collection-card shoes">
-        <span><i class="fas fa-shoe-prints" aria-hidden="true"></i> Chaussures</span>
-      </a>
-      <a href="./sacs-doss/sacs.html" class="collection-card bags">
-        <span><i class="fas fa-shopping-bag" aria-hidden="true"></i> Sacs</span>
-      </a>
-      <a href="./accessoires-doss/accessoires.html" class="collection-card accessories">
-        <span><i class="fas fa-hat-cowboy" aria-hidden="true"></i> Accessoires</span>
-      </a>
-    </div>
-  </section>
-  
- <!-- SECTION CATÉGORIES AVEC IMAGES DE FOND -->
-<section class="categories-section" aria-label="Explorez nos catégories">
-  <div class="categories-header">
-    <h2>Explorez nos catégories</h2>
-    <div class="view-all-container">
-      <a href="voir-toutes-les-categories-doss/voir-toutes-les-categories.html" class="view-all-btn">Voir toutes les catégories</a>
-    </div>
+  <!-- BARRE DE RECHERCHE -->
+  <div class="collections-search-wrapper">
+    <input type="text" id="collectionsSearch" placeholder="Rechercher une categories..." />
+    <i class="fas fa-search search-icon"></i>
   </div>
 
-  <div class="categories-container" id="categories-slider">
-    <!-- Ajout des classes spécifiques pour appliquer les images via CSS -->
-    <a href="./films-express-doss/films-express.html" class="category-card filmsexpress">
-      <span><i class="fas fa-film" aria-hidden="true"></i> Films-Express</span>
-    </a>
-    <a href="./tournoi-fcmobile-doss/tournoi-fcmobile-index.html" class="category-card fcmobile">
-      <span><i class="fas fa-futbol" aria-hidden="true"></i> Tournoi-FcMobile</span>
-    </a>
-    <a href="./defi-prono-doss/defi-prono.html" class="category-card defiprono">
-      <span><i class="fas fa-bullseye" aria-hidden="true"></i> Défi-Prono</span>
-    </a>
-    <a href="./formations-doss/formations.html" class="category-card formation509">
-      <span><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> Formation509</span>
-    </a>
-    <a href="./barber-doss/barber.html" class="category-card barberdomicile">
-      <span><i class="fas fa-cut" aria-hidden="true"></i> Barber à domicile</span>
-    </a>
-    <a href="./tuteur-doss/tuteur.html" class="category-card tuteurdomicile">
-      <span><i class="fas fa-user-graduate" aria-hidden="true"></i> Tuteur à domicile</span>
-    </a>
-  </div>
 </section>
 
   
+  <!-- SECTION CATÉGORIES AVEC ICÔNE RÉDUITE -->
+  <section class="categories-section" aria-label="Explorez nos catégories">
+    <div class="categories-header">     
+      </div>
+
+    <div class="categories-container" id="categories-slider">
+      <a href="./films-express-doss/films-express.html" class="category-card filmsexpress">
+        <span><i class="fas fa-film" aria-hidden="true"></i> Films-Express</span>
+      </a>
+      <a href="./tournoi-fcmobile-doss/slider_index.html" class="category-card fcmobile">
+        <span><i class="fas fa-futbol" aria-hidden="true"></i> Tournoi-FcMobile</span>
+      </a>
+      <a href="./paris-sportifs-doss/paris-sportifs.html" class="category-card paris-sportifs">
+        <span><i class="fas fa-bullseye" aria-hidden="true"></i> Paris-Sportif</span>
+      </a>
+      <a href="./formations-doss/formations.html" class="category-card formation509">
+        <span><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> Formation509</span>
+      </a>
+      <a href="./boutique-doss/boutique.html" class="category-card boutique">
+        <span><i class="fa-solid fa-shop"></i> Boutique</span>
+      </a>
+      <a href="./livraisons-doss/livraisons.html" class="category-card livraisons">
+        <span><i class="fa-solid fa-person-biking"></i> Livraisons</span>
+      </a>
+      
+         
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer" role="contentinfo">
     <h2 class="footer-title">Rejoins-nous sur nos plateformes</h2>
@@ -279,3 +231,5 @@
       <a href="./politique-de-confidentialite-doss/politique-de-confidentialite.html" style="color: #b2dfdb; text-decoration: underline;">Politique de Confidentialité</a>
     </p>
   </footer>
+</body>
+</html>
