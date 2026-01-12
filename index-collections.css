@@ -77,7 +77,7 @@ a {
   color: #00967D;
 }
 
-/* Background images pour chaque catĆ©gorie */
+/* Background images pour chaque catégorie */
 .new-in       { background: url('./index-collections-img/img-1.jpg') center/cover; }
 .promotion    { background: url('./index-collections-img/img-11.jpg') center/cover; }
 .clothing     { background: url('./index-collections-img/img-3.jpg') center/cover; }
@@ -85,36 +85,36 @@ a {
 .bags         { background: url('./index-collections-img/img-5.jpg') center/cover; }
 .accessories  { background: url('./index-collections-img/img-6.jpg') center/cover; }
 
-/* SECTION CATĆ‰GORIES */
+/* SECTION CATÉGORIES (réduite) */
 .categories-section {
   max-width: 1200px;
-  margin: 20px auto;
+  margin: 15px auto;
   padding: 0 10px;
 }
 
 .categories-header {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .category-icon {
-  font-size: 32px;
-  margin-bottom: 5px;
+  font-size: 24px;     /* plus petit */
+  margin-bottom: 3px;
   color: #004D40;
 }
 
 .categories-header h2 {
-  font-size: 22px;
+  font-size: 18px;     /* réduit */
   font-weight: 600;
   color: #004D40;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 
 .categories-container {
   display: flex;
-  gap: 10px;
+  gap: 8px;            /* réduit l’espace */
   overflow-x: auto;
-  padding: 10px 5px 30px;
+  padding: 8px 5px 20px;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -125,19 +125,19 @@ a {
 }
 
 .category-card {
-  flex: 0 0 160px;
-  height: 200px;
-  min-width: 160px;
-  border-radius: 12px;
+  flex: 0 0 120px;     /* largeur réduite */
+  height: 140px;       /* hauteur réduite */
+  min-width: 120px;
+  border-radius: 10px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 15px;
+  padding: 8px;
   position: relative;
   overflow: hidden;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
   text-decoration: none;
 }
@@ -145,14 +145,14 @@ a {
 .category-card span {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   background-color: rgba(255,255,255,0.6);
   color: #004D40;
-  font-size: 13px;
+  font-size: 11px;     /* réduit */
   font-weight: 500;
   border: 2px solid transparent;
-  border-radius: 6px;
-  padding: 6px 10px;
+  border-radius: 5px;
+  padding: 4px 8px;    /* réduit */
   transition: border 0.4s ease, color 0.3s ease;
 }
 
@@ -164,50 +164,116 @@ a {
 .view-all-container {
   text-align: center;
   margin-top: 0px;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
 }
 
 .view-all-btn {
   display: inline-block;
   background-color: #83D4A9;
   color: #004D40;
-  padding: 5px 11px;
-  border-radius: 25px;
+  padding: 4px 10px;
+  border-radius: 20px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;     /* réduit */
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(131, 212, 169, 0.3);
+  box-shadow: 0 3px 6px rgba(131, 212, 169, 0.3);
 }
 
 .view-all-btn:hover {
   background-color: #00967D;
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 150, 125, 0.4);
+  box-shadow: 0 5px 10px rgba(0, 150, 125, 0.4);
 }
 
-/* Images de fond synchronisĆ©es avec les collections */
+/* Images de fond synchronisées avec les catégories */
 .filmsexpress {
   background-image: url('./index-categories-img/films-express.jpg');
 }
 
 .fcmobile {
-  background-image: url('./index-categories-img/fcmobile.png');
+  background-image: url('./index-categories-img/fcmobile1.jpg');
 }
 
-.defiprono {
-  background-image: url('./index-categories-img/defi-prono.png');
+.paris-sportifs {
+  background-image: url('./index-categories-img/techniques-paris-sportifs.png');
 }
 
 .formation509 {
   background-image: url('./index-categories-img/formations.png');
 }
 
-.barberdomicile {
-  background-image: url('./index-categories-img/baber.png');
+.boutique {
+  background-image: url('./index-categories-img/boutique.png');
 }
 
-.tuteurdomicile {
-  background-image: url('./index-categories-img/tuteur.png');
+.livraisons {
+  background-image: url('./index-categories-img/livraisons.png');
+}
+
+/* Nouvo code */
+/* ===== COLLECTION NAVIGATOR ===== */
+.collections-navigator {
+  max-width: 900px;
+  margin: 35px auto 15px;
+  text-align: center;
+  padding: 0 10px;
+  color: #004D40;
+}
+
+.collections-title a {
+  font-size: 26px;
+  font-weight: 700;
+  color: #004D40;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 25px;
+  background-color: #83D4A9;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.collections-title a:hover {
+  background-color: #00967D;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.collections-subtitle {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 10px 0 20px;
+  color: #004D40;
+}
+
+/* BARRE DE RECHERCHE */
+.collections-search-wrapper {
+  position: relative;
+  width: 80%;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+#collectionsSearch {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  border-radius: 25px;
+  border: 2px solid #00967D;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+#collectionsSearch:focus {
+  border-color: #83D4A9;
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00967D;
+  font-size: 18px;
 }
