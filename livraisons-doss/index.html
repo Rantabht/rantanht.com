@@ -1,81 +1,147 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ht">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page non disponible</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: linear-gradient(135deg, #1e272e, #2f3640);
-      color: #f5f6fa;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Livraison – RANTABHT.COM</title>
+<meta name="description" content="Commandez vos produits avec livraison à Port-au-Prince via RANTABHT.COM.">
+<meta name="keywords" content="RANTABHT, Livraison, Port-au-Prince, Haïti, Commande, MonCash">
 
-    .message {
-      width: 80%;
-      max-width: 420px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: #ff4757;
-    }
-
-    p {
-      font-size: 1rem;
-      opacity: 0.8;
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-
-    a {
-      display: inline-block;
-      padding: 12px 22px;
-      background: #ff4757;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background 0.3s, transform 0.2s;
-      font-weight: 600;
-    }
-
-    a:hover {
-      background: #e84118;
-      transform: translateY(-2px);
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-      p {
-        font-size: 0.9rem;
-      }
-      a {
-        padding: 10px 18px;
-        font-size: 0.9rem;
-      }
-    }
-  </style>
+<style>
+:root {
+  --bg: #0b0d13;
+  --card: #121624;
+  --text: #eaf0ff;
+  --muted: #97a0b3;
+  --accent: #83D4A9;
+  --line: #1f263a;
+  --btn: #83D4A9;
+  --btn-hover: #6cc69a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+header { text-align: center; padding: 20px; background: var(--card); border-bottom: 1px solid var(--line); }
+header h1 { color: var(--accent); margin: 0; }
+.container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+section { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+h2 { color: var(--accent); margin-top: 0; }
+input, textarea, select { background: #1b1f2b; border: 1px solid var(--line); color: var(--text); padding: 12px; border-radius: 8px; margin-bottom: 16px; font-size: 16px; width: 100%; }
+input:focus, textarea:focus, select:focus { border-color: var(--accent); outline: none; }
+button { padding: 12px 20px; background: var(--btn); color: #062622; font-weight: 600; border-radius: 8px; border: none; cursor: pointer; transition: 0.3s; }
+button:hover { background: var(--btn-hover); }
+.delivery-fee, .total-amount { font-weight: bold; margin-bottom: 16px; color: var(--accent); }
+</style>
 </head>
 <body>
-  <div class="message">
-    <h1>🚧 Page en construction</h1>
-    <p>Désolé, cette page n'est pas encore disponible.<br>Revenez bientôt !</p>
-    <a href="index.html">⬅ Retour à l'accueil</a>
-  </div>
+
+<header>
+  <h1>Livraison – <br>Port-au-Prince</h1>
+</header>
+
+<div class="container">
+  <section>
+    <h2>Formulaire de livraison</h2>
+    <p>Remplissez vos informations, sélectionnez votre quartier et indiquez le montant de votre commande pour calculer le frais de livraison et le total.</p>
+    <form id="deliveryForm">
+      <input type="text" name="name" placeholder="Nom complet" required>
+      <input type="tel" name="phone" placeholder="Téléphone / WhatsApp" required>
+      
+      <select id="address" name="address" required>
+        <option value="">Sélectionnez votre quartier</option>
+      </select>
+      
+      <input type="number" id="orderAmount" name="orderAmount" placeholder="Montant des articles (HTG)" min="0" required>
+      
+      <!-- Nouveau champ pour problème / instructions -->
+      <textarea id="notes" name="notes" placeholder="Instructions / Remarques (en cas de problème)" rows="3"></textarea>
+
+      <p class="delivery-fee" id="deliveryFee">Frais de livraison : -</p>
+      <p class="total-amount" id="totalAmount">Total à payer : -</p>
+
+      <button type="submit">Commander via WhatsApp</button>
+    </form>
+    <p id="formMessage" style="margin-top:12px; color: var(--accent);"></p>
+  </section>
+</div>
+
+<script>
+// Numéro MonCash
+const monCashNumber = "31772525";
+
+// Liste des adresses et frais de livraison (modifiable facilement)
+const deliveryZones = [
+  { name: "Delmas 32-75", fee: 250 },
+  { name: "Delmas 32-60", fee: 300 },
+  { name: "Pétion-Ville", fee: 500 },
+  { name: "Tabarre", fee: 1000 },
+  { name: "Silo", fee: 500 },
+  { name: "Port-au-Prince Centre", fee: 500 }
+];
+
+// Remplir le select dynamiquement
+const addressSelect = document.getElementById('address');
+deliveryZones.forEach(zone => {
+  const option = document.createElement('option');
+  option.value = zone.name;
+  option.textContent = `${zone.name} - Frais: ${zone.fee} HTG`;
+  addressSelect.appendChild(option);
+});
+
+const feeDisplay = document.getElementById('deliveryFee');
+const totalDisplay = document.getElementById('totalAmount');
+const orderAmountInput = document.getElementById('orderAmount');
+const notesInput = document.getElementById('notes');
+
+function updateFees() {
+  const zoneName = addressSelect.value;
+  const zone = deliveryZones.find(z => z.name === zoneName);
+  const fee = zone ? zone.fee : null;
+  feeDisplay.textContent = fee ? `Frais de livraison : ${fee} HTG` : "Frais de livraison : -";
+
+  const orderAmount = parseFloat(orderAmountInput.value) || 0;
+  totalDisplay.textContent = fee ? `Total à payer : ${orderAmount + fee} HTG` : "Total à payer : -";
+}
+
+addressSelect.addEventListener('change', updateFees);
+orderAmountInput.addEventListener('input', updateFees);
+
+document.getElementById('deliveryForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = this.name.value.trim();
+  const phone = this.phone.value.trim();
+  const zoneName = addressSelect.value;
+  const zone = deliveryZones.find(z => z.name === zoneName);
+  if(!zone){
+    alert("Veuillez sélectionner un quartier valide pour la livraison.");
+    return;
+  }
+
+  const orderAmount = parseFloat(this.orderAmount.value);
+  const fee = zone.fee;
+  const total = orderAmount + fee;
+  const notes = notesInput.value.trim();
+
+  const message = `Bonjour, je souhaite passer une commande via RANTABHT.COM.
+Nom: ${name}
+Téléphone: ${phone}
+Quartier: ${zoneName}
+Montant des articles: ${orderAmount} HTG
+Frais de livraison: ${fee} HTG
+Total à payer: ${total} HTG
+MonCash: ${monCashNumber}
+Instructions / Remarques: ${notes ? notes : "Aucune"}`;
+
+  const whatsappURL = `https://wa.me/509${phone.replace(/\D/g,'')}?text=${encodeURIComponent(message)}`;
+  window.open(whatsappURL, '_blank');
+  document.getElementById('formMessage').textContent = "Votre message est prêt à être envoyé sur WhatsApp.";
+});
+</script>
+
 </body>
 </html>
