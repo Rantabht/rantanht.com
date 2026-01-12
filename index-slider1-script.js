@@ -98,18 +98,10 @@ function updatePagination() {
   });
 }
 
-// Navigation par flèches
-document.getElementById('prevBtn').addEventListener('click', () => {
-  goToSlide(currentIndex - 1);
-  resetInterval();
-});
-
-document.getElementById('nextBtn').addEventListener('click', () => {
-  goToSlide(currentIndex + 1);
-  resetInterval();
-});
-
+// =============================
 // Défilement automatique toutes les 4 secondes
+// =============================
+
 function startInterval() {
   intervalId = setInterval(() => {
     goToSlide(currentIndex + 1);
