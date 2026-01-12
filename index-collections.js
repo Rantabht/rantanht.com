@@ -69,3 +69,20 @@ document.addEventListener("DOMContentLoaded", () => {
     startAutoScroll();
   });
 });
+
+// ===== RECHERCHE DES CATEGORIES =====
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("categoriesSearch");
+  const cards = document.querySelectorAll(".categories-card");
+
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      let value = searchInput.value.toLowerCase().trim();
+
+      cards.forEach(card => {
+        let text = card.innerText.toLowerCase();
+        card.style.display = text.includes(value) ? "flex" : "none";
+      });
+    });
+  }
+});
