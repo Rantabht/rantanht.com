@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tournoi FC Mobile - Calendrier</title>
+  <title>tournoi fC Mobile - Calendrier</title>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
   <style>
     /* ====== RESET ====== */
@@ -84,7 +84,7 @@
       100% { border-image-source: linear-gradient(405deg, #5310dc, #00d0ff, #ff00cc, #5310dc); }
     }
 
-    /* ====== COUNTDOWN BOX STYLE ====== */
+    /* ====== COUNTDOWN BOX STYLE (nouveau) ====== */
     .countdown-box {
       width: 90%;
       max-width: 1200px;
@@ -139,7 +139,7 @@
       box-shadow: 0 6px 16px rgba(83,16,220,0.12);
     }
 
-    /* ====== BOUTON NAVIGATION ====== */
+    /* ===== CSS POUR LE BOUTON AUTRE PAGE ===== */
     .button-container {
       margin-top: 20px;
       display: flex;
@@ -158,6 +158,7 @@
       transition: all 0.3s ease;
       animation: borderGlow 6s linear infinite;
     }
+    
     .nav-button:hover {
       background: linear-gradient(45deg, #5310dc, #00d0ff, #ff00cc);
       color: #fff;
@@ -176,6 +177,9 @@
       .countdown-box { flex-direction: column; gap: 10px; align-items: stretch; }
       .countdown-timer { width: 100%; }
     }
+  
+  
+  
   
   
   /* ====== RESET ====== */
@@ -374,6 +378,7 @@ th {
   
   
   </style>
+  
 </head>
 <body>
 
@@ -393,20 +398,17 @@ th {
     </div>
   </section>
 
-  <!-- ====== COUNTDOWN ====== -->
+  <!-- ====== COUNTDOWN (AU-DESSUS DU CALENDRIER) ====== -->
   <div class="countdown-box" aria-live="polite" role="region" aria-label="Compte à rebours du tournoi">
     <div class="countdown-left">
-      <div class="countdown-title">Prochain Tournoi (Dimanche)</div>
-      <div class="countdown-sub" id="countdown-sub">
-        Base : dimanche 17 août 2025 — Début 05:00 / Fin 22:00
-      </div>
+      <div class="countdown-title">Prochain Tournoi (répété chaque dimanche)</div>
+      <div class="countdown-sub" id="countdown-sub">Base : dimanche 17 août 2025 — Début 05:00 / Fin 22:00</div>
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
       <div id="countdown-timer" class="countdown-timer">-- : -- : -- : --</div>
       <div id="countdown-state" class="countdown-state">Chargement...</div>
     </div>
   </div>
-  
   
   <!-- ====== CALENDRIER INTERACTIF ====== -->
 <div class="calendar-container">
@@ -489,96 +491,100 @@ th {
     </div>
   </div>
 </div>
-
-
+  
   <!-- ===== BOUTON NAVIGATION ===== -->
   <div class="button-container">
     <a href="calendrier-fcmobile-samedi.html" class="nav-button">
-      Voir le calendrier du Samedi
+      Voir le calendrier du samedi
     </a>
   </div>
-
-  <!-- ===== SCRIPT COUNTDOWN + VAINQUEURS (tableaux supprimés mais scripts conservés) ===== -->
-  <script>
-    /* --- Fonctions existantes pour les tableaux --- */
-    function parseScore(scoreStr) {
-      const [a, b] = scoreStr.split("-").map(n => parseInt(n));
-      return [a, b];
-    }
-    function getWinner(teamA, score1, score2, teamB) {
-      const [a1, b1] = parseScore(score1);
-      const [a2, b2] = parseScore(score2);
-      return (a1 + a2) > (b1 + b2) ? teamA : teamB;
-    }
-
-    /* --- COMPTE À REBOURS HEBDOMADAIRE --- */
+  
+  <!-- ===== SCRIPT COUNTDOWN ===== -->
+<script>
+// --- COMPTE À REBOURS HEBDOMADAIRE 
 (function() {
   const timerEl = document.getElementById('countdown-timer');
   const stateEl = document.getElementById('countdown-state');
   const subEl = document.getElementById('countdown-sub');
 
-  const baseStart = new Date('2025-08-17T05:00:00');
+  // Obtenir le prochain dimanche à 05:00
+  function getNextSunday() {
+    const now = new Date();
+    const next = new Date(now);
+    const day = now.getDay(); // 0 = dimanche, 7 = dimanche
+    
+    let diff = (0 - day + 7) % 7; // jours à ajouter pour atteindre dimanche
 
-  function getNextStartAfter(now) {
-    let start = new Date(baseStart);
-    while (start.getTime() + 1000 < now.getTime()) {
-      start.setDate(start.getDate() + 7);
+    // Si on est dimanche mais il est déjà >= 22:00 -> tournoi fini -> semaine suivante
+    if (diff === 0 && now.getHours() >= 22) diff = 7;
+
+    // Calculer date du prochain dimanche
+    next.setDate(now.getDate() + diff);
+    next.setHours(5,0,0,0);
+
+    // Si on est déjà dimanche matin avant 05:00 -> début aujourd'hui 05:00
+    if (day === 0 && now.getHours() < 5) {
+      next.setDate(now.getDate());
+      next.setHours(5,0,0,0);
     }
-    return start;
+
+    return next;
   }
 
-  function formatTimeSpan(ms) {
-    if (ms < 0) ms = 0;
-    const totalSec = Math.floor(ms / 1000);
-    const days = Math.floor(totalSec / 86400);
-    const hours = Math.floor((totalSec % 86400) / 3600);
-    const minutes = Math.floor((totalSec % 3600) / 60);
-    const seconds = totalSec % 60;
+  // Formater le temps restant
+  function formatTime(ms) {
+    if(ms < 0) ms = 0;
+    const sec = Math.floor(ms / 1000);
+    const days = Math.floor(sec / 86400);
+    const hours = Math.floor((sec % 86400) / 3600);
+    const minutes = Math.floor((sec % 3600) / 60);
+    const seconds = sec % 60;
     return { days, hours, minutes, seconds };
   }
 
-  function pad(n) { return n.toString().padStart(2,'0'); }
+  function pad(n){ return n.toString().padStart(2,'0'); }
 
-  function update() {
+  // Mise à jour
+  function updateCountdown() {
     const now = new Date();
-    let start = getNextStartAfter(now);
-    let end = new Date(start);
-    end.setHours(22,0,0,0);
-    start.setHours(5,0,0,0);
+    const start = getNextSunday();
+    const end = new Date(start);
+    end.setHours(22,0,0,0); // fin du tournoi dimanche soir
 
-    if (now.getTime() < start.getTime()) {
-      const diff = start.getTime() - now.getTime();
-      const t = formatTimeSpan(diff);
+    let diff, t;
+
+    if(now < start) {
+      diff = start - now;
+      t = formatTime(diff);
       timerEl.textContent = `${t.days}j ${pad(t.hours)}:${pad(t.minutes)}:${pad(t.seconds)}`;
-      stateEl.textContent = `Prochaine ouverture — Début : ${start.toLocaleString()}`;
-      stateEl.style.background = 'linear-gradient(90deg, #5310dc, #00d0ff)';
-    }
-    else if (now.getTime() >= start.getTime() && now.getTime() <= end.getTime()) {
-      const diff = end.getTime() - now.getTime();
-      const t = formatTimeSpan(diff);
+      stateEl.textContent = `Prochain tournoi — Début : ${start.toLocaleString()}`;
+      stateEl.style.background = 'linear-gradient(90deg,#5310dc,#00d0ff)';
+    } 
+    else if(now >= start && now <= end) {
+      diff = end - now;
+      t = formatTime(diff);
       timerEl.textContent = `${t.days}j ${pad(t.hours)}:${pad(t.minutes)}:${pad(t.seconds)}`;
       stateEl.textContent = `Tournoi EN COURS — Fin : ${end.toLocaleString()}`;
-      stateEl.style.background = 'linear-gradient(90deg, #24c06d, #00d0ff)';
-    }
+      stateEl.style.background = 'linear-gradient(90deg,#24c06d,#00d0ff)';
+    } 
     else {
-      let nextStart = new Date(start);
+      const nextStart = new Date(start);
       nextStart.setDate(start.getDate() + 7);
-      nextStart.setHours(5,0,0,0);
-      const diff = nextStart.getTime() - now.getTime();
-      const t = formatTimeSpan(diff);
+      diff = nextStart - now;
+      t = formatTime(diff);
       timerEl.textContent = `${t.days}j ${pad(t.hours)}:${pad(t.minutes)}:${pad(t.seconds)}`;
       stateEl.textContent = `Tournoi terminé — Prochain : ${nextStart.toLocaleString()}`;
-      stateEl.style.background = 'linear-gradient(90deg, #ff6b6b, #ff9a00)';
+      stateEl.style.background = 'linear-gradient(90deg,#ff6b6b,#ff9a00)';
     }
   }
 
-  subEl.textContent = 'Base : dimanche 17 août 2025 — Début 05:00 / Fin 22:00 (répète chaque dimanche)';
-  update();
-  setInterval(update, 1000);
+  subEl.textContent = 'Tournoi tous les dimanches — Début 05:00 / Fin 22:00';
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 })();
-  </script>
-  
-  <script>
+</script>
+
+<script>
 // -----------------------
 // Utilitaires tournoi
 // -----------------------
@@ -833,7 +839,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.querySelector('#codeModal .modal-overlay').addEventListener('click',closeModal);
 });
 </script>
-
 
 </body>
 </html>
