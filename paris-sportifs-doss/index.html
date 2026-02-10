@@ -1,170 +1,95 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>Pari Tracker – Capital & Historique</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    *{box-sizing:border-box}
-    html,body{max-width:100%;overflow-x:hidden;margin:0;padding:0;font-family:'Inter',Arial,sans-serif;background:#0f172a;color:#e5e7eb}
-    header{background:#1e293b;padding:20px;text-align:center;color:#fbbf24;font-size:28px;font-weight:600;letter-spacing:1px}
-    .container{max-width:900px;width:95%;margin:20px auto}
-    .card{background:#020617;border-radius:16px;padding:20px;margin-bottom:20px;box-shadow:0 10px 25px rgba(0,0,0,.4)}
-    h2{text-align:center;margin-bottom:12px}
-    label{display:block;margin-top:12px;font-size:15px;font-weight:500}
-    input,select,button{width:100%;padding:12px;margin-top:6px;border-radius:12px;border:none;font-size:15px}
-    button{background:#22c55e;color:#022c22;font-weight:600;cursor:pointer;margin-top:12px;transition:0.3s}
-    button:hover{opacity:0.85}
-    button.danger{background:#ef4444;color:#fff}
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
-    .stat{background:#020617;padding:14px;border-radius:14px;text-align:center;font-size:15px;font-weight:500}
-    .table-wrapper{width:100%;overflow-x:auto;margin-top:10px}
-    table{width:100%;min-width:520px;border-collapse:collapse}
-    th,td{padding:10px;text-align:center;border-bottom:1px solid #1e293b;font-size:14px;white-space:nowrap}
-    th{background:#020617}
-    .win{color:#22c55e;font-weight:600}
-    .loss{color:#ef4444;font-weight:600}
-    .void{color:#facc15;font-weight:600}
-    .capital-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
-    .capital-buttons button{flex:1}
-    footer{background:#1e293b;color:#fbbf24;text-align:center;padding:15px;margin-top:20px;border-radius:12px;font-size:14px}
-    @media(max-width:600px){.stats{grid-template-columns:1fr 1fr} header{font-size:20px}}
-  </style>
+<meta charset="UTF-8">
+<title>Montante Discipline</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- CSS externe -->
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<header>📊 Pari Tracker –<br>Suivi du Capital et Historique</header>
 <div class="container">
 
-  <div class="card">
-    <h2>💰 Capital de départ</h2>
-    <label>Montant HTG
-      <input type="number" id="capital" placeholder="Entrer le montant" />
-    </label>
-    <div class="capital-buttons">
-      <button id="btnAddCapital">Ajouter au capital</button>
-      <button id="btnReduceCapital">Réduire le capital</button>
-    </div>
-  </div>
+<h1>📊 Montante Discipline – 2 Paliers</h1>
 
-  <div class="card">
-    <h2>➕ Ajouter un pari</h2>
-    <label>Date<input type="date" id="date" /></label>
-    <label>Mise<input type="number" id="stake" placeholder="HTG" /></label>
-    <label>Cote<input type="number" step="0.01" id="odd" /></label>
-    <label>Résultat
-      <select id="result">
-        <option value="win">Gagné</option>
-        <option value="loss">Perdu</option>
-        <option value="void">Annulé</option>
-      </select>
-    </label>
-    <button id="btnAddBet">Ajouter</button>
-  </div>
-
-  <div class="card">
-    <h2>📈 Statistiques</h2>
-    <div class="stats">
-      <div class="stat">Capital actuel<br><strong id="sCapital">0</strong></div>
-      <div class="stat">Paris<br><strong id="sCount">0</strong></div>
-      <div class="stat">Profit total<br><strong id="sProfit">0</strong></div>
-      <div class="stat">ROI<br><strong id="sROI">0%</strong></div>
-    </div>
-    <button class="danger" id="btnResetStats">Réinitialiser Statistiques</button>
-  </div>
-
-  <div class="card">
-    <h2>📜 Historique</h2>
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr><th>Date</th><th>Mise</th><th>Cote</th><th>Résultat</th><th>Profit</th><th>❌</th></tr>
-        </thead>
-        <tbody id="table"></tbody>
-      </table>
-    </div>
-    <button class="danger" id="btnClearHistory">Tout effacer l'historique</button>
-  </div>
+<div class="card">
+<h3>📜 Règles</h3>
+<ul id="rules" style="line-height:1.6;color:var(--muted)"></ul>
 </div>
 
-<footer>© 2026 Pari Tracker – Tous droits réservés</footer>
+<div class="card">
+<h3>⚙️ Réglages</h3>
+<div class="settings">
+<input type="number" id="capitalInput" placeholder="Capital initial">
+<input type="number" id="miseInput" placeholder="Mise">
+<input type="number" step="0.01" id="coteInput" placeholder="Côte">
+<button onclick="applySettings()">Appliquer</button>
+</div>
+</div>
 
-<script>
-let bets=[]; let capital=0;
-try { bets=JSON.parse(localStorage.getItem('bets'))||[] } catch(e){bets=[]}
-capital=parseFloat(localStorage.getItem('capital'))||0;
+<div class="card" id="gameCard">
+<h3>📅 Suivi des jours</h3>
 
-function save(){
-  localStorage.setItem('bets', JSON.stringify(bets));
-  localStorage.setItem('capital', capital);
-}
+<table id="montanteTable">
+<thead>
+<tr>
+<th>Jour / Date</th>
+<th>Résultat</th>
+<th>Capital</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody id="tbody"></tbody>
+</table>
 
-function render(){
-  const tbody=document.getElementById('table'); tbody.innerHTML='';
-  let totalProfit=0;
-  bets.forEach((b,i)=>{
-    totalProfit+=b.profit;
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${b.date}</td><td>${b.stake}</td><td>${b.odd}</td><td class="${b.result}">${b.result}</td><td>${b.profit.toFixed(2)}</td><td><button class="danger" data-index="${i}">X</button></td>`;
-    tbody.appendChild(tr);
-  });
-  document.getElementById('sCount').textContent=bets.length;
-  document.getElementById('sProfit').textContent=totalProfit.toFixed(2);
-  document.getElementById('sCapital').textContent=(capital + totalProfit).toFixed(2);
-  document.getElementById('sROI').textContent=capital>0 ? (totalProfit/capital*100).toFixed(1)+'%' : '0%';
-}
+<div class="progress-container">
+  <div id="progressBar" class="progress-bar">0%</div>
+</div>
 
-// Ajouter capital
-document.getElementById('btnAddCapital').addEventListener('click',()=>{
-  const c=parseFloat(document.getElementById('capital').value);
-  if(!Number.isFinite(c)||c<=0){ alert('Montant invalide'); return; }
-  if(confirm(`Ajouter ${c} HTG au capital existant ?`)){
-    capital += c; save(); render();
-  }
-});
+<div class="stats">
+  <div>✔ Gagnés : <span id="winCount">0</span></div>
+  <div>✖ Perdus : <span id="loseCount">0</span></div>
+  <div>💸 Retraits : <span id="withdrawCount">0</span></div>
+</div>
 
-// Réduire capital
-document.getElementById('btnReduceCapital').addEventListener('click',()=>{
-  const c=parseFloat(document.getElementById('capital').value);
-  if(!Number.isFinite(c)||c<=0){ alert('Montant invalide'); return; }
-  if(c>capital){ alert('Impossible de réduire plus que le capital actuel'); return; }
-  if(confirm(`Réduire ${c} HTG du capital existant ?`)){
-    capital -= c; save(); render();
-  }
-});
+<p>📊 Streak : <strong id="streakView">0</strong></p>
+<p>💰 Gain total : <strong id="totalGain">0</strong> HTG</p>
+<p>🏦 Capital : <strong id="capitalView">0</strong> HTG</p>
 
-// Ajouter un pari
-document.getElementById('btnAddBet').addEventListener('click',()=>{
-  const date=document.getElementById('date').value || new Date().toISOString().slice(0,10);
-  const stake=parseFloat(document.getElementById('stake').value);
-  const odd=parseFloat(document.getElementById('odd').value);
-  const result=document.getElementById('result').value;
-  if(!Number.isFinite(stake)||!Number.isFinite(odd)){ alert('Champs invalides'); return; }
-  const currentCapital = capital + bets.reduce((sum,b)=>sum+b.profit,0);
-  if(stake>currentCapital){ alert('La mise ne peut pas dépasser le capital disponible'); return; }
-  let profit=0; if(result==='win') profit=stake*odd-stake; if(result==='loss') profit=-stake;
-  bets.push({date, stake, odd, result, profit}); save(); render();
-});
+<div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+<button class="reset" onclick="resetMonth()">🔄 Réinitialiser</button>
+<button onclick="exportPDF()">📄 Export PDF</button>
+<button onclick="exportExcel()">📊 Export Excel</button>
+</div>
+</div>
 
-// Réinitialiser historique
-document.getElementById('btnClearHistory').addEventListener('click',()=>{
-  if(confirm('Tout supprimer de l\'historique ?')){ bets=[]; save(); render(); }
-});
+<div class="card" id="monthSummary">
+<h3>📊 Résumé du mois</h3>
+<div>
+  <div>🏦 Capital initial : <strong id="summaryCapitalInitial">0</strong> HTG</div>
+  <div>💰 Capital final : <strong id="summaryCapitalFinal">0</strong> HTG</div>
+  <div>✅ Gains : <strong id="summaryGains">0</strong> HTG</div>
+  <div>❌ Pertes : <strong id="summaryLosses">0</strong> HTG</div>
+  <div>📈 Profit net : <strong id="summaryProfit">0</strong> HTG</div>
+  <div>💸 Montant retiré : <strong id="summaryWithdraw">0</strong> HTG</div>
+  <div>📌 Verdict : <strong id="summaryVerdict">—</strong></div>
+</div>
+</div>
 
-// Réinitialiser statistiques
-document.getElementById('btnResetStats').addEventListener('click',()=>{
-  if(confirm('Réinitialiser toutes les statistiques à zéro ?')){ bets=[]; capital=0; save(); render(); }
-});
+<div id="notifications"></div>
+</div>
 
-// Supprimer un pari via table
-document.getElementById('table').addEventListener('click',(e)=>{
-  if(e.target.tagName==='BUTTON' && e.target.dataset.index){
-    const i=parseInt(e.target.dataset.index);
-    if(confirm('Supprimer ce pari ?')){ bets.splice(i,1); save(); render(); }
-  }
-});
+<!-- Librairies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 
-render();
-</script>
+<!-- JS externe -->
+<script src="script.js"></script>
 </body>
 </html>
