@@ -140,6 +140,7 @@ td.capital{
 }
 
 /* ================= Progress bar ================= */
+
 .progress-container{
   background:#1e293b;
   border-radius:8px;
@@ -158,8 +159,11 @@ td.capital{
   line-height:20px;
   font-weight:600;
   border-radius:8px;
-  transition:width 0.5s ease, background-color 0.5s;
+
+  /* 🔥 Animation automatique */
+  transition: width 0.5s ease, background-color 0.5s;
 }
+
 
 /* ================= Stats ================= */
 .stats{
