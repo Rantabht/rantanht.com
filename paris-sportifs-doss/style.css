@@ -1,14 +1,242 @@
 :root{
---bg:#020617;--card:#0f172a;--accent:#38bdf8;
---text:#e5e7eb;--muted:#94a3b8;
---gain:#22c55e;--loss:#ef4444;
---warning:#facc15;--placeholder:#718096;
+  --bg:#020617;
+  --card:#0f172a;
+  --accent:#38bdf8;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --gain:#22c55e;
+  --loss:#ef4444;
+  --warning:#facc15;
+  --placeholder:#718096;
 }
 
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--text);padding:14px}
-.container{max-width:1000px;margin:auto}
-h1{text-align:center;color:var(--accent);margin-bottom:16px}
-.card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:16px}
+*{
+  box-sizing:border-box;
+}
 
-/* ... EXACTEMENT ton CSS actuel ... */
+body{
+  margin:0;
+  font-family:Inter, system-ui;
+  background:var(--bg);
+  color:var(--text);
+  padding:14px;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+}
+
+h1{
+  text-align:center;
+  color:var(--accent);
+  margin-bottom:16px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:16px;
+}
+
+/* ================= Tableau ================= */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th, td{
+  padding:8px;
+  font-size:13px;
+  text-align:center;
+}
+
+th{
+  color:var(--muted);
+}
+
+tr{
+  border-bottom:1px solid #1e293b;
+}
+
+/* ================= Boutons ================= */
+button{
+  border:none;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.actions{
+  display:flex;
+  gap:4px;
+  justify-content:center;
+}
+
+.actions button{
+  padding:4px 6px;
+  font-size:12px;
+}
+
+.win{
+  background:var(--gain);
+  color:#000;
+}
+
+.lose{
+  background:var(--loss);
+  color:#fff;
+}
+
+.undo{
+  background:#334155;
+  color:#fff;
+}
+
+.reset{
+  background:var(--warning);
+  color:#000;
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+}
+
+/* ================= Réglages ================= */
+.settings{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+
+.settings input{
+  background:#020617;
+  border:1px solid #1e293b;
+  color:#fff;
+  border-radius:8px;
+  padding:8px;
+  width:150px;
+}
+
+.settings input::placeholder{
+  color:var(--placeholder);
+}
+
+/* ================= États ================= */
+.locked{
+  opacity:.4;
+  pointer-events:none;
+}
+
+td.day-editable:hover{
+  cursor:pointer;
+  background:#334155;
+}
+
+td.result,
+td.capital{
+  user-select:none;
+}
+
+/* ================= Progress bar ================= */
+.progress-container{
+  background:#1e293b;
+  border-radius:8px;
+  height:20px;
+  width:100%;
+  margin-top:12px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  text-align:center;
+  color:#fff;
+  font-size:12px;
+  line-height:20px;
+  font-weight:600;
+  border-radius:8px;
+  transition:width 0.5s ease, background-color 0.5s;
+}
+
+/* ================= Stats ================= */
+.stats{
+  display:flex;
+  justify-content:space-around;
+  margin-top:8px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* ================= Indicateur gain / perte ================= */
+.indicator{
+  display:inline-block;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  margin-right:8px;
+  vertical-align:middle;
+  box-shadow:0 0 2px #000 inset;
+}
+
+/* ================= Notifications ================= */
+#notifications{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:250px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  z-index:9999;
+}
+
+.notification{
+  padding:10px 14px;
+  border-radius:10px;
+  color:#fff;
+  font-size:13px;
+  font-weight:600;
+  box-shadow:0 2px 6px rgba(0,0,0,0.5);
+  opacity:0;
+  transform:translateX(100%);
+  animation:slideIn 0.5s forwards, fadeOut 0.5s 3s forwards;
+}
+
+.notification.gain{
+  background:var(--gain);
+  color:#000;
+}
+
+.notification.loss{
+  background:var(--loss);
+}
+
+.notification.withdraw{
+  background:var(--warning);
+  color:#000;
+}
+
+@keyframes slideIn{
+  from{opacity:0; transform:translateX(100%);}
+  to{opacity:1; transform:translateX(0);}
+}
+
+@keyframes fadeOut{
+  to{opacity:0; transform:translateX(100%);}
+}
+
+/* ================= Résumé fin de mois ================= */
+#monthSummary{
+  display:none;
+  margin-top:16px;
+}
+
+#monthSummary div{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  font-size:14px;
+}
