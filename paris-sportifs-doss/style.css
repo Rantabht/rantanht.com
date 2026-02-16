@@ -1,246 +1,281 @@
-:root{
-  --bg:#020617;
-  --card:#0f172a;
-  --accent:#38bdf8;
-  --text:#e5e7eb;
-  --muted:#94a3b8;
-  --gain:#22c55e;
-  --loss:#ef4444;
-  --warning:#facc15;
-  --placeholder:#718096;
-}
-
+/* ================= BASE ================= */
 *{
-  box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
 }
 
 body{
-  margin:0;
-  font-family:Inter, system-ui;
-  background:var(--bg);
-  color:var(--text);
-  padding:14px;
+    background:#000;
+    color:#fff;
+    padding:12px;
 }
 
 .container{
-  max-width:1000px;
-  margin:auto;
+    max-width:1100px;
+    margin:auto;
 }
 
+/* ================= TITRES ================= */
 h1{
-  text-align:center;
-  color:var(--accent);
-  margin-bottom:16px;
+    text-align:center;
+    font-size:24px;
+    margin-bottom:8px;
+    font-weight:700;
 }
 
-.card{
-  background:var(--card);
-  border-radius:16px;
-  padding:16px;
-  margin-bottom:16px;
+h2{
+    text-align:center;
+    font-size:18px;
+    margin-bottom:4px;
 }
 
-/* ================= Tableau ================= */
+h3{
+    text-align:center;
+    font-size:14px;
+    margin-bottom:20px;
+    font-weight:500;
+}
+
+/* ================= CAPITAL ================= */
+.capital-box{
+    background:#274e13;
+    padding:12px;
+    margin:8px auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    font-size:16px;
+    font-weight:600;
+    flex-wrap:wrap;
+}
+
+.capital-box input{
+    padding:6px;
+    width:140px;
+    border:none;
+    text-align:center;
+    font-weight:bold;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrapper{
+    width:100%;
+    margin-top:15px;
+    overflow-x:auto; /* mobile scroll */
+}
+
+/* tableau */
 table{
-  width:100%;
-  border-collapse:collapse;
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
 }
 
-th, td{
-  padding:8px;
-  font-size:13px;
-  text-align:center;
+/* LARGEUR CONTROLEE */
+th:nth-child(1), td:nth-child(1){width:6%;}
+th:nth-child(2), td:nth-child(2){width:13%;}
+th:nth-child(3), td:nth-child(3){width:13%;}
+th:nth-child(4), td:nth-child(4){width:10%;}
+th:nth-child(5), td:nth-child(5){width:18%;}
+th:nth-child(6), td:nth-child(6){width:18%;}
+th:nth-child(7), td:nth-child(7){width:7%;}
+th:nth-child(8), td:nth-child(8){width:8%;}
+th:nth-child(9), td:nth-child(9){width:7%;}
+th:nth-child(10), td:nth-child(10){width:7%;}
+
+/* cellules */
+th,td{
+    border:1px solid #1f7a1f;
+    padding:6px 4px;
+    font-size:11px;
+    text-align:center;
+    overflow:hidden;
 }
 
-th{
-  color:var(--muted);
+/* empêche débordement contenu */
+td > *{
+    display:block;
+    width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 
-tr{
-  border-bottom:1px solid #1e293b;
+/* nombres alignés proprement */
+td{
+    font-variant-numeric:tabular-nums;
 }
 
-/* ================= Boutons ================= */
-button{
-  border:none;
-  border-radius:8px;
-  font-weight:600;
-  cursor:pointer;
+/* inputs tableau */
+td input{
+    width:100%;
+    border:none;
+    background:transparent;
+    color:#fff;
+    text-align:center;
+    font-size:11px;
 }
 
-.actions{
-  display:flex;
-  gap:4px;
-  justify-content:center;
+/* hover */
+tbody tr:hover{
+    background:#111;
 }
 
-.actions button{
-  padding:4px 6px;
-  font-size:12px;
+thead{
+    background:#111;
 }
 
-.win{
-  background:var(--gain);
-  color:#000;
+/* ================= PROFIT ================= */
+.profit{
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
 }
 
-.lose{
-  background:var(--loss);
-  color:#fff;
+.green{ color:#00ff00; }
+.red{ color:#ff4d4d; }
+
+/* ================= LIVE DOT ================= */
+.live-dot{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    margin:auto;
+    cursor:pointer;
 }
 
-.undo{
-  background:#334155;
-  color:#fff;
+/* ================= BOUTONS ================= */
+.add-btn{
+    background:#1f7a1f;
+    color:#fff;
+    border:none;
+    padding:8px 15px;
+    margin:5px;
+    cursor:pointer;
+    font-weight:600;
 }
 
-.reset{
-  background:var(--warning);
-  color:#000;
-  width:100%;
-  padding:10px;
-  margin-top:10px;
+.delete-btn{
+    background:#400;
+    color:#fff;
+    border:none;
+    padding:3px 6px;
+    cursor:pointer;
+    font-size:10px;
 }
 
-/* ================= Réglages ================= */
-.settings{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:16px;
+/* Reset rouge */
+.reset-btn{
+    background:#b30000;
+    color:white;
 }
 
-.settings input{
-  background:#020617;
-  border:1px solid #1e293b;
-  color:#fff;
-  border-radius:8px;
-  padding:8px;
-  width:150px;
+/* Export bleu doux */
+.export-btn{
+    background:#2a6fd6;
+    color:white;
 }
 
-.settings input::placeholder{
-  color:var(--placeholder);
+.button-section{
+    text-align:center;
+    margin-top:15px;
 }
 
-/* ================= États ================= */
-.locked{
-  opacity:.4;
-  pointer-events:none;
+/* ================= GLOBAL BOX ================= */
+.global-box{
+    margin-top:25px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
 }
 
-td.day-editable:hover{
-  cursor:pointer;
-  background:#334155;
+.global-box div{
+    background:#111;
+    padding:15px 25px;
+    border-radius:12px;
+    box-shadow:0 0 15px #1f7a1f44;
+    font-weight:700;
+    font-size:18px;
+    min-width:220px;
+    text-align:center;
 }
 
-td.result,
-td.capital{
-  user-select:none;
+/* ================= MOBILE ================= */
+@media (max-width:768px){
+
+    body{ padding:8px; }
+
+    h1{ font-size:20px; }
+    h2{ font-size:16px; }
+    h3{ font-size:13px; }
+
+    th,td{ font-size:10px; padding:5px 3px; }
+
+    .capital-box{
+        font-size:14px;
+        gap:10px;
+    }
+
+    .capital-box input{
+        width:120px;
+    }
+
+    .add-btn{
+        padding:7px 12px;
+        font-size:13px;
+    }
 }
 
-/* ================= Progress bar ================= */
+/* Animation perte */
+.loss-animation{
+    animation:flashRed 0.4s ease-in-out 2;
+}
 
+@keyframes flashRed{
+0%{background:#400;}
+50%{background:#900;}
+100%{background:transparent;}
+}
+
+/* Barre progression */
 .progress-container{
-  background:#1e293b;
-  border-radius:8px;
-  height:20px;
-  width:100%;
-  margin-top:12px;
-  overflow:hidden;
+    width:100%;
+    height:24px; /* hauteur pour texte */
+    background:#111;
+    margin:10px 0;
+    border-radius:20px;
+    overflow:hidden;
+    position:relative;
+    font-weight:700;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
 }
 
 .progress-bar{
-  height:100%;
-  width:0%;
-  text-align:center;
-  color:#fff;
-  font-size:12px;
-  line-height:20px;
-  font-weight:600;
-  border-radius:8px;
-
-  /* 🔥 Animation automatique */
-  transition: width 0.5s ease, background-color 0.5s;
+    height:100%;
+    width:0%;
+    background:linear-gradient(to right,#ff0000,#ffff00,#00ff00);
+    transition:0.5s;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:1;
 }
 
-
-/* ================= Stats ================= */
-.stats{
-  display:flex;
-  justify-content:space-around;
-  margin-top:8px;
-  font-size:13px;
-  color:var(--muted);
-}
-
-/* ================= Indicateur gain / perte ================= */
-.indicator{
-  display:inline-block;
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  margin-right:8px;
-  vertical-align:middle;
-  box-shadow:0 0 2px #000 inset;
-}
-
-/* ================= Notifications ================= */
-#notifications{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:250px;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  z-index:9999;
-}
-
-.notification{
-  padding:10px 14px;
-  border-radius:10px;
-  color:#fff;
-  font-size:13px;
-  font-weight:600;
-  box-shadow:0 2px 6px rgba(0,0,0,0.5);
-  opacity:0;
-  transform:translateX(100%);
-  animation:slideIn 0.5s forwards, fadeOut 0.5s 3s forwards;
-}
-
-.notification.gain{
-  background:var(--gain);
-  color:#000;
-}
-
-.notification.loss{
-  background:var(--loss);
-}
-
-.notification.withdraw{
-  background:var(--warning);
-  color:#000;
-}
-
-@keyframes slideIn{
-  from{opacity:0; transform:translateX(100%);}
-  to{opacity:1; transform:translateX(0);}
-}
-
-@keyframes fadeOut{
-  to{opacity:0; transform:translateX(100%);}
-}
-
-/* ================= Résumé fin de mois ================= */
-#monthSummary{
-  display:none;
-  margin-top:16px;
-}
-
-#monthSummary div{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  font-size:14px;
+/* Texte au-dessus de la barre avec ombre */
+.progress-text{
+    position:absolute;
+    width:100%;
+    text-align:center;
+    z-index:2;
+    text-shadow:1px 1px 3px #000;
+    font-weight:700;
 }
