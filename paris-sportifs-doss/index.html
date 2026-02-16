@@ -2,95 +2,82 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Montante Discipline</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paris Sportifs - Projet Cote 1,2+</title>
 
-<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-<!-- CSS externe -->
-<link rel="stylesheet" href="style.css">
-  <!-- JS externe -->
-<script src="script.js defer"></script>
-  
+<link rel="stylesheet" href="./style.css">
+<script src="./script.js" defer></script>
 </head>
-
 <body>
+
 <div class="container">
 
-<h1>📊 Montante Discipline – 2 Paliers</h1>
+<h1>PARIS SPORTIFS</h1>
+<h2>Projet Cote 1,2+</h2>
+<h3>Technique Montante sur 3 Paliers</h3>
 
-<div class="card">
-<h3>📜 Règles</h3>
-<ul id="rules" style="line-height:1.6;color:var(--muted)"></ul>
+<div class="capital-box">
+<span>Capital de Départ:</span>
+<input type="number"
+id="capitalDepartInput"
+step="0.01"
+min="0"
+max="500000"
+value="0"
+oninput="if(this.value>500000)this.value=500000">
 </div>
 
-<div class="card">
-<h3>⚙️ Réglages</h3>
-<div class="settings">
-<input type="number" id="capitalInput" placeholder="Capital initial">
-<input type="number" id="miseInput" placeholder="Mise">
-<input type="number" step="0.01" id="coteInput" placeholder="Côte">
-<button onclick="applySettings()">Appliquer</button>
+<div class="capital-box">
+<span>Capital Actuel:</span>
+<input type="text" id="capitalActuelInput" value="0,00 HTG" readonly>
 </div>
-</div>
-
-<div class="card" id="gameCard">
-<h3>📅 Suivi des jours</h3>
-
-<table id="montanteTable">
-<thead>
-<tr>
-<th>Jour / Date</th>
-<th>Résultat</th>
-<th>Capital</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tbody id="tbody"></tbody>
-</table>
 
 <div class="progress-container">
-  <div id="progressBar" class="progress-bar">0%</div>
+    <div class="progress-bar" id="progressBar"></div>
+    <span class="progress-text" id="progressText">0%</span>
 </div>
 
-<div class="stats">
-  <div>✔ Gagnés : <span id="winCount">0</span></div>
-  <div>✖ Perdus : <span id="loseCount">0</span></div>
-  <div>💸 Retraits : <span id="withdrawCount">0</span></div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>Date</th>
+<th>Mise</th>
+<th>Côte</th>
+<th>Gain</th>
+<th>Profit</th>
+<th>Mtc</th>
+<th>Mnt</th>
+<th>Live</th>
+<th>Sup</th>
+</tr>
+</thead>
+<tbody id="tableBody"></tbody>
+</table>
 </div>
 
-<p>📊 Streak : <strong id="streakView">0</strong></p>
-<p>💰 Gain total : <strong id="totalGain">0</strong> HTG</p>
-<p>🏦 Capital : <strong id="capitalView">0</strong> HTG</p>
-
-<div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
-<button class="reset" onclick="resetMonth()">🔄 Réinitialiser</button>
-<button onclick="exportPDF()">📄 Export PDF</button>
-<button onclick="exportExcel()">📊 Export Excel</button>
-</div>
+<div class="button-section">
+<button class="add-btn" onclick="addRow()">Ajouter une ligne</button>
+<button class="reset-btn" onclick="resetAll()">Reset Total</button>
+<button class="export-btn" onclick="exportPDF()">Export PDF</button>
+<button class="export-btn" onclick="exportExcel()">Export Excel</button>
+<button class="export-btn" onclick="exportWhatsApp()">Export WhatsApp</button>
 </div>
 
-<div class="card" id="monthSummary">
-<h3>📊 Résumé du mois</h3>
+<div class="global-box">
 <div>
-  <div>🏦 Capital initial : <strong id="summaryCapitalInitial">0</strong> HTG</div>
-  <div>💰 Capital final : <strong id="summaryCapitalFinal">0</strong> HTG</div>
-  <div>✅ Gains : <strong id="summaryGains">0</strong> HTG</div>
-  <div>❌ Pertes : <strong id="summaryLosses">0</strong> HTG</div>
-  <div>📈 Profit net : <strong id="summaryProfit">0</strong> HTG</div>
-  <div>💸 Montant retiré : <strong id="summaryWithdraw">0</strong> HTG</div>
-  <div>📌 Verdict : <strong id="summaryVerdict">—</strong></div>
+Gain Globale:
+<span id="gainGlobale" class="green">0,00 HTG</span>
+</div>
+<div>
+Profit Globale:
+<span id="profitGlobale" class="green">0,00 HTG</span>
 </div>
 </div>
 
-<div id="notifications"></div>
 </div>
-
-<!-- Librairies -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 
 </body>
 </html>
