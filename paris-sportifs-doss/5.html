@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top Buteurs 2025-2026 - Mobile Responsive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --accent: #22c55e;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.6rem;
+}
+
+.subtitle {
+  text-align:center;
+  color: var(--muted);
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+.filter-container {
+  margin-bottom: 20px;
+  text-align:center;
+}
+
+select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+}
+
+.table-container {
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  width: 90%;
+  max-width: 500px; /* largeur réduite encore plus */
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  min-width: 350px;
+}
+
+th, td {
+  padding: 10px 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--card);
+  cursor: pointer;
+  color: var(--accent);
+}
+
+tr:nth-child(even) {
+  background: #1c2a42;
+}
+
+tr:hover {
+  background: #22335a;
+}
+
+.analysis {
+  max-width:900px;
+  margin:auto;
+  margin-top:30px;
+  background: var(--card);
+  padding:15px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.05);
+  line-height:1.5;
+  font-size:0.95rem;
+}
+
+footer {
+  text-align:center;
+  margin-top:30px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* Responsive mobile */
+@media screen and (max-width: 600px) {
+  th:nth-child(3), th:nth-child(4),
+  td:nth-child(3), td:nth-child(4) {
+    display: none;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🥇 Top Buteurs 2025-2026</h1>
+<div class="subtitle">Classement interactif par compétition</div>
+
+<div class="filter-container">
+  <label for="competition">Filtrer par compétition : </label>
+  <select id="competition">
+    <option value="all">Toutes</option>
+    <option value="ucl">🇪🇺 Ligue des Champions</option>
+    <option value="pl">🇬🇧 Premier League</option>
+    <option value="bundesliga">🇩🇪 Bundesliga</option>
+    <option value="laliga">🇪🇸 La Liga</option>
+    <option value="ligue1">🇫🇷 Ligue 1</option>
+  </select>
+</div>
+
+<div class="table-container">
+  <table id="buteursTable">
+    <thead>
+      <tr>
+        <th onclick="sortTable(0)">#</th>
+        <th onclick="sortTable(1)">Joueur</th>
+        <th onclick="sortTable(2)">Club</th>
+        <th onclick="sortTable(3)">Compétition</th>
+        <th onclick="sortTable(4)">Buts</th>
+      </tr>
+    </thead>
+    <tbody id="buteursBody">
+      <!-- Données intégrées par JS -->
+    </tbody>
+  </table>
+</div>
+
+<div class="analysis">
+<h3>📊 Analyse Offensif 2025-2026</h3>
+🔥 Mbappé domine la Ligue des Champions.<br>
+🔥 Premier League et Bundesliga sont ultra compétitives offensivement.<br>
+🔥 La Liga et Ligue 1 ont des stars régulières mais moins prolifiques en UCL.<br>
+💡 Tendance paris sportifs : Over 2.5 et BTTS fréquents pour les clubs européens dominants.
+</div>
+
+<footer>
+Données basées sur performances championnat + compétitions européennes • Saison 2025-2026 ⚽
+</footer>
+
+<script>
+// Drapeaux joueurs par nationalité
+const playerFlags = {
+  "Kylian Mbappé":"🇫🇷",
+  "Harry Kane":"🇬🇧",
+  "Erling Haaland":"🇳🇴",
+  "Gabriel Martinelli":"🇧🇷",
+  "Victor Osimhen":"🇳🇬",
+  "Anthony Gordon":"🇬🇧",
+  "Harvey Barnes":"🇬🇧",
+  "Marcus Rashford":"🇬🇧",
+  "Vitinha":"🇵🇹",
+  "Fermín López":"🇪🇸",
+  "Gorka Guruzeta":"🇪🇸",
+  "Dominik Szoboszlai":"🇭🇺",
+  "Scott McTominay":"🇬🇧",
+  "Igor Thiago":"🇧🇷",
+  "Antoine Semenyo":"🇬🇭",
+  "Dominic Calvert-Lewin":"🇬🇧",
+  "Hugo Ekitike":"🇫🇷",
+  "João Pedro":"🇧🇷",
+  "Luis Díaz":"🇨🇴",
+  "Deniz Undav":"🇧🇪",
+  "Serhou Guirassy":"🇫🇷",
+  "Michael Olise":"🇳🇬",
+  "Vedat Muriqi":"🇽🇰",
+  "Ferran Torres":"🇪🇸",
+  "Ante Budimir":"🇭🇷",
+  "Robert Lewandowski":"🇵🇱",
+  "Mason Greenwood":"🇬🇧",
+  "Joaquin Panichelli":"🇦🇷",
+  "Estéban Lepaul":"🇫🇷",
+  "Pavel Sulc":"🇨🇿",
+  "Wesley Saïd":"🇫🇷"
+};
+
+// Drapeaux clubs
+const clubFlags = {
+  "Real Madrid":"🇪🇸",
+  "Barcelona":"🇪🇸",
+  "Athletic Bilbao":"🇪🇸",
+  "Manchester City":"🇬🇧",
+  "Liverpool":"🇬🇧",
+  "Chelsea":"🇬🇧",
+  "Arsenal":"🇬🇧",
+  "Newcastle":"🇬🇧",
+  "Bayern Munich":"🇩🇪",
+  "Dortmund":"🇩🇪",
+  "Stuttgart":"🇩🇪",
+  "Marseille":"🇫🇷",
+  "Strasbourg":"🇫🇷",
+  "Rennes":"🇫🇷",
+  "Lyon":"🇫🇷",
+  "Lens":"🇫🇷",
+  "Galatasaray":"🇹🇷",
+  "Brentford":"🇬🇧",
+  "Man City":"🇬🇧",
+  "Mallorca":"🇪🇸",
+  "Osasuna":"🇪🇸",
+  "Napoli":"🇮🇹",
+  "Paris Saint-Germain":"🇫🇷"
+};
+
+// Tableau des buteurs
+const buteurs = [
+  {rank:1, player:"Kylian Mbappé", club:"Real Madrid", comp:"ucl", buts:13},
+  {rank:2, player:"Harry Kane", club:"Bayern Munich", comp:"ucl", buts:8},
+  {rank:3, player:"Erling Haaland", club:"Manchester City", comp:"ucl", buts:7},
+  {rank:4, player:"Gabriel Martinelli", club:"Arsenal", comp:"ucl", buts:6},
+  {rank:5, player:"Victor Osimhen", club:"Galatasaray", comp:"ucl", buts:6},
+  {rank:6, player:"Anthony Gordon", club:"Newcastle", comp:"ucl", buts:6},
+  {rank:7, player:"Harvey Barnes", club:"Newcastle", comp:"ucl", buts:5},
+  {rank:8, player:"Marcus Rashford", club:"Barcelona", comp:"ucl", buts:5},
+  {rank:9, player:"Vitinha", club:"Paris Saint-Germain", comp:"ucl", buts:5},
+  {rank:10, player:"Fermín López", club:"Barcelona", comp:"ucl", buts:5},
+  {rank:11, player:"Gorka Guruzeta", club:"Athletic Bilbao", comp:"ucl", buts:5},
+  {rank:12, player:"Dominik Szoboszlai", club:"Liverpool", comp:"ucl", buts:4},
+  {rank:13, player:"Scott McTominay", club:"Napoli", comp:"ucl", buts:4},
+
+  {rank:1, player:"Erling Haaland", club:"Manchester City", comp:"pl", buts:22},
+  {rank:2, player:"Igor Thiago", club:"Brentford", comp:"pl", buts:17},
+  {rank:3, player:"Antoine Semenyo", club:"Man City", comp:"pl", buts:13},
+  {rank:4, player:"Dominic Calvert-Lewin", club:"Leeds", comp:"pl", buts:10},
+  {rank:5, player:"Hugo Ekitike", club:"Liverpool", comp:"pl", buts:10},
+  {rank:6, player:"João Pedro", club:"Chelsea", comp:"pl", buts:10},
+
+  {rank:1, player:"Harry Kane", club:"Bayern Munich", comp:"bundesliga", buts:26},
+  {rank:2, player:"Luis Díaz", club:"Bayern Munich", comp:"bundesliga", buts:13},
+  {rank:3, player:"Deniz Undav", club:"Stuttgart", comp:"bundesliga", buts:12},
+  {rank:4, player:"Serhou Guirassy", club:"Dortmund", comp:"bundesliga", buts:11},
+  {rank:5, player:"Michael Olise", club:"Bayern Munich", comp:"bundesliga", buts:10},
+
+  {rank:1, player:"Kylian Mbappé", club:"Real Madrid", comp:"laliga", buts:23},
+  {rank:2, player:"Vedat Muriqi", club:"Mallorca", comp:"laliga", buts:16},
+  {rank:3, player:"Ferran Torres", club:"Barcelona", comp:"laliga", buts:12},
+  {rank:4, player:"Ante Budimir", club:"Osasuna", comp:"laliga", buts:10},
+  {rank:5, player:"Robert Lewandowski", club:"Barcelona", comp:"laliga", buts:9},
+
+  {rank:1, player:"Mason Greenwood", club:"Marseille", comp:"ligue1", buts:14},
+  {rank:2, player:"Joaquin Panichelli", club:"Strasbourg", comp:"ligue1", buts:12},
+  {rank:3, player:"Estéban Lepaul", club:"Rennes", comp:"ligue1", buts:11},
+  {rank:4, player:"Pavel Sulc", club:"Lyon", comp:"ligue1", buts:10},
+  {rank:5, player:"Wesley Saïd", club:"Lens", comp:"ligue1", buts:10},
+];
+
+function displayTable(filter="all") {
+  const tbody = document.getElementById("buteursBody");
+  tbody.innerHTML = "";
+  buteurs.forEach(b => {
+    if(filter === "all" || b.comp === filter) {
+      const playerFlag = playerFlags[b.player] || "";
+      const clubFlag = clubFlags[b.club] || "";
+      const compFlag = b.comp === "ucl" ? "🇪🇺" :
+                       b.comp === "pl" ? "🇬🇧" :
+                       b.comp === "bundesliga" ? "🇩🇪" :
+                       b.comp === "laliga" ? "🇪🇸" :
+                       b.comp === "ligue1" ? "🇫🇷" : "";
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${b.rank}</td>
+        <td>${playerFlag} ${b.player}</td>
+        <td>${clubFlag} ${b.club}</td>
+        <td>${compFlag} ${b.comp.toUpperCase()}</td>
+        <td>${b.buts}</td>
+      `;
+      tbody.appendChild(tr);
+    }
+  });
+}
+
+function sortTable(n) {
+  const table = document.getElementById("buteursTable");
+  let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  switching = true;
+  dir = "desc";
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for(i=1;i<rows.length-1;i++){
+      shouldSwitch=false;
+      x=rows[i].getElementsByTagName("TD")[n];
+      y=rows[i+1].getElementsByTagName("TD")[n];
+      if(n==4){
+        if(dir=="asc" && parseInt(x.innerText)>parseInt(y.innerText)){shouldSwitch=true;break;}
+        if(dir=="desc" && parseInt(x.innerText)<parseInt(y.innerText)){shouldSwitch=true;break;}
+      } else {
+        if(dir=="asc" && x.innerText.toLowerCase()>y.innerText.toLowerCase()){shouldSwitch=true;break;}
+        if(dir=="desc" && x.innerText.toLowerCase()<y.innerText.toLowerCase()){shouldSwitch=true;break;}
+      }
+    }
+    if(shouldSwitch){
+      rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
+      switching=true;
+      switchcount++;
+    } else {
+      if(switchcount==0 && dir=="desc"){dir="asc";switching=true;}
+    }
+  }
+}
+
+document.getElementById("competition").addEventListener("change", e=>{
+  displayTable(e.target.value);
+});
+
+displayTable();
+</script>
+
+</body>
+</html>

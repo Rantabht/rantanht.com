@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Paris Live</title>
+<style>
+:root {
+  --bg-dark: #0f172a;
+  --bg-card: #1e293b;
+  --accent: #38bdf8;
+  --green: #22c55e;
+  --yellow: #facc15;
+  --red: #ef4444;
+  --text-light: #e5e7eb;
+}
+* {box-sizing: border-box;}
+body {margin: 0; font-family: 'Arial', sans-serif; background: var(--bg-dark); color: var(--text-light);}
+header {position: sticky; top: 0; background: var(--bg-card); display: flex; justify-content: space-around; align-items: center; padding: 10px 5px; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.5); font-size: 0.9em;}
+header a {color: var(--accent); text-decoration: none; font-weight: bold; font-size: 0.9em; padding: 4px 8px; border-radius: 6px; transition: background 0.3s;}
+header a:hover {background: var(--accent); color: #000;}
+section {padding: 15px; max-width: 1000px; margin: auto;}
+h1 {color: var(--accent); margin-bottom: 20px; text-align: center;}
+h2 {color: var(--accent);}
+.card, .box {background: var(--bg-card); border-radius: 14px; padding: 18px; margin-bottom: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);}
+li {margin: 6px 0; display: flex; align-items: center; justify-content: space-between;}
+.badge {padding: 3px 8px; border-radius: 8px; font-weight: bold; font-size: 0.85em;}
+.green {background: var(--green); color: #000;}
+.yellow {background: var(--yellow); color: #000;}
+.red {background: var(--red); color: #fff;}
+.over-icon {font-size: 1.1em; margin-right: 5px;}
+.signal-ok {color: var(--green); font-weight: bold;}
+.signal-no {color: var(--red); font-weight: bold;}
+#express .box h2 {color: #22c55e;}
+#anti-tilt h1 {color: #f87171;}
+.toggle-btn {cursor: pointer; color: var(--accent); font-weight: bold; margin-bottom: 8px; display:block; font-size: 0.9em;}
+@media (max-width: 768px) {
+  header {flex-direction: column;}
+  header a {margin: 3px 0;}
+}
+</style>
+</head>
+<body>
+
+<header>
+<a href="#master">Master Prompt</a>
+<a href="#express">Check Express</a>
+<a href="#anti-tilt">Anti-Tilt</a>
+</header>
+
+<section id="master">
+<h1>MASTER PROMPT — PARIS LIVE BUTS</h1>
+<span class="toggle-btn" onclick="toggleSection('master-cards')">Afficher / Masquer</span>
+<div id="master-cards">
+<div class="card">
+<h2>Lecture du match</h2>
+<ul>
+<li>Match ouvert et rapide <span class="badge green">OK ✅</span></li>
+<li>Défenses désorganisées <span class="badge green">OK ✅</span></li>
+<li>Beaucoup d'espaces <span class="badge green">OK ✅</span></li>
+<li>Sinon <span class="badge red">NO BET ❌</span></li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Occasions minimum</h2>
+<ul>
+<li><span class="over-icon">⚡</span>Over 0.5: 1 grosse occasion <span class="badge green" id="over05">OK ✅</span></li>
+<li><span class="over-icon">⭐</span>Over 1.5: 2 grosses occasions <span class="badge yellow" id="over15">Attention ⚠️</span></li>
+<li><span class="over-icon">💣</span>Over 2.5: 3 grosses occasions <span class="badge red" id="over25">RISQUE ❌</span></li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Moment idéal</h2>
+<ul>
+<li>15-35 min → <span class="over-icon">⚡</span>Over 0.5 <span class="badge green">OK ✅</span></li>
+<li>35-60 min → <span class="over-icon">⭐</span>Over 1.5 <span class="badge yellow">Attention ⚠️</span></li>
+<li>60-80 min → <span class="over-icon">💣</span>Over 2.5 <span class="badge red">RISQUE ❌</span></li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Règle finale</h2>
+<p>Pas de signal = <span class="badge red">Pas de pari ❌</span></p>
+</div>
+</div>
+</section>
+
+<section id="express">
+<h1>CHECK EXPRESS 10 SECONDES</h1>
+<span class="toggle-btn" onclick="toggleSection('express-cards')">Afficher / Masquer</span>
+<div id="express-cards">
+<div class="box">
+<h2>Pression</h2>
+<ul>
+<li>Attaques dangereuses <span class="badge green">OK ✅</span></li>
+<li>Gardien sollicité <span class="badge green">OK ✅</span></li>
+<li>Corners répétés <span class="badge yellow">Attention ⚠️</span></li>
+</ul>
+</div>
+<div class="box">
+<h2>Défense</h2>
+<ul>
+<li>Erreurs <span class="badge green">OK ✅</span></li>
+<li>Fautes dangereuses <span class="badge yellow">Attention ⚠️</span></li>
+<li>Fatigue <span class="badge green">OK ✅</span></li>
+</ul>
+</div>
+<div class="box">
+<h2>Cote</h2>
+<p><span class="badge green">✅ Descend = OK</span> | <span class="badge red">❌ Monte = NON</span></p>
+</div>
+</div>
+</section>
+
+<section id="anti-tilt">
+<h1>MODE ANTI-TILT</h1>
+<span class="toggle-btn" onclick="toggleSection('tilt-cards')">Afficher / Masquer</span>
+<div id="tilt-cards">
+<div class="card">
+<h2>Stop</h2>
+<p>Envie de te refaire ? <span class="badge red">Pause 10 minutes ❌</span></p>
+</div>
+<div class="card">
+<h2>Auto test</h2>
+<ul>
+<li>Frustration <span class="badge yellow">⚠️</span></li>
+<li>Récupérer vite <span class="badge green">OK ✅</span></li>
+<li>Penser à la perte <span class="badge yellow">⚠️</span></li>
+</ul>
+</div>
+<div class="card">
+<h2>Règles</h2>
+<ul>
+<li>Jamais doubler mise <span class="badge red">❌</span></li>
+<li>Max 3 paris par match <span class="badge green">✅</span></li>
+<li>Stop après 2 pertes <span class="badge red">❌</span></li>
+</ul>
+</div>
+</div>
+</section>
+
+<script>
+// Toggle sections
+function toggleSection(id){
+  const sec = document.getElementById(id);
+  sec.style.display = sec.style.display === 'none' ? 'block' : 'none';
+}
+</script>
+
+</body>
+</html>

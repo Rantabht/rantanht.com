@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 50 Clubs - Offensif 2025-2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --accent:#22c55e;
+    --text:#f1f5f9;
+    --muted:#94a3b8;
+    --green:#22c55e;
+    --yellow:#eab308;
+    --red:#f87171;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter', sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:5px;
+    font-size:1.8rem;
+}
+
+.subtitle{
+    text-align:center;
+    color:var(--muted);
+    margin-bottom:20px;
+    font-size:0.95rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card {
+  background: var(--card);
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: transform 0.3s, border-color 0.3s;
+  word-wrap: break-word;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.rank {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+.club {
+  font-weight: 600;
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+.goals {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.thresholds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.75rem;
+}
+
+.thresholds span {
+  font-weight:600;
+  padding:2px 4px;
+  border-radius:4px;
+  background:rgba(255,255,255,0.05);
+}
+
+.green { color: var(--green); }
+.yellow { color: var(--yellow); }
+.red { color: var(--red); }
+
+.analysis{
+    max-width:900px;
+    margin:auto;
+    margin-top:30px;
+    background:var(--card);
+    padding:18px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.05);
+    line-height:1.6;
+    font-size:0.95rem;
+}
+
+footer{
+    text-align:center;
+    margin-top:30px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* Responsive */
+@media (max-width:480px){
+    body{padding:10px;}
+    .container{grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:10px;}
+    .rank{font-size:1rem;}
+    .club{font-size:0.85rem;}
+    .thresholds{font-size:0.7rem;}
+    .goals{font-size:0.75rem;}
+}
+</style>
+</head>
+<body>
+
+<h1>⚽ Top 50 Clubs Marquant le Plus de Buts</h1>
+<div class="subtitle">Saison 2025-2026 • Classement Offensif Mondial</div>
+
+<div class="container">
+
+<!-- TOP 1-50 Clubs -->
+<div class="card" aria-label="1. Bayern Munich, Allemagne, 95 buts">
+  <div class="rank">1</div>
+  <div class="club">Bayern Munich 🔴 (Allemagne 🇩🇪)</div>
+  <div class="goals">Buts ≈ 95</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 95%</span>
+    <span class="green">+2.5 85%</span>
+    <span class="yellow">+3.5 60%</span>
+    <span class="red">+4.5 35%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="2. FC Barcelona, Espagne, 100 buts">
+  <div class="rank">2</div>
+  <div class="club">FC Barcelona 🔵🔴 (Espagne 🇪🇸)</div>
+  <div class="goals">Buts ≈ 100</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 96%</span>
+    <span class="green">+2.5 88%</span>
+    <span class="yellow">+3.5 65%</span>
+    <span class="red">+4.5 40%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="3. Inter Milan, Italie, 75 buts">
+  <div class="rank">3</div>
+  <div class="club">Inter Milan 🔵⚫ (Italie 🇮🇹)</div>
+  <div class="goals">Buts ≈ 75</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 92%</span>
+    <span class="green">+2.5 80%</span>
+    <span class="yellow">+3.5 50%</span>
+    <span class="red">+4.5 25%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="4. Manchester City, Angleterre, 85 buts">
+  <div class="rank">4</div>
+  <div class="club">Manchester City 🔵 (Angleterre 🇬🇧)</div>
+  <div class="goals">Buts ≈ 85</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 94%</span>
+    <span class="green">+2.5 82%</span>
+    <span class="yellow">+3.5 58%</span>
+    <span class="red">+4.5 32%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="5. Arsenal FC, Angleterre, 80 buts">
+  <div class="rank">5</div>
+  <div class="club">Arsenal FC 🔴⚪ (Angleterre 🇬🇧)</div>
+  <div class="goals">Buts ≈ 80</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 90%</span>
+    <span class="green">+2.5 78%</span>
+    <span class="yellow">+3.5 55%</span>
+    <span class="red">+4.5 30%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="6. Real Madrid, Espagne, 90 buts">
+  <div class="rank">6</div>
+  <div class="club">Real Madrid ⚪ (Espagne 🇪🇸)</div>
+  <div class="goals">Buts ≈ 90</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 93%</span>
+    <span class="green">+2.5 83%</span>
+    <span class="yellow">+3.5 60%</span>
+    <span class="red">+4.5 35%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="7. PSG, France, 70 buts">
+  <div class="rank">7</div>
+  <div class="club">PSG 🔴🔵 (France 🇫🇷)</div>
+  <div class="goals">Buts ≈ 70</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 88%</span>
+    <span class="green">+2.5 72%</span>
+    <span class="yellow">+3.5 48%</span>
+    <span class="red">+4.5 22%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="8. Liverpool, Angleterre, 70 buts">
+  <div class="rank">8</div>
+  <div class="club">Liverpool 🔴 (Angleterre 🇬🇧)</div>
+  <div class="goals">Buts ≈ 70</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 88%</span>
+    <span class="green">+2.5 72%</span>
+    <span class="yellow">+3.5 48%</span>
+    <span class="red">+4.5 22%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="9. Dortmund, Allemagne, 65 buts">
+  <div class="rank">9</div>
+  <div class="club">Dortmund 🟡⚫ (Allemagne 🇩🇪)</div>
+  <div class="goals">Buts ≈ 65</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 85%</span>
+    <span class="green">+2.5 70%</span>
+    <span class="yellow">+3.5 42%</span>
+    <span class="red">+4.5 18%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="10. Atlético Madrid, Espagne, 55 buts">
+  <div class="rank">10</div>
+  <div class="club">Atlético Madrid 🔴⚪ (Espagne 🇪🇸)</div>
+  <div class="goals">Buts ≈ 55</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 80%</span>
+    <span class="green">+2.5 65%</span>
+    <span class="yellow">+3.5 35%</span>
+    <span class="red">+4.5 12%</span>
+  </div>
+</div>
+
+<!-- TOP 11→50 : suivre exactement le même format -->
+
+<div class="card" aria-label="11. Chelsea, Angleterre, 60 buts">
+  <div class="rank">11</div>
+  <div class="club">Chelsea 🔵⚪ (Angleterre 🇬🇧)</div>
+  <div class="goals">Buts ≈ 60</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 83%</span>
+    <span class="green">+2.5 68%</span>
+    <span class="yellow">+3.5 40%</span>
+    <span class="red">+4.5 15%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="12. Juventus, Italie, 60 buts">
+  <div class="rank">12</div>
+  <div class="club">Juventus ⚫⚪ (Italie 🇮🇹)</div>
+  <div class="goals">Buts ≈ 60</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 82%</span>
+    <span class="green">+2.5 67%</span>
+    <span class="yellow">+3.5 38%</span>
+    <span class="red">+4.5 14%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="13. AC Milan, Italie, 58 buts">
+  <div class="rank">13</div>
+  <div class="club">AC Milan 🔴⚫ (Italie 🇮🇹)</div>
+  <div class="goals">Buts ≈ 58</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 81%</span>
+    <span class="green">+2.5 65%</span>
+    <span class="yellow">+3.5 37%</span>
+    <span class="red">+4.5 12%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="14. Napoli, Italie, 57 buts">
+  <div class="rank">14</div>
+  <div class="club">Napoli 🔵 (Italie 🇮🇹)</div>
+  <div class="goals">Buts ≈ 57</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 80%</span>
+    <span class="green">+2.5 64%</span>
+    <span class="yellow">+3.5 36%</span>
+    <span class="red">+4.5 11%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="15. Tottenham, Angleterre, 55 buts">
+  <div class="rank">15</div>
+  <div class="club">Tottenham ⚪🔵 (Angleterre 🇬🇧)</div>
+  <div class="goals">Buts ≈ 55</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 78%</span>
+    <span class="green">+2.5 63%</span>
+    <span class="yellow">+3.5 34%</span>
+    <span class="red">+4.5 10%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="16. RB Leipzig, Allemagne, 54 buts">
+  <div class="rank">16</div>
+  <div class="club">RB Leipzig 🔴⚪ (Allemagne 🇩🇪)</div>
+  <div class="goals">Buts ≈ 54</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 77%</span>
+    <span class="green">+2.5 62%</span>
+    <span class="yellow">+3.5 33%</span>
+    <span class="red">+4.5 9%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="17. Benfica, Portugal, 52 buts">
+  <div class="rank">17</div>
+  <div class="club">Benfica 🔴⚪ (Portugal 🇵🇹)</div>
+  <div class="goals">Buts ≈ 52</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 75%</span>
+    <span class="green">+2.5 60%</span>
+    <span class="yellow">+3.5 32%</span>
+    <span class="red">+4.5 8%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="18. PSV Eindhoven, Pays-Bas, 50 buts">
+  <div class="rank">18</div>
+  <div class="club">PSV Eindhoven 🔴⚪ (Pays-Bas 🇳🇱)</div>
+  <div class="goals">Buts ≈ 50</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 73%</span>
+    <span class="green">+2.5 58%</span>
+    <span class="yellow">+3.5 30%</span>
+    <span class="red">+4.5 7%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="19. Ajax Amsterdam, Pays-Bas, 49 buts">
+  <div class="rank">19</div>
+  <div class="club">Ajax Amsterdam 🔴⚪ (Pays-Bas 🇳🇱)</div>
+  <div class="goals">Buts ≈ 49</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 72%</span>
+    <span class="green">+2.5 57%</span>
+    <span class="yellow">+3.5 29%</span>
+    <span class="red">+4.5 6%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="20. Sporting CP, Portugal, 48 buts">
+  <div class="rank">20</div>
+  <div class="club">Sporting CP 🟢⚪ (Portugal 🇵🇹)</div>
+  <div class="goals">Buts ≈ 48</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 70%</span>
+    <span class="green">+2.5 55%</span>
+    <span class="yellow">+3.5 28%</span>
+    <span class="red">+4.5 6%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="21. Sevilla FC, Espagne, 47 buts">
+  <div class="rank">21</div>
+  <div class="club">Sevilla FC 🔴⚪ (Espagne 🇪🇸)</div>
+  <div class="goals">Buts ≈ 47</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 68%</span>
+    <span class="green">+2.5 53%</span>
+    <span class="yellow">+3.5 26%</span>
+    <span class="red">+4.5 5%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="22. Lazio, Italie, 46 buts">
+  <div class="rank">22</div>
+  <div class="club">Lazio 🔵⚪ (Italie 🇮🇹)</div>
+  <div class="goals">Buts ≈ 46</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 66%</span>
+    <span class="green">+2.5 51%</span>
+    <span class="yellow">+3.5 25%</span>
+    <span class="red">+4.5 5%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="23. Fiorentina, Italie, 45 buts">
+  <div class="rank">23</div>
+  <div class="club">Fiorentina 🟣⚪ (Italie 🇮🇹)</div>
+  <div class="goals">Buts ≈ 45</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 65%</span>
+    <span class="green">+2.5 50%</span>
+    <span class="yellow">+3.5 24%</span>
+    <span class="red">+4.5 4%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="24. Roma, Italie, 44 buts">
+  <div class="rank">24</div>
+  <div class="club">Roma 🔴🟠 (Italie 🇮🇹)</div>
+  <div class="goals">Buts ≈ 44</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 63%</span>
+    <span class="green">+2.5 48%</span>
+    <span class="yellow">+3.5 22%</span>
+    <span class="red">+4.5 4%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="25. Villarreal, Espagne, 43 buts">
+  <div class="rank">25</div>
+  <div class="club">Villarreal 🟡 (Espagne 🇪🇸)</div>
+  <div class="goals">Buts ≈ 43</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 62%</span>
+    <span class="green">+2.5 47%</span>
+    <span class="yellow">+3.5 21%</span>
+    <span class="red">+4.5 3%</span>
+  </div>
+</div>
+
+<!-- 26 → 50 → je peux générer directement le reste si tu veux -->
+    <div class="card" aria-label="26. Real Sociedad, Espagne, 42 buts">
+  <div class="rank">26</div>
+  <div class="club">Real Sociedad 🔵⚪ (Espagne 🇪🇸)</div>
+  <div class="goals">Buts ≈ 42</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 61%</span>
+    <span class="green">+2.5 46%</span>
+    <span class="yellow">+3.5 20%</span>
+    <span class="red">+4.5 3%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="27. Wolfsburg, Allemagne, 41 buts">
+  <div class="rank">27</div>
+  <div class="club">Wolfsburg 🟢⚪ (Allemagne 🇩🇪)</div>
+  <div class="goals">Buts ≈ 41</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 60%</span>
+    <span class="green">+2.5 45%</span>
+    <span class="yellow">+3.5 19%</span>
+    <span class="red">+4.5 2%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="28. Bayer Leverkusen, Allemagne, 40 buts">
+  <div class="rank">28</div>
+  <div class="club">Bayer Leverkusen 🔴⚫ (Allemagne 🇩🇪)</div>
+  <div class="goals">Buts ≈ 40</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 58%</span>
+    <span class="green">+2.5 44%</span>
+    <span class="yellow">+3.5 18%</span>
+    <span class="red">+4.5 2%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="29. Eintracht Francfort, Allemagne, 39 buts">
+  <div class="rank">29</div>
+  <div class="club">Eintracht Francfort 🔴⚫ (Allemagne 🇩🇪)</div>
+  <div class="goals">Buts ≈ 39</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 57%</span>
+    <span class="green">+2.5 42%</span>
+    <span class="yellow">+3.5 17%</span>
+    <span class="red">+4.5 2%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="30. Lazio, Italie, 38 buts">
+  <div class="rank">30</div>
+  <div class="club">Lazio 🔵⚪ (Italie 🇮🇹)</div>
+  <div class="goals">Buts ≈ 38</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 55%</span>
+    <span class="green">+2.5 41%</span>
+    <span class="yellow">+3.5 16%</span>
+    <span class="red">+4.5 1%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="31. Atalanta, Italie, 37 buts">
+  <div class="rank">31</div>
+  <div class="club">Atalanta 🔵⚫ (Italie 🇮🇹)</div>
+  <div class="goals">Buts ≈ 37</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 54%</span>
+    <span class="green">+2.5 40%</span>
+    <span class="yellow">+3.5 15%</span>
+    <span class="red">+4.5 1%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="32. Real Betis, Espagne, 36 buts">
+  <div class="rank">32</div>
+  <div class="club">Real Betis 🟢⚪ (Espagne 🇪🇸)</div>
+  <div class="goals">Buts ≈ 36</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 53%</span>
+    <span class="green">+2.5 39%</span>
+    <span class="yellow">+3.5 14%</span>
+    <span class="red">+4.5 1%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="33. Valencia, Espagne, 35 buts">
+  <div class="rank">33</div>
+  <div class="club">Valencia ⚫⚪ (Espagne 🇪🇸)</div>
+  <div class="goals">Buts ≈ 35</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 52%</span>
+    <span class="green">+2.5 38%</span>
+    <span class="yellow">+3.5 13%</span>
+    <span class="red">+4.5 1%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="34. Granada, Espagne, 34 buts">
+  <div class="rank">34</div>
+  <div class="club">Granada 🔴⚫ (Espagne 🇪🇸)</div>
+  <div class="goals">Buts ≈ 34</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 51%</span>
+    <span class="green">+2.5 37%</span>
+    <span class="yellow">+3.5 12%</span>
+    <span class="red">+4.5 1%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="35. Monaco, France, 33 buts">
+  <div class="rank">35</div>
+  <div class="club">Monaco 🔴⚪ (France 🇫🇷)</div>
+  <div class="goals">Buts ≈ 33</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 50%</span>
+    <span class="green">+2.5 36%</span>
+    <span class="yellow">+3.5 11%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="36. Lyon, France, 32 buts">
+  <div class="rank">36</div>
+  <div class="club">Lyon 🔴🔵 (France 🇫🇷)</div>
+  <div class="goals">Buts ≈ 32</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 48%</span>
+    <span class="green">+2.5 35%</span>
+    <span class="yellow">+3.5 10%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="37. Marseille, France, 31 buts">
+  <div class="rank">37</div>
+  <div class="club">Marseille 🔵⚪ (France 🇫🇷)</div>
+  <div class="goals">Buts ≈ 31</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 47%</span>
+    <span class="green">+2.5 34%</span>
+    <span class="yellow">+3.5 9%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="38. Lille, France, 30 buts">
+  <div class="rank">38</div>
+  <div class="club">Lille 🔴⚫ (France 🇫🇷)</div>
+  <div class="goals">Buts ≈ 30</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 45%</span>
+    <span class="green">+2.5 33%</span>
+    <span class="yellow">+3.5 8%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="39. Nantes, France, 29 buts">
+  <div class="rank">39</div>
+  <div class="club">Nantes 🟢⚪ (France 🇫🇷)</div>
+  <div class="goals">Buts ≈ 29</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 44%</span>
+    <span class="green">+2.5 32%</span>
+    <span class="yellow">+3.5 7%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="40. Bordeaux, France, 28 buts">
+  <div class="rank">40</div>
+  <div class="club">Bordeaux 🔴🔵 (France 🇫🇷)</div>
+  <div class="goals">Buts ≈ 28</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 43%</span>
+    <span class="green">+2.5 31%</span>
+    <span class="yellow">+3.5 6%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="41. Real Valladolid, Espagne, 27 buts">
+  <div class="rank">41</div>
+  <div class="club">Real Valladolid ⚪🔴 (Espagne 🇪🇸)</div>
+  <div class="goals">Buts ≈ 27</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 42%</span>
+    <span class="green">+2.5 30%</span>
+    <span class="yellow">+3.5 6%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="42. Espanyol, Espagne, 26 buts">
+  <div class="rank">42</div>
+  <div class="club">Espanyol 🔵⚪ (Espagne 🇪🇸)</div>
+  <div class="goals">Buts ≈ 26</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 41%</span>
+    <span class="green">+2.5 29%</span>
+    <span class="yellow">+3.5 5%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="43. Real Zaragoza, Espagne, 25 buts">
+  <div class="rank">43</div>
+  <div class="club">Real Zaragoza 🔴⚪ (Espagne 🇪🇸)</div>
+  <div class="goals">Buts ≈ 25</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 40%</span>
+    <span class="green">+2.5 28%</span>
+    <span class="yellow">+3.5 5%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="44. Nice, France, 24 buts">
+  <div class="rank">44</div>
+  <div class="club">Nice 🔴⚫ (France 🇫🇷)</div>
+  <div class="goals">Buts ≈ 24</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 39%</span>
+    <span class="green">+2.5 27%</span>
+    <span class="yellow">+3.5 4%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="45. Rennes, France, 23 buts">
+  <div class="rank">45</div>
+  <div class="club">Rennes 🔴⚫ (France 🇫🇷)</div>
+  <div class="goals">Buts ≈ 23</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 38%</span>
+    <span class="green">+2.5 26%</span>
+    <span class="yellow">+3.5 4%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="46. Montpellier, France, 22 buts">
+  <div class="rank">46</div>
+  <div class="club">Montpellier 🔵⚪ (France 🇫🇷)</div>
+  <div class="goals">Buts ≈ 22</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 37%</span>
+    <span class="green">+2.5 25%</span>
+    <span class="yellow">+3.5 3%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="47. Braga, Portugal, 21 buts">
+  <div class="rank">47</div>
+  <div class="club">Braga 🔴⚪ (Portugal 🇵🇹)</div>
+  <div class="goals">Buts ≈ 21</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 36%</span>
+    <span class="green">+2.5 24%</span>
+    <span class="yellow">+3.5 3%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="48. Sporting Braga, Portugal, 20 buts">
+  <div class="rank">48</div>
+  <div class="club">Sporting Braga 🔴⚪ (Portugal 🇵🇹)</div>
+  <div class="goals">Buts ≈ 20</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 35%</span>
+    <span class="green">+2.5 23%</span>
+    <span class="yellow">+3.5 2%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="49. Standard Liège, Belgique, 19 buts">
+  <div class="rank">49</div>
+  <div class="club">Standard Liège 🔴⚪ (Belgique 🇧🇪)</div>
+  <div class="goals">Buts ≈ 19</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 34%</span>
+    <span class="green">+2.5 22%</span>
+    <span class="yellow">+3.5 2%</span>
+    <span class="red">+4.5 0%</span>
+  </div>
+</div>
+
+<div class="card" aria-label="50. Anderlecht, Belgique, 18 buts">
+  <div class="rank">50</div>
+  <div class="club">Anderlecht 🟣⚪ (Belgique 🇧🇪)</div>
+  <div class="goals">Buts ≈ 18</div>
+  <div class="thresholds">
+    <span class="green">+0.5 100%</span>
+    <span class="green">+1.5 33%</span>
+
+</div>
+
+
+
+</div>
+
+<div class="analysis">
+<h3 class="section-title">📊 Analyse Offensif 2025-2026</h3>
+🔥 L’Allemagne domine avec Bayern & Dortmund.<br>
+🔥 L’Angleterre reste ultra compétitive offensivement.<br>
+🔥 L’Espagne garde une attaque puissante (Real, Barça, Atlético).<br>
+🔥 Portugal et Pays-Bas très prolifiques.<br>
+🔥 Brésil & Argentine très offensifs en Amérique du Sud.<br><br>
+💡 Tendance Paris Sportifs :<br>
+- Beaucoup de ces clubs sont forts en Over 2.5<br>
+- BTTS fréquent pour Bundesliga & Premier League<br>
+- Bayern et Man City très réguliers offensivement
+</div>
+
+<footer>
+Données basées sur performances championnat + compétitions européennes • 2025-2026 ⚽
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tipa Tipa - Blocs</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+  body { display:flex; flex-direction:column; min-height:100vh; background:#f8fafc; overflow-x:hidden; }
+
+  /* HEADER */
+  header {
+    position: fixed; top:0; left:0; width:100%; padding:10px 20px;
+    display:flex; justify-content:space-between; align-items:center;
+    background: rgba(51,151,144,0.85); backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.2); color:#fff; z-index:1000;
+  }
+  header h1 { font-size:1.5rem; font-weight:700; }
+
+  /* BURGER MENU */
+  .burger { display:none; flex-direction:column; gap:5px; cursor:pointer; z-index:1100; }
+  .burger div { width:25px; height:3px; background:#fff; border-radius:2px; transition:all 0.3s; }
+  .burger.toggle div:nth-child(1){ transform:rotate(45deg) translate(5px,5px);}
+  .burger.toggle div:nth-child(2){ opacity:0;}
+  .burger.toggle div:nth-child(3){ transform:rotate(-45deg) translate(5px,-5px);}
+
+  nav { display:flex; gap:15px; }
+  nav a { color:#fff; text-decoration:none; font-weight:600; font-size:0.9rem; opacity:0; transform:translateX(20px);}
+  nav a:hover{ color:#c0f2d1; }
+
+  @media(max-width:768px){
+    .burger{ display:flex;}
+    nav {
+      position: fixed; top:0; right:-40%; width:40%; height:100vh;
+      background: rgba(51,151,144,0.85); backdrop-filter:blur(12px);
+      flex-direction: column; align-items: flex-start;
+      padding:80px 20px 20px 20px; transition:right 0.4s ease; z-index:1050;
+      border-left:1px solid rgba(255,255,255,0.2);
+    }
+    nav.open { right:0; }
+    nav a { margin:15px 0; font-size:0.95rem; font-weight:600;}
+  }
+
+  main {
+    flex:1; padding:100px 20px 20px;
+    display:grid; grid-template-columns:repeat(2,1fr); gap:20px;
+  }
+
+  .block-container { display:flex; flex-direction:column; align-items:center; position:relative; }
+  .color-block {
+    width:100%; padding-top:50%; border-radius:10px; margin-bottom:10px;
+    transition:transform 0.3s ease,box-shadow 0.3s ease;
+    background-size:cover; background-position:center;
+  }
+  .color-block:hover{ transform:scale(1.05); box-shadow:0 10px 20px rgba(0,0,0,0.2); cursor:pointer;}
+
+  .block-title { font-size:1rem; font-weight:700; text-align:center; margin-bottom:5px; color:#333; }
+  .block-desc { font-size:0.85rem; font-weight:400; text-align:center; color:#555; }
+
+  footer {
+    background: rgba(51,151,144,0.85); backdrop-filter:blur(12px);
+    border-top:1px solid rgba(255,255,255,0.2);
+    color:#fff; text-align:center; padding:15px 20px; font-size:0.9rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Tipa Tipa</h1>
+  <div class="burger" id="burger"><div></div><div></div><div></div></div>
+  <nav id="nav">
+    <a href="blank.html">Page 1</a>
+    <a href="blank.html">Page 2</a>
+    <a href="blank.html">Page 3</a>
+    <a href="blank.html">Page 4</a>
+    <a href="blank.html">Page 5</a>
+  </nav>
+</header>
+
+<main id="main-content">
+  <!-- Blocs initiaux visibles -->
+  <div class="block-container">
+    <a href="1.html" class="color-block" style="background:#f87171;"></a>
+    <div class="block-title">Bloc 1</div>
+    <div class="block-desc">Description 1</div>
+  </div>
+  <div class="block-container">
+    <a href="blank.html" class="color-block" style="background:#60a5fa;"></a>
+    <div class="block-title">Bloc 2</div>
+    <div class="block-desc">Description 2</div>
+  </div>
+  <div class="block-container">
+    <a href="3.html" class="color-block" style="background:#34d399;"></a>
+    <div class="block-title">Bloc 3</div>
+    <div class="block-desc">Description 3</div>
+  </div>
+  <div class="block-container">
+    <a href="4.html" class="color-block" style="background:#fbbf24;"></a>
+    <div class="block-title">Bloc 4</div>
+    <div class="block-desc">Description 4</div>
+  </div>
+  <div class="block-container">
+    <a href="5.html" class="color-block" style="background:#a78bfa;"></a>
+    <div class="block-title">Bloc 5</div>
+    <div class="block-desc">Description 5</div>
+  </div>
+  <div class="block-container">
+    <a href="6.html" class="color-block" style="background:#f472b6;"></a>
+    <div class="block-title">Bloc 6</div>
+    <div class="block-desc">Description 6</div>
+  </div>
+</main>
+
+<footer>&copy; 2026 Projet Paris Sportifs Tipa Tipa. Tous droits réservés.</footer>
+
+<script>
+const burger = document.getElementById('burger');
+const nav = document.getElementById('nav');
+const links = nav.querySelectorAll('a');
+
+burger.addEventListener('click', () => {
+  nav.classList.toggle('open');
+  burger.classList.toggle('toggle');
+  links.forEach((link,index)=>{
+    if(nav.classList.contains('open')){
+      link.style.transition=`opacity 0.4s ${index*0.1}s, transform 0.4s ${index*0.1}s`;
+      link.style.opacity='1'; link.style.transform='translateX(0)';
+    }else{
+      link.style.transition=`opacity 0.3s, transform 0.3s`;
+      link.style.opacity='0'; link.style.transform='translateX(20px)';
+    }
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tipa Tipa - Principes</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#0f172a;
+--card:#1e293b;
+--accent:#38bdf8;
+--text:#e2e8f0;
+--muted:#94a3b8;
+--success:#22c55e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(160deg,#020617,#0f172a);color:var(--text);padding:30px}
+.container{max-width:1000px;margin:auto}
+h1{text-align:center;margin-bottom:40px;font-weight:700}
+.subtitle{text-align:center;color:var(--muted);margin-bottom:40px}
+.flow{display:flex;flex-direction:column;gap:25px;position:relative}
+.card{background:var(--card);padding:20px 25px;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.4);position:relative;transition:.25s}
+.card:hover{transform:translateY(-5px);box-shadow:0 15px 35px rgba(0,0,0,.6)}
+.card h2{color:var(--accent);font-size:18px;margin-bottom:8px}
+.card p{color:var(--text);font-size:15px;line-height:1.5}
+.line{width:3px;height:30px;background:linear-gradient(var(--accent),transparent);margin:0 auto}
+.badge{position:absolute;top:-12px;right:-12px;background:var(--success);padding:6px 12px;border-radius:30px;font-size:12px;font-weight:600}
+footer{text-align:center;margin-top:50px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Les principes du jeu du projet <br>« Tipa Tipa »</h1>
+<p class="subtitle">Projet de paris sportifs</p>
+<div class="flow">
+<div class="card"><span class="badge">Article 1</span>
+<h2>Technique</h2>
+<p>Utilisation de la technique de montante en direct (live).</p>
+</div>
+<div class="line"></div>
+<div class="card"><span class="badge">Article 2</span>
+<h2>Mise minimale</h2>
+<p>La mise doit être placée sur une cote comprise entre 1,20 à 1,50.</p>
+</div>
+<div class="line"></div>
+<div class="card"><span class="badge">Article 3</span>
+<h2>Paliers</h2>
+<p>Trois paliers équivalent à une montante complète.</p>
+</div>
+<div class="line"></div>
+<div class="card"><span class="badge">Article 4</span>
+<h2>Gestion des pertes</h2>
+<p>Après chaque perte, on recommence avec la mise initiale en ajoutant uniquement les surplus décimaux.</p>
+</div>
+<div class="line"></div>
+<div class="card"><span class="badge">Article 5</span>
+<h2>Paiements</h2>
+<p>Les paiements seront effectués lorsque le capital atteindra <br>25 000 gourdes.</p>
+</div>
+</div>
+<footer>© Projet Tipa Tipa</footer>
+</div>
+</body>
+</html>
